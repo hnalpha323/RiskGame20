@@ -1,5 +1,85 @@
 package model;
 
-public class Continents {
+import java.util.ArrayList;
 
+import model.Interfaces.ContinentInterface;
+import model.Interfaces.PlayerInterface;
+import model.Interfaces.TerritoryInterface;
+
+public class Continents implements ContinentInterface{
+
+	private String Name;
+	private ArrayList<TerritoryInterface> territories;
+	private int tempValue = 0; //value
+	
+	/**
+     * Constructor to set Continent Names
+     * @param continent name
+     */
+    public Continents(String name){
+        this.Name = name;
+        this.territories = new ArrayList<>();
+    }
+    
+    /**
+     * @param continent name
+     */
+    public void setName(String name){ 
+    	this.Name=name; 
+   	}
+	
+    /**
+     * To return the continent name
+     * @return continent name
+     */
+    public String getName() {
+    	return this.Name;
+    }
+    
+    /**
+     * @return To return the continent Value as per the conquest map rules
+     */
+    @Override
+    public int getContinentValue() {
+        return this.tempValue;
+    }
+    
+    /**
+     * @param To set the continent Value as per the conquest map rules
+     */
+    @Override
+    public void setContinentValue(int value) {
+        this.tempValue = value;
+    }
+    
+    @Override
+    public boolean controlByPlayer(PlayerInterface p) {
+        boolean result = true;
+        for(TerritoryInterface t:this.getTerritories())
+        {
+            if(!t.getOwner().equals(p))
+            {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public ArrayList<TerritoryInterface> getTerritories() {
+         return this.territories;
+    }
+
+    @Override
+    public void addTerritory(TerritoryInterface t) {
+        this.territories.add(t);
+    }
+
+    @Override
+    public void removeTerritory(TerritoryInterface t)
+    {
+        int index = this.territories.indexOf(t);
+        this.territories.remove(index);
+    }
 }
