@@ -198,7 +198,7 @@ public class Territories implements TerritoryInterface {
 		}
 		else
 		{
-			LoggerController.log(MessageEnum.ERROR, String.format("%s!, At least 1 army should be in %s", count, this.getName()));
+			LoggerController.log(MessageEnum.ERROT, String.format("%s!, At least 1 army should be in %s", count, this.getName()));
 			res.setOk(false);
 		}
 
