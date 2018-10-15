@@ -188,7 +188,7 @@ public class MapEditorGUI implements ViewInterface{
 
 		BorderPane borderPane = new BorderPane();
 
-		Image imageOk = new Image(getClass().getResourceAsStream("/icons8-Back Arrow-35.png")); 
+		Image imageOk = new Image(getClass().getResourceAsStream("/Arrow.png")); 
 		getCloseButton().setGraphic(new ImageView(imageOk));
 		//Adding to row 1 to UI grid
 		gridPane.add(continentChoiceBox,0,0);
