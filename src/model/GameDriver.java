@@ -24,8 +24,8 @@ import controller.LoggerController;
 
 public class GameDriver {
 	
-	private static int MINIMUM_PLAYERS = 2;
-    private static int MAXIMUM_PLAYERS = 6;
+	//private static int MINIMUM_PLAYERS = 2;
+    //private static int MAXIMUM_PLAYERS = 6;
 
     private int numberOfPlayers = 0;
     private int turn = -1;
