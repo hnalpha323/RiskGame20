@@ -1,7 +1,7 @@
 /**
  * @Version 1.0.0
  */
-package View;
+package view;
 
 import java.io.File;
 

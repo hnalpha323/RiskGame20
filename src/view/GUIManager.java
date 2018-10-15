@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import controller.GameController;
 import controller.RWMapFileController;

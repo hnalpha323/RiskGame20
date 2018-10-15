@@ -1,7 +1,7 @@
 package controller;
 
-import model.GameManager;
-import util.expetion.InvalidNumOfPlayersException;
+import model.GameDriver;
+//import utility.expetion.InvalidNumOfPlayersException;
 
 /**
  * @author Muhammad_Hamza_Noor
@@ -13,14 +13,14 @@ public class GameController {
 	 * Initializes the Game
 	 */
 	public void startGame(int numberOfPlayers) {
-		 try
-         {
-             new GameManager(numberOfPlayers).start();
-         }
-         catch (InvalidNumOfPlayersException e)
-         {
-            e.printStackTrace();
-         }
+		 //try
+         //{
+             new GameDriver(numberOfPlayers).start();
+        // }
+        // catch (InvalidNumOfPlayersException e)
+        // {
+        //    e.printStackTrace();
+        // }
 		
 	}
 	
