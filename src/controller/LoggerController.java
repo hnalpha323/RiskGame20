@@ -1,6 +1,6 @@
 package controller;
 
-import util.LogMessageEnum;
+import utility.MessageEnum;
 
 /**
  * Controller sends print messages to View(View here is just a console)
@@ -14,7 +14,7 @@ public class LoggerController {
 	 * @param tag log message type
 	 * @param message message content
 	 */
-	public static void log(LogMessageEnum tag, String message){
+	public static void log(MessageEnum tag, String message){
 		view.Logger.log(tag, message);
 	}
 

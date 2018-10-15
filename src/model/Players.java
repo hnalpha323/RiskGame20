@@ -23,7 +23,7 @@ public class Players implements PlayerInterface {
 
 
     private String name;
-    private Color color;
+    private Gradient color;
     private int unusedArmies = 0;
     private int usedArmies = 0;
     private ArrayList<TerritoryInterface> territories;
@@ -33,7 +33,7 @@ public class Players implements PlayerInterface {
      * @param name  Players name
      * @param color Players color
      */
-    public Players(String name, Color color){
+    public Players(String name, Gradient color){
         this.name = name;
         this.color = color;
         this.territories = new ArrayList<>();
@@ -89,13 +89,13 @@ public class Players implements PlayerInterface {
      *
      * @param color new color
      */
-    public void setColor(Color color){ this.color = color; }
+    public void setColor(Gradient color){ this.color = color; }
 
     /**
      *
      * @return Players's color
      */
-    public Color getColor() { return this.color; }
+    public Gradient getColor() { return this.color; }
 
     /**
      *
@@ -256,7 +256,7 @@ public class Players implements PlayerInterface {
         }
         else
         {
-            LoggerController.log(LogMessageEnum.ERROT, String.format(
+            LoggerController.log(MessageEnum.ERROT, String.format(
                     "%s wanted to move %s armies from %s to %s, but there is no adjacencies.", this.getName()
                     , number, from.getName(), to.getName() ));
         }

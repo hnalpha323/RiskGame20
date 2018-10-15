@@ -4,17 +4,13 @@ import model.Interfaces.ContinentInterface;
 import model.Interfaces.MapInterface;
 import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
-import utility.Color;
-<<<<<<< HEAD
-import utility.Helpers;
-import utility.LogMessageEnum;
-import utility.exception.InvalidNumOfPlayersException;
-=======
+import utility.Gradient;
+
 import utility.Results;
 import utility.DiceRNG;
-import utility.LogMessageEnum;
-import utility.expetion.InvalidNumOfPlayersException;
->>>>>>> df78fc2319553b7f7eccd2d79970e733049d4b68
+import utility.MessageEnum;
+import utility.exception.InvalidNumOfPlayersException;
+
 
 import java.util.ArrayList;
 
@@ -241,7 +237,7 @@ public class GameDriver {
         //    throw new InvalidNumOfPlayersException();
 
 
-        Color colorManager = new Color();
+        Gradient colorManager = new Gradient();
         for (int i=1; i<=this.numberOfPlayers; i++) {
             PlayerInterface p = new PlayerInterface("Player " + Integer.toString(i), colorManager.getRandomColor());
             this.playerlist.add(p);
