@@ -1,6 +1,6 @@
 package model.Interfaces;
 
-import util.ActionResponse;
+import utility.Results;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public interface PlayerInterface {
 
-	ActionResponse ownTerritory(TerritoryInterface territory);
+	Results ownTerritory(TerritoryInterface territory);
     ArrayList<TerritoryInterface> getTerritories();
 
 
@@ -26,7 +26,7 @@ public interface PlayerInterface {
 
     String toString();
 
-    ActionResponse placeArmy(int count, TerritoryInterface territory);
+    Results placeArmy(int count, TerritoryInterface territory);
 
     String getState();
 
@@ -34,5 +34,5 @@ public interface PlayerInterface {
 
     TerritoryInterface getRandomTerritory();
 
-    ActionResponse moveArmies(TerritoryInterface from, TerritoryInterface to, int number);
+    Results moveArmies(TerritoryInterface from, TerritoryInterface to, int number);
 }

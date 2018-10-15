@@ -1,6 +1,6 @@
 package model.Interfaces;
 
-import util.ActionResponse;
+import utility.Results;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public interface TerritoryInterface {
 
     int getArmies();
     void placeArmies(int count);
-    ActionResponse removeArmies(int count);
+    Results removeArmies(int count);
     boolean hasAdjacencyWith(TerritoryInterface t);
     ArrayList<TerritoryInterface> getAdjacentTerritoryObjects();
 }

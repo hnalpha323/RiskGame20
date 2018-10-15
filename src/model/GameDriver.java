@@ -4,10 +4,11 @@ import model.Interfaces.ContinentInterface;
 import model.Interfaces.MapInterface;
 import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
-import util.Color;
-import util.Helpers;
-import util.LogMessageEnum;
-import util.expetion.InvalidNumOfPlayersException;
+import utility.Color;
+import utility.Results;
+import utility.DiceRNG;
+import utility.LogMessageEnum;
+import utility.expetion.InvalidNumOfPlayersException;
 
 import java.util.ArrayList;
 
@@ -109,13 +110,13 @@ public class GameDriver {
     {
         //todo: Implement attach phase.
         LoggerController.log(String.format("Starting Attack Phase...", p.getName()));
-        LoggerController.log(LogMessageEnum.WARNING, "Skip attack phase");
+        //LoggerController.log(LogMessageEnum.WARNING, "Skip attack phase");
         LoggerController.log(String.format("Attack Phase Done", p.getName()));
     }
 
     /**
      * Fortification Phase:
-     * THis Program Randomly moves armies to other territories owned by that player
+     * This Program Randomly moves armies to other territories owned by that player
      * @param Player
      */
     public void fortification(PlayerInterface p)
@@ -131,7 +132,7 @@ public class GameDriver {
         else
             to = p.getRandomTerritory();
 
-        int number = Helpers.getRandomInt(from.getArmies(),1);
+        int number = DiceRNG.getRandomInt(from.getArmies(),1);
         p.moveArmies(from, to, number);
 
 
@@ -154,7 +155,7 @@ public class GameDriver {
 
 
         this.placeArmies(p);
-        LoggerController.log(String.format("============%s REINFORCEMENT DONE===========", p.getName()));
+        LoggerController.log(String.format("Reinforcement Finished", p.getName()));
     }
 
 
@@ -183,7 +184,7 @@ public class GameDriver {
         {
             LoggerController.log(p.getState());
             TerritoryInterface playerRandomTerritory = p.getRandomTerritory();
-            int randomArmy = util.Helpers.getRandomInt(p.getUnusedArmies(),1);
+            int randomArmy = utility.DiceRNG.getRandomInt(p.getUnusedArmies(),1);
 
             p.placeArmy(randomArmy, playerRandomTerritory);
             i += randomArmy;
