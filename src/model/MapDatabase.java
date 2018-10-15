@@ -10,7 +10,7 @@ import java.util.Set;
  * @version 1.0.0
  */
 public final class MapDatabase {
-	public static HashMap<String, HashMap<String,Territory>> continents = new HashMap<String, HashMap<String,Territory>>();
+	public static HashMap<String, HashMap<String,Territories>> continents = new HashMap<String, HashMap<String,Territories>>();
 	public static HashMap<String, Integer> continentValues = new HashMap<String, Integer>();		
 
 
@@ -19,8 +19,8 @@ public final class MapDatabase {
 	 */
 	public static boolean isValidAdjacency(){
 		Set<String> continentNames = MapDatabase.continents.keySet();
-		for(HashMap<String,Territory> territories : MapDatabase.continents.values()){
-			for(Territory territory:territories.values()){
+		for(HashMap<String,Territories> territories : MapDatabase.continents.values()){
+			for(Territories territory:territories.values()){
 			     for(String s : territory.getAdjacentTerritories()){
 			    	 boolean foundTerritory = false;
 			    	 for(String continent: continentNames){
