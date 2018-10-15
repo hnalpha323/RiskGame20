@@ -18,13 +18,13 @@ public final class MapDatabase {
 	 * @return false if any adjacent territory is not declared in any continent
 	 */
 	public static boolean isValidAdjacency(){
-		Set<String> continentNames = MapDataBase.continents.keySet();
-		for(HashMap<String,Territory> territories : MapDataBase.continents.values()){
+		Set<String> continentNames = MapDatabase.continents.keySet();
+		for(HashMap<String,Territory> territories : MapDatabase.continents.values()){
 			for(Territory territory:territories.values()){
 			     for(String s : territory.getAdjacentTerritories()){
 			    	 boolean foundTerritory = false;
 			    	 for(String continent: continentNames){
-			    	    if(MapDataBase.continents.get(continent).containsKey(s))
+			    	    if(MapDatabase.continents.get(continent).containsKey(s))
 			    	    	foundTerritory = true;
 			    	 }
 			    	 if(!foundTerritory) return false;
