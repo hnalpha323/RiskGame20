@@ -5,6 +5,7 @@ import model.GameDriver;
 
 /**
  * @author Muhammad_Hamza_Noor
+ * Initializes the Game Using GameDriver and number of players as input
  * Controls the Game Play using GameDriver Model 
  */
 public class GameController {	
