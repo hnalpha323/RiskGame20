@@ -1,6 +1,6 @@
 package model;
 
-import static util.Helpers.getRandomInt;
+import static utility.DiceRNG.getRandomInt;
 
 /**
  * Random Number Generator from 1 to 6 for Dice
