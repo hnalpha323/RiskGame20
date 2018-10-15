@@ -8,8 +8,8 @@ import model.Interfaces.TerritoryInterface;
 import model.Interfaces.PlayerInterface;
 import utility.Results;
 import utility.Gradient;
-import utility.LogMessageEnum;
-import utility.exception.NoSufficientArmiesExption;
+import utility.MessageEnum;
+//import utility.exception.NoSufficientArmiesExption;
 
 import java.util.ArrayList;
 
@@ -256,7 +256,7 @@ public class Players implements PlayerInterface {
         }
         else
         {
-            LoggerController.log(MessageEnum.ERROT, String.format(
+            LoggerController.log(MessageEnum.ERROR, String.format(
                     "%s wanted to move %s armies from %s to %s, but there is no adjacencies.", this.getName()
                     , number, from.getName(), to.getName() ));
         }
