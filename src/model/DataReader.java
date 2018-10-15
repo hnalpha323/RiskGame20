@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * @author getWaleed
+ * @author WaleedAhmad
  *
  */
 public class DataReader {
