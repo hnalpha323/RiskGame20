@@ -13,14 +13,14 @@ public class GameController {
 	 * Initializes the Game
 	 */
 	public void startGame(int numberOfPlayers) {
-		 try
-         {
+		// try
+         ///{
              new GameDriver(numberOfPlayers).start();
-         }
-         catch (InvalidNumOfPlayersException e)
-         {
-            e.printStackTrace();
-         }
+       //  }
+       // catch (InvalidNumOfPlayersException e)
+        // {
+         //   e.printStackTrace();
+        // }
 		
 	}
 	
