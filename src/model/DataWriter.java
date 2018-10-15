@@ -12,15 +12,15 @@ import java.util.Set;
 public class DataWriter {
 
 	/**
-	 * @param continentName
-	 */
+	* @param Continent Name
+	*/
 	public void createContinent(String continentName) {
 		MapDatabase.continents.put(continentName, new HashMap<String,Territories>());
 	}
 
 	/**
-	 * Used to delete continent
-	 * @param continent
+	 * To delete continents
+	 * @param Continent Name that needs to be deleted
 	 */
 	public void deleteContinent(String continent) {
 		Set<String> contriesContinenthas = MapDatabase.continents.get(continent).keySet();
@@ -38,8 +38,8 @@ public class DataWriter {
 	}
 
 	/**
-	 * @param continent
-	 * @param country
+	 * @param Continent Name
+	 * @param Country Name
 	 */
 	public void deleteCountry(String continent, String country) {
 		for(HashMap<String,Territories> contries  : MapDatabase.continents.values()){
@@ -53,10 +53,10 @@ public class DataWriter {
 	}
 
 	/**
-	 * @param continent
-	 * @param country
-	 * @param continentValue
-	 * @param new_adjacentContries
+	 * @param Continent Name
+	 * @param Country Name
+	 * @param ContinentValue Name
+	 * @param Adjacent Countries
 	 */
 	public void overWriteData(String continent, String country, String continentValue,
 			ArrayList<String> new_adjacentContries) {

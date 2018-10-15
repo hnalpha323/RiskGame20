@@ -4,8 +4,9 @@ import model.GameDriver;
 //import utility.exception.InvalidNumOfPlayersException;
 
 /**
- * @author Muhammad_Hamza_Noor
+ * Initializes the Game Using GameDriver and number of players as input
  * Controls the Game Play using GameDriver Model 
+ * @author Muhammad_Hamza_Noor
  */
 public class GameController {	
 

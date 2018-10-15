@@ -6,11 +6,16 @@ import model.Interfaces.ContinentInterface;
 import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
 
+/**
+ * @author Meet_Patel
+ * @version 1.0.0
+ */
+
 public class Continents implements ContinentInterface{
 
 	private String Name;
 	private ArrayList<TerritoryInterface> territories;
-	private int tempValue = 0; //value
+	private int tempValue = 0;
 	
 	/**
      * Constructor to set Continent Names
