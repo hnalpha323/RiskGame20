@@ -1,4 +1,4 @@
-package view;
+package View;
 
 
 import java.util.ArrayList;
@@ -30,10 +30,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 /**
- * @author Team15
+ * @author rISK tEAM 20
+ * @version 1.0.0
  * Responsible for generating Map editor view
  */
-public class MapEditorView implements IView{		
+public class MapEditorGUI implements ViewInterface{		
 
 	private static Scene editorScene = null;
 	private static String country,continent = null;
@@ -53,7 +54,7 @@ public class MapEditorView implements IView{
 	 * @param new_readController
 	 * @param new_writeController
 	 */
-	public MapEditorView(ReadController new_readController,WriteController new_writeController) {
+	public MapEditorGUI(ReadController new_readController,WriteController new_writeController) {
 		readController = new_readController;
 		writeController = new_writeController;
 	}
@@ -68,7 +69,7 @@ public class MapEditorView implements IView{
 		ObservableList<String> continents = FXCollections.observableArrayList();		 
 		ObservableList<String> contries = FXCollections.observableArrayList();
 
-		continents.addAll(model.MapDataBase.continentValues.keySet());
+		continents.addAll(model.MapDatabase.continentValues.keySet());
 		GridPane gridPane = new GridPane();
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);

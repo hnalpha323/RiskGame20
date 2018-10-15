@@ -1,9 +1,10 @@
 package View;
 
-import util.LogMessageEnum;
+import utility.MessageEnum;
 
 /**
- * @author m_guntur
+ * @author WaleedAhmad
+ * @version 1.0.0
  * Used to Log the messages on Command Prompt
  */
 public class Message {
@@ -12,17 +13,17 @@ public class Message {
      * @param tag log message type
      * @param message message content
      */
-    public static void log(LogMessageEnum tag, String message){
+    public static void log(MessageEnum tag, String message){
         String logTag = "";
         switch (tag)
         {
-            case INFO:
+            case INFORMATION:
                 logTag = "[:)] ";
                 break;
             case WARNING:
                 logTag = "[:|] ";
                 break;
-            case ERROT:
+            case ERROR:
                 logTag = "[:(] ";
                 break;
         }
@@ -36,7 +37,7 @@ public class Message {
      */
     public static void log(String message)
     {
-        log(LogMessageEnum.INFO, message);
+        log(MessageEnum.INFORMATION, message);
     }
 
 }
