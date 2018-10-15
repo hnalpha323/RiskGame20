@@ -1,6 +1,6 @@
 package model;
 
-import model.Interfaces.IPlayer;
+import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
 import util.ActionResponse;
 import util.LogMessageEnum;
