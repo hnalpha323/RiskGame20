@@ -5,10 +5,16 @@ import model.Interfaces.MapInterface;
 import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
 import utility.Color;
+<<<<<<< HEAD
+import utility.Helpers;
+import utility.LogMessageEnum;
+import utility.exception.InvalidNumOfPlayersException;
+=======
 import utility.Results;
 import utility.DiceRNG;
 import utility.LogMessageEnum;
 import utility.expetion.InvalidNumOfPlayersException;
+>>>>>>> df78fc2319553b7f7eccd2d79970e733049d4b68
 
 import java.util.ArrayList;
 
@@ -34,7 +40,7 @@ public class GameDriver {
 
     private boolean isGameOn=false;
 
-    private MapInterfaces map;
+    private MapInterface map;
     private ArrayList<PlayerInterface> playerlist = new ArrayList<PlayerInterface>();
 
 
@@ -228,7 +234,8 @@ public class GameDriver {
     /**
      * Method to populate players in the game
      */
-    public void addPlayers() //throws InvalidNumOfPlayersException {
+    public void addPlayers() //throws InvalidNumOfPlayersException 
+    {
 
         //if (this.numberOfPlayers > MAXIMUM_PLAYERS || this.numberOfPlayers < MINIMUM_PLAYERS)
         //    throw new InvalidNumOfPlayersException();
@@ -236,7 +243,7 @@ public class GameDriver {
 
         Color colorManager = new Color();
         for (int i=1; i<=this.numberOfPlayers; i++) {
-            PlayerInterface p = new Player("Player " + Integer.toString(i), colorManager.getRandomColor());
+            PlayerInterface p = new PlayerInterface("Player " + Integer.toString(i), colorManager.getRandomColor());
             this.playerlist.add(p);
             LoggerController.log(p.toString() + " was added to the game.");
         }
