@@ -35,7 +35,7 @@ public class LoadMap {
 				isValidMap = LoadMapUtility.addContinet(data);
 			    break;
 			case "territories":
-				isValidMap = LoadMapUtility.addTerritory(data);
+				isValidMap = LoadMapUtility.addTerritories(data);
 			default:
 				break;
 		}
