@@ -11,6 +11,12 @@ import java.util.Set;
 
 import controller.LoggerController;
 
+	/**
+	 * 
+	 * @author Muhammad_Hamza_Noor
+	 * @version 1.0.0
+	 *
+	 */
 public class Territories implements TerritoryInterface {
     private String continentName;
 	private String territoryName;
@@ -19,7 +25,7 @@ public class Territories implements TerritoryInterface {
     private int numberOfArmies;
     private String currentPlayer;
 	
-    public Territory(String n_continentName, String n_territoryName,String n_coordinates, ArrayList<String> n_adjacentTerritories) {
+    public Territories(String n_continentName, String n_territoryName,String n_coordinates, ArrayList<String> n_adjacentTerritories) {
 		this.continentName = n_continentName;
 		this.territoryName = n_territoryName;
 		this.coordinates = n_coordinates;
@@ -120,7 +126,7 @@ public class Territories implements TerritoryInterface {
      * @param player new owner
      */
 	@Override
-    public void setOwner(IPlayer player) {
+    public void setOwner(PlayerInterface player) {
         this.owner = player;
         LoggerController.log(this.territoryName + " is owned by " + player.getName());
     }
@@ -130,12 +136,12 @@ public class Territories implements TerritoryInterface {
      * @return owner
      */
     @Override
-    public IPlayer getOwner() {
+    public PlayerInterface getOwner() {
         return this.owner;
     }
 
-    //todo: added by Amir starts
-    private IPlayer owner;
+    
+    private PlayerInterface owner;
 
     /**
      * Constructor
