@@ -11,6 +11,9 @@ import view.GUIManager;
 /** 
  * Class that contains Main function which will launch the Game
  * This class initializes controllers,View and connects them.
+ * 
+ * @author Meet_Patel
+ * @version 1.0.0
  */
 
 public class Launcher {

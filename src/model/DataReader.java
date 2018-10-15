@@ -1,6 +1,3 @@
-/**
- * @version 1.0.0
- */
 package model;
 
 import java.util.ArrayList;
@@ -9,12 +6,11 @@ import java.util.HashMap;
 /**
  * @author WaleedAhmad
  * @version 1.0.0
- *
  */
 public class DataReader {
 
 	/**
-	 * @param continent
+	 * @param Continent Name
 	 * @return All territories which are in a continent
 	 */
 	public HashMap<String, Territories> getContries(String continent) {
@@ -22,9 +18,9 @@ public class DataReader {
 	}
 
 	/**
-	 * @param continent
-	 * @param country
-	 * @return
+	 * @param Continent Name
+	 * @param Country Name
+	 * @return Adjacent Territories
 	 */
 	
 	public ArrayList<String> getAdjacentTerritories(String continent, String country) {
@@ -37,32 +33,28 @@ public class DataReader {
         
 	}
 
-
-		/**
-		 * @param continentName
-		 * @return true on condition if continent exists
-		 */
-		public boolean hasContinent(String continentName){
-			return MapDatabase.continentValues.containsKey(continentName);		
-		}
-
-		/**
-		 * @param continent
-		 * @return
-		 */
-		public ArrayList<String> getTerritoriesNames(String continent) {
-			return new ArrayList<String>(MapDatabase.continents.get(continent).keySet());
-		}
-
-		/**
-		 * @param continentName
-		 * @return
-		 */
-		public int getContinentValue(String continentName) {
-			return MapDatabase.continentValues.get(continentName);
-		}
-
-
+	/**
+	* @param Continent Name
+	* @return Boolean to see if the Neighboring territories exists or not
+	*/
 	
+	public boolean hasContinent(String continentName){
+		return MapDatabase.continentValues.containsKey(continentName);		
+	}
+
+	/**
+	* @param Continent Name
+	*/
 	
+	public ArrayList<String> getTerritoriesNames(String continent) {
+		return new ArrayList<String>(MapDatabase.continents.get(continent).keySet());
+	}
+
+	/**
+	* @param Continent Name
+	* @return Continent Values
+	*/
+	public int getContinentValue(String continentName) {
+		return MapDatabase.continentValues.get(continentName);
+	}
 }
