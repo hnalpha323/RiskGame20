@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
  
 /**
- * @author Risk Team 20
+ * @author Risk_Team_20
  * @version 1.0.0
  * Link between multiple views
  */
