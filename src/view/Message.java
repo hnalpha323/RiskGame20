@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import utility.MessageEnum;
 
@@ -39,5 +39,5 @@ public class Message {
     {
         log(MessageEnum.INFORMATION, message);
     }
-
+    
 }
