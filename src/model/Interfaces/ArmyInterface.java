@@ -1,5 +1,5 @@
 package model.Interfaces;
 
-public class ArmryInterface {
+public class ArmyInterface {
 
 }

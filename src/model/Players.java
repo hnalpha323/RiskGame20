@@ -6,10 +6,10 @@ import com.sun.javafx.binding.StringFormatter;
 import controller.LoggerController;
 import model.Interfaces.TerritoryInterface;
 import model.Interfaces.PlayerInterface;
-import util.ActionResponse;
-import util.Color;
-import util.LogMessageEnum;
-import util.expetion.NoSufficientArmiesExption;
+import utility.Results;
+import utility.Gradient;
+import utility.LogMessageEnum;
+import utility.exception.NoSufficientArmiesExption;
 
 import java.util.ArrayList;
 
@@ -103,11 +103,11 @@ public class Players implements PlayerInterface {
      * @return if the operation was successful or not
      */
     @Override
-    public ActionResponse ownTerritories(TerritoryInterface Territories) {
+    public Results ownTerritory(TerritoryInterface Territories) {
         Territories.setOwner(this);
         this.placeArmy(1, Territories);
         this.territories.add(Territories);
-        return new ActionResponse(true, String.format("%s owns %s", this.getName(),Territories.getName()) );
+        return new Results(true, String.format("%s owns %s", this.getName(),Territories.getName()) );
     }
 
     /**
@@ -150,10 +150,10 @@ public class Players implements PlayerInterface {
      * @return if the action is done or not
      */
     @Override
-    public ActionResponse placeArmy(int count, TerritoryInterface Territories) {
+    public Results placeArmy(int count, TerritoryInterface Territories) {
 
         if(this.unusedArmies - count < 0)
-            return new ActionResponse("No sufficient armies.");
+            return new Results("No sufficient armies.");
 
 
         this.setUnusedArmies(this.unusedArmies - count);
@@ -162,7 +162,7 @@ public class Players implements PlayerInterface {
         LoggerController.log(this.getName() + " placed " + Integer.toString(count)+" armies into " + Territories.getName());
         LoggerController.log(this.getName() + " Unused armies = " + Integer.toString(this.getUnusedArmies()) +
                 ", Used armies = " + Integer.toString(this.getUsedArmies()) );
-        return new ActionResponse(true, String.format("%d armies placed in %s", count, Territories.getName()));
+        return new Results(true, String.format("%d armies placed in %s", count, Territories.getName()));
     }
 
     /**
@@ -210,7 +210,7 @@ public class Players implements PlayerInterface {
      * @return the Territories
      */
     @Override
-    public TerritoryInterface getTerritoriesByName(String TerritoriesName)
+    public TerritoryInterface getTerritoryByName(String TerritoriesName)
     {
         TerritoryInterface result = null;
         for(TerritoryInterface t:this.territories)
@@ -225,9 +225,9 @@ public class Players implements PlayerInterface {
      * @return randomly selected Territories
      */
     @Override
-    public TerritoryInterface getRandomTerritories() {
+    public TerritoryInterface getRandomTerritory() {
         int max = this.getTerritories().size()-1;
-        return this.getTerritories().get(util.Helpers.getRandomInt(max,0));
+        return this.getTerritories().get(utility.DiceRNG.getRandomInt(max,0));
     }
 
 
@@ -239,13 +239,13 @@ public class Players implements PlayerInterface {
      * @return if the operation is done or not
      */
     @Override
-    public ActionResponse moveArmies(TerritoryInterface from, TerritoryInterface to, int number) {
-        ActionResponse result = new ActionResponse();
+    public Results moveArmies(TerritoryInterface from, TerritoryInterface to, int number) {
+        Results result = new Results();
 
         if(from.hasAdjacencyWith(to))
         {
             LoggerController.log(this.getState());
-            ActionResponse r = from.removeArmies(number);
+            Results r = from.removeArmies(number);
             if (r.getOk())
             {
                 to.placeArmies(number);
