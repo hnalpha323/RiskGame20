@@ -6,9 +6,12 @@ import java.util.Arrays;
 import model.DataWriter;
 
 /**
- * @author Team Risk 20
+ * Controller that handles Saving the maps
  * 
- * Controls Write operations on {@link MapDataBase}
+ * @author Muhammad_Hamza_Noor
+ * @author WaleedAhmad
+ * @author Meet_Patel
+ * @version 1.0.0
  */
 public class WriteController
 {
@@ -17,15 +20,16 @@ public class WriteController
 	
 	
 	/**
-	 * @param new_dataWriter instance of {@link model.DataWriter}
+	 * @param DataWriter Object 
 	 */
 	public WriteController(DataWriter new_dataWriter)
 	{
 		dataWriter = new_dataWriter;
 	}
 	
-	/**Writes new continent to map
-	 * @param continent_name should be the Continent Name
+	/**
+	 * To create new continent in a map
+	 * @param Continent Name
 	 */
 	public void writenewContinent(String continentName)
 	{
@@ -33,12 +37,10 @@ public class WriteController
 	}
 
 	/**
-	 * @param editedadjacentCountries are new Adjacent territories given by user
-	 * @param continent should be the Continent Name
-	 * @param country should be the Country Name
-	 * @param continentValue is the continent Value
-	 * @param isdeleteContinent is true is a continent is deleted by user
-	 * @param isdeleteCountry is true is a country is deleted by user 
+	 * @param Neighboring territories given by user
+	 * @param Continent Name
+	 * @param Country Name
+	 * @param Continent Value
 	 */
 	public void addData(String editedadjacentCountries,String continent,String country,String continentValue,boolean isdeleteContinent,boolean isdeleteCountry){
 		

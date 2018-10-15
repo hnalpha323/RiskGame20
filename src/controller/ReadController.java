@@ -5,24 +5,27 @@ import java.util.ArrayList;
 import model.DataReader;
 
 /**
- * @author Risk Team 20
- * Does read operations on {@link MapDataBase}
+ * Reads the data of map file
+ * @author Muhammad_Hamza_Noor
+ * @author Meet_Patel
+ * @author WaleedAhmad
+ * @version 1.0.0
  */
 public class ReadController{
 
 	public DataReader dataReader;
 	
 	/**
-	 * @param new_dataReader instance of {@link model.DataReader}
+	 * @param DataReader object of package model.DataReader
 	 */
 	public ReadController(DataReader new_dataReader){
 	    dataReader = new_dataReader;	
 	}
 	
 	/**
-	 * @param continent should be the Continent Name
-	 * @param country should be the Country Name
-	 * @return ArrayList of adjacent countries names
+	 * @param Continent Name
+	 * @param Country Name
+	 * @return List of neighboring nodes of that Territory
 	 */
 	public ArrayList<String> getAdjacentTerritories(String continent,String country){		
 		if(dataReader.hasContinent(continent)){
@@ -34,8 +37,8 @@ public class ReadController{
 	
 
 	/**
-	 * @param continent should be the Continent Name
-	 * @return ArrayList of territories names in a continent
+	 * @param Continent Name
+	 * @return List of territories in that continent
 	 */
 	public ArrayList<String> getTerritoriesNames(String continent) {
 		if(!dataReader.hasContinent(continent)){
@@ -48,9 +51,8 @@ public class ReadController{
 
 
 	/**
-	 * Returns continent value
-	 * @param continent should be the Continent Name
-	 * @return the continent value
+	 * @param Continent Name
+	 * @return ContinentValue
 	 */
 	public int getContinentValue(String continentName) {
 		if(dataReader.hasContinent(continentName))

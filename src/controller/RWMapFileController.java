@@ -8,23 +8,21 @@ import model.MapWriter;
 
 
 /**
+ * This class is used to Load and Save the maps
  * @author Muhammad_Hamza_Noor
- * This class controls read and writes on the map
  */
 public class RWMapFileController{
 
 	/**
-	 * @param file instance of {@link File} points to .map file
+	 * @param File object of map to load 
 	 */
 	public boolean loadMap(File file) {
 		LoadMap loadMap = new LoadMap(file);
         return loadMap.load();		
 	}
 
-	
-
 	/**
-	 * @param file instance of {@link File} points to new .map file
+	 * @param File object of map to Write
 	 */
 	public void writeMap(File file) {
         MapWriter writeMap = new MapWriter(file);
@@ -32,9 +30,8 @@ public class RWMapFileController{
 	}
 
 
-
 	/**
-	 * Checks the case whether adjacent territories are valid 
+	 * Validation of Map to check if the neighboring territories are valid or not
 	 * @return true if map satisfies above case
 	 */
 	public boolean validateMap() {
@@ -42,9 +39,8 @@ public class RWMapFileController{
 	}
 
 
-
 	/**
-	 * Clears the previously loaded data from Map
+	 * To clear an already loaded map
 	 */
 	public void clearData() {
 		MapDatabase.clear();		
