@@ -1,7 +1,7 @@
 package model;
 
 
-import com.sun.javafx.binding.StringFormatter;
+//import com.sun.javafx.binding.StringFormatter;
 
 import controller.LoggerController;
 import model.Interfaces.TerritoryInterface;
