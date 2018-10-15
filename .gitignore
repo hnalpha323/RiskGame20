@@ -1,1 +1,6 @@
 /bin/
+src/controller/LoggerController.java
+src/model/GameDriver.java
+src/model/Map.java
+src/model/Players.java
+src/model/Territories.java

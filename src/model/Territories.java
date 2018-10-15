@@ -2,8 +2,8 @@ package model;
 
 import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
-import utility.Results;
-import utility.MessageEnum;
+import util.ActionResponse;
+import util.LogMessageEnum;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -148,7 +148,7 @@ public class Territories implements TerritoryInterface {
      * @param name name of territory
      * @param continentName continent name
      */
-    public Territories(String name, String continentName)
+    public Territory(String name, String continentName)
     {
         this.territoryName=name;
         this.continentName=continentName;
@@ -187,8 +187,8 @@ public class Territories implements TerritoryInterface {
      * @return remove process result
      */
     @Override
-	public Results removeArmies(int count) {
-		Results res = new Results();
+	public ActionResponse removeArmies(int count) {
+		ActionResponse res = new ActionResponse();
 
 		if ((this.getArmies() - count) >= 1)
 		{
@@ -198,7 +198,7 @@ public class Territories implements TerritoryInterface {
 		}
 		else
 		{
-			LoggerController.log(MessageEnum.ERROR, String.format("%s!, At least 1 army should be in %s", count, this.getName()));
+			LoggerController.log(LogMessageEnum.ERROT, String.format("%s!, At least 1 army should be in %s", count, this.getName()));
 			res.setOk(false);
 		}
 
@@ -224,7 +224,7 @@ public class Territories implements TerritoryInterface {
 	 */
 	public ArrayList<TerritoryInterface> getAdjacentTerritoryObjects(){
 		ArrayList<TerritoryInterface> adjacentTerritoriesObjects = new ArrayList<TerritoryInterface>();
-		for(HashMap<String,Territory> territories : MapDatabase.continents.values()){
+		for(HashMap<String,Territory> territories : MapDataBase.continents.values()){
 			for(Territory territory:territories.values()){
 				if(this.adjacentTerritories.contains(territory.getTerritoryName())){
 					adjacentTerritoriesObjects.add(territory);

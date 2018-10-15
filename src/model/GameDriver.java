@@ -5,15 +5,11 @@ import model.Interfaces.MapInterface;
 import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
 import utility.Gradient;
-
-import utility.Results;
 import utility.DiceRNG;
 import utility.MessageEnum;
-import utility.exception.InvalidNumOfPlayersException;
-
-
+//import utility.exception.InvalidNumOfPlayersException;
+import utility.Results;
 import java.util.ArrayList;
-
 import controller.LoggerController;
 
 /**
@@ -237,13 +233,13 @@ public class GameDriver {
         //    throw new InvalidNumOfPlayersException();
 
 
-        Gradient colorManager = new Gradient();
+    	Gradient Gradientcolor = new Gradient();
         for (int i=1; i<=this.numberOfPlayers; i++) {
-            PlayerInterface p = new PlayerInterface("Player " + Integer.toString(i), colorManager.getRandomColor());
+            PlayerInterface p = new Player("Player " + Integer.toString(i), Gradientcolor.getRandomColor());
             this.playerlist.add(p);
             LoggerController.log(p.toString() + " was added to the game.");
         }
-        colorManager = null;
+        Gradientcolor = null;
     }
 
     /**
