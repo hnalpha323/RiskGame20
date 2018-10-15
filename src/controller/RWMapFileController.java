@@ -4,7 +4,8 @@ import java.io.File;
 
 import model.LoadMap;
 import model.MapDatabase;
-import model.WriteMap;
+import model.MapWriter;
+
 
 /**
  * @author Muhammad_Hamza_Noor
@@ -26,7 +27,7 @@ public class RWMapFileController{
 	 * @param file instance of {@link File} points to new .map file
 	 */
 	public void writeMap(File file) {
-        WriteMap writeMap = new WriteMap(file);
+        MapWriter writeMap = new MapWriter(file);
         writeMap.write(); 
 	}
 
