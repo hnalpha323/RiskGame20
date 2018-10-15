@@ -53,21 +53,21 @@ public class WelcomeGUI implements ViewInterface{
 	public Scene getView(){
 		    Button chooseMapButton = new Button();
 	        chooseMapButton.setMinWidth(200);
-	        chooseMapButton.setText("Choose Map file");
+	        chooseMapButton.setText("Load Map");
 	        Button saveMapButton = new Button();
 	        saveMapButton.setMinWidth(200);
-	        saveMapButton.setText("Save Map file");
+	        saveMapButton.setText("Save Map");
 	        Button createMapButton = new Button();
 	        createMapButton.setMinWidth(200);
-	        createMapButton.setText("Create Map file");
+	        createMapButton.setText("Create A Map");
 	        Button gobackButton = new Button();
 	        gobackButton.setMinWidth(200);
-	        gobackButton.setText("Prevoius View");
+	        gobackButton.setText("Previous Map");
 	        
 	        gobackButton.setVisible(false);
 	        
 	        Alert alert = new Alert(AlertType.ERROR);
-	        alert.setHeaderText("Map file is not valid");
+	        alert.setHeaderText("Invalid Map file detected");
 
 	        chooseMapButton.setOnAction(new EventHandler<ActionEvent>() {
 	            @Override
