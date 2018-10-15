@@ -18,6 +18,9 @@ import controller.LoggerController;
  * A startup phase for setting up the map and players
  * Adding and Allocating Initial Armies to Players
  * Allocating random countries to players
+ * 
+ * @author Meet_Patel
+ * @version 1.0.0
  */
 
 public class GameDriver {
