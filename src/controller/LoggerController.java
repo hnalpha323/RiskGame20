@@ -14,8 +14,8 @@ public class LoggerController {
 	 * @param tag log message type
 	 * @param message message content
 	 */
-	public static void log(LogMessageEnum tag, String message){
-		view.Logger.log(tag, message);
+	public static void log(MessageEnum tag, String message){
+		view.Message.log(tag, message);
 	}
 
 	/**
@@ -23,7 +23,7 @@ public class LoggerController {
 	 * @param message message content
 	 */
 	public static void log(String message){
-		view.Logger.log(message);
+		view.Message.log(message);
 	}
 
 }
