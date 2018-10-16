@@ -1,7 +1,3 @@
-/**
- * @author WaleedAhmad
- * @version 1.0.0 
- */
 package model;
 
 import java.io.BufferedWriter;
@@ -11,22 +7,23 @@ import java.io.IOException;
 import java.util.HashMap;
 
 /**
- * Write a new map to specified #outputPath
+ * Class to Save a created or edited map
+ * @author WaleedAhmad
+ * @version 1.0.0
  */
 public class MapWriter {
 
 	File outputPath;
 	
 	/**
-	 * @param file takes file path of destination
+	 * @param File object that contains path of the map file
 	 */
 	public MapWriter(File file){
 		outputPath  = file;
-	}
-	
+	}	
 	
 	/**
-	 *  write a new map for #outputPath from MapDataBase
+	 *  Method that creates the map file from the input according the conquest map rules
 	 */
 	public void write(){		
 		try {

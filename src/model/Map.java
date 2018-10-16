@@ -10,16 +10,13 @@ import java.util.ArrayList;
 /**
  * @author Muhammad_Hamza_Noor
  * @version 1.0.0
- * represents Map in the game
+ * 
  */
 public class Map implements MapInterface {
 
 
     private ArrayList<ContinentInterface> continents = new ArrayList<>();
 
-    /**
-     * Constructor
-     */
     public Map()
     {
         this.loadData();
@@ -27,8 +24,7 @@ public class Map implements MapInterface {
 
 
     /**
-     *
-     * @return list of continents in the map
+     * @return List of all the continents in the map
      */
     @Override
     public ArrayList<ContinentInterface> getContinents() {
@@ -48,7 +44,7 @@ public class Map implements MapInterface {
     }
 
     /**
-     * clears the continents from the map
+     * clears all the continent data
      */
     public void clearData()
     {
@@ -56,30 +52,30 @@ public class Map implements MapInterface {
     }
 
     /**
-     * fills the map with the fake data
+     * Fill map with temp data
      */
     public void fakeData()
     {
         this.continents = new ArrayList<>();
 
 
-        ContinentInterface c1 = new Continents("Asia");
+        ContinentInterface c1 = new Continents("EU");
         this.continents.add(c1);
-        c1.addTerritory(new Territories("Iran",c1.getName()));
-        c1.addTerritory(new Territories("India",c1.getName()));
-        c1.addTerritory(new Territories("Mexico",c1.getName()));
-        c1.addTerritory(new Territories("Russia",c1.getName()));
+        c1.addTerritory(new Territories("Germany",c1.getName()));
+        c1.addTerritory(new Territories("France",c1.getName()));
+        c1.addTerritory(new Territories("Italy",c1.getName()));
+        c1.addTerritory(new Territories("Croatia",c1.getName()));
 
-        ContinentInterface c2 = new Continents("Africa");
+        ContinentInterface c2 = new Continents("NA");
         this.continents.add(c2);
-        c2.addTerritory(new Territories("Egypt",c2.getName()));
-        c2.addTerritory(new Territories("Kenya",c2.getName()));
+        c2.addTerritory(new Territories("Canada",c2.getName()));
+        c2.addTerritory(new Territories("USA",c2.getName()));
 
-        ContinentInterface c3 = new Continents("America");
+        ContinentInterface c3 = new Continents("Asia");
         this.continents.add(c3);
+        c3.addTerritory(new Territories("Japan", c3.getName()));
+        c3.addTerritory(new Territories("Russia", c3.getName()));
         c3.addTerritory(new Territories("China", c3.getName()));
-        c3.addTerritory(new Territories("Canada", c3.getName()));
-        c3.addTerritory(new Territories("Argentina", c3.getName()));
 
     }
 }

@@ -7,14 +7,12 @@ import java.util.HashMap;
 /**
  * @author WaleedAhmad
  * @Version 1.0.0
- *
  */
 public final class LoadMapUtility {
 
 	
 	/**
-	 * @param line, is a text line from .map file
-	 * @return false if unable to split by '='
+	 * @param Adds Continent Data From Map file
 	 */
 	public static boolean addContinet(String line){
 	   String[] tmpArray = line.split("=");
@@ -29,9 +27,9 @@ public final class LoadMapUtility {
 	
 	
 	/**
-	 * Adds Territories value to {@link MapDatabase}
-	 * @param line
-	 * @return false if a Territories belongs to an unknown continent
+	 * Adds Territories values
+	 * @param Data From Map file
+	 * @return  checks if territories belong to continent and return false if not
 	 */
 	public static boolean addTerritories(String line){			
 		String[] tmpArray = line.split(",");		

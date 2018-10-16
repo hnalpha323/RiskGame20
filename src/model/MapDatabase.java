@@ -15,7 +15,7 @@ public final class MapDatabase {
 
 
 	/**
-	 * @return false if any adjacent territory is not declared in any continent
+	 * @return Returns Nodes that are independent or not connected
 	 */
 	public static boolean isValidAdjacency(){
 		Set<String> continentNames = MapDatabase.continents.keySet();
@@ -38,7 +38,7 @@ public final class MapDatabase {
 
 
 	/**
-	 * resets the DataBase
+	 * Clear Data
 	 */
 	public static void clear() {
 		continents.clear();

@@ -15,18 +15,16 @@ public class LoadMap {
 	 * @author WaleedAhmad
 	 * @Version 1.0.0
 	 * 
-	 * Constructor takes map file pointer
-	 * @param file instance of {@link File} 
+	 * @param File Object constructor that contains the map to be loaded
 	 */
 	public LoadMap(File file){
 		mapFileLocation = file;
 	}
 		
-	
 	/**
-	 * @param data is a line of text from .map file 
-	 * @param context tells whether the line is saying about a continent value or territory.
-	 * @return
+	 * @param Gets the map data
+	 * @param Tells what that Data is
+	 * @return boolean depending on if the map is valid or not
 	 */
 	private boolean loadMapToModel(String data,String context){
 		boolean isValidMap = true;
@@ -47,16 +45,16 @@ public class LoadMap {
 	}
 	
 	/**
-	 * @return false is map is not valid
-	 * Note: beforeContext tells whether a reading line belongs to continent values 
-	 * or territories declarations. 
+	 * @return Checks if the adjacent territories is valid or not
 	 */
 	public boolean load(){
-		try {
-			txtScanner = new Scanner(new FileInputStream(mapFileLocation));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		
+	try {
+	txtScanner = new Scanner(new FileInputStream(mapFileLocation));
+	} 
+	catch (FileNotFoundException e) {
+		e.printStackTrace();
+	}
 		
 		String currentLine = null;
 		String beforeContext = "none";
