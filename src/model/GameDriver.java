@@ -6,7 +6,13 @@ import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
 import utility.Gradient;
 import utility.DiceRNG;
+<<<<<<< HEAD
 //import utility.exception.InvalidNumOfPlayersException;
+=======
+//import utility.MessageEnum;
+//import utility.exception.InvalidNumOfPlayersException;
+//import utility.Results;
+>>>>>>> 172249c16d37d93ec672239da54e081ab03b25a7
 import java.util.ArrayList;
 import controller.LoggerController;
 
@@ -17,7 +23,8 @@ import controller.LoggerController;
  * Allocating random countries to players
  * 
  * @author Meet_Patel
- * @version 1.0.0
+ * @author Muhammad_Hamza_Noor
+ * @author WaleedAhmad
  */
 
 public class GameDriver {
@@ -50,8 +57,7 @@ public class GameDriver {
     }
 
     /**
-     * Start the game
-     * @throws InvalidNumOfPlayersException be careful
+     * Function that calls necessary methods to start the game
      */
     public void start() //throws InvalidNumberofException
     {
@@ -60,7 +66,9 @@ public class GameDriver {
         this.play();
     }
 
-
+    /**
+     * Initialization method that calls necessary other methods needed for the Startup Phase
+     */
     public void initGame() //throws InvalidNumOfPlayersException
     {
         //Addin Initial Armies to Players
@@ -81,7 +89,9 @@ public class GameDriver {
 
     }
 
-
+    /**
+    * Method that calls Reinforcement and Fortification phases
+    */
     public void play()
     {
         this.resetTurn();
@@ -104,9 +114,7 @@ public class GameDriver {
 
     public void attack(PlayerInterface p)
     {
-        //todo: Implement attach phase.
         LoggerController.log(String.format("Starting Attack Phase...", p.getName()));
-        //LoggerController.log(LogMessageEnum.WARNING, "Skip attack phase");
         LoggerController.log(String.format("Attack Phase Done", p.getName()));
     }
 

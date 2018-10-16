@@ -11,10 +11,8 @@ import java.util.HashMap;
 import controller.LoggerController;
 
 	/**
-	 * 
 	 * @author Muhammad_Hamza_Noor
 	 * @version 1.0.0
-	 *
 	 */
 public class Territories implements TerritoryInterface {
     private String continentName;
@@ -32,97 +30,87 @@ public class Territories implements TerritoryInterface {
 	}
 
 	/**
-	 * returns name of the continent
-	 * @return the continentName
+	 * @return Continent Name
 	 */
 	public String getContinentName() {
 		return continentName;
 	}
 
 	/**
-	 * set name of the continent
-	 * @param continentName the continentName to set
+	 * @param Continent Name that was set
 	 */
 	public void setContinentName(String continentName) {
 		this.continentName = continentName;
 	}
 
 	/**
-	 * returns name of the territory
-	 * @return the territoryName
+	 * @return Territory Name
 	 */
 	public String getTerritoryName() {
 		return territoryName;
 	}
 
 	/**
-     * sets name of the territory
-	 * @param territoryName the territoryName to set
+	 * @param Territory Name that was set
 	 */
 	public void setTerritoryName(String territoryName) {
 		this.territoryName = territoryName;
 	}
 
 	/**
-	 * @return the adjacentTerritories
+	 * @return Adjacent Territories
 	 */
 	public ArrayList<String> getAdjacentTerritories() {
 		return adjacentTerritories;
 	}
 
 	/**
-	 * @param adjacentTerritories the adjacentTerritories to set
+	 * @param List of Adjacent Territories that are needed to be set
 	 */
 	public void setAdjacentTerritories(ArrayList<String> adjacentTerritories) {
 		this.adjacentTerritories = adjacentTerritories;
 	}
 
 	/**
-	 * @return the numberOfArmies territory has
+	 * @return Number Of Armies in a territory
 	 */
 	public int getNumberOfArmies() {
 		return numberOfArmies;
 	}
 
 	/**
-	 * @param numberOfArmies the numberOfArmies to set
+	 * @param Number Of Armies in a territory to set
 	 */
 	public void setNumberOfArmies(int numberOfArmies) {
 		this.numberOfArmies = numberOfArmies;
 	}
 
 	/**
-	 * @return the currentPlayer
+	 * @return Player name who has the turn
 	 */
 	public String getCurrentPlayer() {
 		return currentPlayer;
 	}
 
 	/**
-	 * @param currentPlayer the currentPlayer to set
+	 * @param Set Player name who has the turn
 	 */
 	public void setCurrentPlayer(String currentPlayer) {
 		this.currentPlayer = currentPlayer;
 	}
 
-	/**
-	 * @return the coordinates
-	 */
 	public String getCoordinates() {
 		return coordinates;
 	}
 
-	/**
-	 * @param coordinates the coordinates to set
-	 */
 	public void setCoordinates(String coordinates) {
 		this.coordinates = coordinates;
 	}
 
 
     /**
-     * sets the owner of the territory
-     * @param player new owner
+     * To Set the owner of a territory
+     * @param player/owner Name
      */
 	@Override
     public void setOwner(PlayerInterface player) {
@@ -130,22 +118,16 @@ public class Territories implements TerritoryInterface {
         LoggerController.log(this.territoryName + " is owned by " + player.getName());
     }
 
-    /**
-     * sets owner of the territory
-     * @return owner
-     */
     @Override
     public PlayerInterface getOwner() {
         return this.owner;
     }
 
-    
     private PlayerInterface owner;
 
     /**
-     * Constructor
-     * @param name name of territory
-     * @param continentName continent name
+     * @param Territory Name
+     * @param Continent Name
      */
     public Territories(String name, String continentName)
     {
@@ -154,7 +136,7 @@ public class Territories implements TerritoryInterface {
     }
 
     /**
-     * @return name of the territory
+     * @return Territory Name
      */
     public String getName()
     {
@@ -162,7 +144,7 @@ public class Territories implements TerritoryInterface {
     }
 
     /**
-     * @return number of armies in the territory
+     * @return Present number of armies in the territory
      */
     @Override
     public int getArmies() {
@@ -170,8 +152,8 @@ public class Territories implements TerritoryInterface {
     }
 
     /**
-     * adds given number of armies to the current armies
-     * @param count number of armies to add
+     * Add armies to existing armies
+     * @param Number of armies that is need to be aded
      */
     @Override
     public void placeArmies(int count) {
@@ -180,10 +162,7 @@ public class Territories implements TerritoryInterface {
 
 
     /**
-     * Checks if there are at least one army in the territory then
-     * removes armies from the territory
-     * @param count number or armies to remove
-     * @return remove process result
+     * @param Number or armies that are needed to be removed
      */
     @Override
 	public Results removeArmies(int count) {
@@ -205,9 +184,7 @@ public class Territories implements TerritoryInterface {
 	}
 
     /**
-     * checks if this territory has Adjacency with the given territory
-     * @param t second territory to check
-     * @return if there is or not
+     * @return boolean if the territory has Adjacent territory or not
      */
 	@Override
 	public boolean hasAdjacencyWith(TerritoryInterface t) {
@@ -219,7 +196,7 @@ public class Territories implements TerritoryInterface {
 	
 	
 	/**
-	 * @return all adjacent territories Objects
+	 * @return All Adjacent Territory Objects
 	 */
 	public ArrayList<TerritoryInterface> getAdjacentTerritoryObjects(){
 		ArrayList<TerritoryInterface> adjacentTerritoriesObjects = new ArrayList<TerritoryInterface>();

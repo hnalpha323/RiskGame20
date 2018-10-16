@@ -1,11 +1,9 @@
 package utility;
 
 /**
- * 
  * This Class returns results
  * @author Meet_Patel
  * @version 1.0.0
- *
  */
 public class Results {
 

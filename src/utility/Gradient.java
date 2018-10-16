@@ -2,6 +2,10 @@ package utility;
 
 import java.util.ArrayList;
 
+/**
+ * @author Meet_Patel
+ * @version 1.0.0
+ */
 public class Gradient {
 	
 	private String code;
@@ -23,8 +27,8 @@ public class Gradient {
     }
 
     /**
-     * provides a random color
-     * @return color
+     * Generates a random color from a pool of predefined colors
+     * @return Generated color
      */
     public Gradient getRandomColor()
     {
@@ -34,20 +38,19 @@ public class Gradient {
     }
 
     /**
-     * returns hexa decimal code of the color
-     * @return hexa decimal code of the color. like #232323
+     * @return Hexa Decimal color code
      */
-    public String getCode(){ return this.code; }
+    public String getCode(){ 
+    	return this.code; 
+    }
 
     /**
-     * returns name of the color
-     * @return name of the color. like Green
+     * @return Color Name 
      */
-    public String getName(){ return this.name; }
+    public String getName(){ 
+    	return this.name; 
+    }
 
-    /**
-     * fills color repository
-     */
     private void fillColors(){
         Grd.add(new Gradient("Red", "#E81123"));
         Grd.add(new Gradient("Green", "#107C10"));

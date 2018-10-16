@@ -29,9 +29,8 @@ public class Players implements PlayerInterface {
     private ArrayList<TerritoryInterface> territories;
 
     /**
-     * Constructor
-     * @param name  Players name
-     * @param color Players color
+     * @param Player Name
+     * @param Color of that player
      */
     public Players(String name, Gradient color){
         this.name = name;
@@ -41,89 +40,63 @@ public class Players implements PlayerInterface {
 
     /**
      *
-     * @return Players name
+     * @return Player Name
      */
     @Override
     public String getName(){
         return this.name;
     }
 
-    /**
-     *
-     * @param newName new name for the  Players
-     */
     @Override
     public void setName(String newName){
         this.name = newName;
     }
 
-
-    /**
-     * set number of unused armies for Players
-     * @param armies number of new armies
-     */
     @Override
-    public void setUnusedArmies(int armies) { this.unusedArmies = armies; }
+    public void setUnusedArmies(int armies) { 
+    	this.unusedArmies = armies; 
+    }
 
-    /**
-     * set number of unused armies for Players
-     */
     @Override
-    public int getUnusedArmies(){ return this.unusedArmies; }
+    public int getUnusedArmies(){
+    	return this.unusedArmies; 
+    }
 
-    /**
-     *
-     * @param armies number or unused armies to be set
-     */
     @Override
-    public void setUsedArmies(int armies) { this.usedArmies = armies; }
+    public void setUsedArmies(int armies) { 
+    	this.usedArmies = armies; 
+    }
 
-    /**
-     * sets number of new armies
-     * @return new armies
-     */
     @Override
-    public int getUsedArmies(){ return this.usedArmies; }
+    public int getUsedArmies(){ 
+    	return this.usedArmies; 
+    }
+
+    public void setColor(Gradient color){ 
+    	this.color = color; 
+    }
+
+    public Gradient getColor() { 
+    	return this.color; 
+    }
 
     /**
-     *
-     * @param color new color
-     */
-    public void setColor(Gradient color){ this.color = color; }
-
-    /**
-     *
-     * @return Players's color
-     */
-    public Gradient getColor() { return this.color; }
-
-    /**
-     *
-     * @param Territories Territories to be owned
-     * @return if the operation was successful or not
+     * @param Territories owned by player
+     * @return Player name and his territories
      */
     @Override
     public Results ownTerritory(TerritoryInterface Territories) {
         Territories.setOwner(this);
         this.placeArmy(1, Territories);
         this.territories.add(Territories);
-        return new Results(true, String.format("%s owns %s", this.getName(),Territories.getName()) );
+        return new Results(true, String.format("%s has %s", this.getName(),Territories.getName()) );
     }
 
-    /**
-     *
-     * @return list of Players territories
-     */
     @Override
     public ArrayList<TerritoryInterface> getTerritories() {
         return this.territories;
     }
 
-
-    /**
-     * fancy representation of the Players status
-     * @return fancy toString
-     */
     @Override
     public String toString(){
         String delimiter = ", ";
@@ -145,9 +118,9 @@ public class Players implements PlayerInterface {
 
     /**
      *
-     * @param count number of armies to be place into the Territories
-     * @param Territories the Territories
-     * @return if the action is done or not
+     * @param Armies to be place in the Territories
+     * @param Territories
+     * @return if successfully placed armies or not
      */
     @Override
     public Results placeArmy(int count, TerritoryInterface Territories) {
@@ -165,28 +138,24 @@ public class Players implements PlayerInterface {
         return new Results(true, String.format("%d armies placed in %s", count, Territories.getName()));
     }
 
-    /**
-     * another fancy representation of Players status
-     * @return table
-     */
     @Override
     public String getState()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n====================");
+        sb.append("\n-----------------------------");
         sb.append("\n");
         sb.append(this.getName());
         sb.append("\n");
-        sb.append("--------------------");
+        sb.append("-------------------------------");
         sb.append("\n");
         sb.append("Armies: ");
         sb.append("\n");
-        sb.append("   Used: ");
+        sb.append("Used Armies: ");
         sb.append(this.getUsedArmies());
         sb.append("\n");
-        sb.append("   Unused: ");
+        sb.append("Unused Armies: ");
         sb.append(this.getUnusedArmies());
-        sb.append("\n--------------------");
+        sb.append("\n-----------------------------");
         sb.append("\n");
         sb.append("Territories: ");
         sb.append("\n");
@@ -200,14 +169,14 @@ public class Players implements PlayerInterface {
         }
         sb.append("\n");
 
-        sb.append("====================");
+        sb.append("-----------------------------");
         return sb.toString();
     }
 
     /**
-     * finds a Territories by its name
-     * @param TerritoriesName name
-     * @return the Territories
+     * Search Territories
+     * @param Territory Name
+     * @return Territory Name if found
      */
     @Override
     public TerritoryInterface getTerritoryByName(String TerritoriesName)
@@ -217,12 +186,11 @@ public class Players implements PlayerInterface {
             if(t.getName().equalsIgnoreCase(TerritoriesName))
                 result = t;
         return result;
-
     }
 
     /**
      *
-     * @return randomly selected Territories
+     * @return select Territories randomly 
      */
     @Override
     public TerritoryInterface getRandomTerritory() {
@@ -232,11 +200,11 @@ public class Players implements PlayerInterface {
 
 
     /**
-     * move armies from a Territories to another
-     * @param from origin Territories
-     * @param to destination Territories
-     * @param number number of armies
-     * @return if the operation is done or not
+     * This method moves armies from one to another owned by the same player
+     * @param Origin Territory
+     * @param Destination Territory
+     * @param Number of Armies
+     * @return boolean if the move was successful of not.
      */
     @Override
     public Results moveArmies(TerritoryInterface from, TerritoryInterface to, int number) {
@@ -249,15 +217,14 @@ public class Players implements PlayerInterface {
             if (r.getOk())
             {
                 to.placeArmies(number);
-                LoggerController.log(String.format("%s moved %s armies from %s to %s.", this.getName(),
+                LoggerController.log(String.format("Player %s moved %s armies from %s to %s.", this.getName(),
                         number, from.getName(),to.getName()));
                 LoggerController.log(this.getState());
             }
         }
         else
         {
-            LoggerController.log(MessageEnum.ERROR, String.format(
-                    "%s wanted to move %s armies from %s to %s, but there is no adjacencies.", this.getName()
+            LoggerController.log(MessageEnum.ERROR, String.format("Player %s Cannot move %s armies from %s to %s because there is no adjacencies.", this.getName()
                     , number, from.getName(), to.getName() ));
         }
 

@@ -4,7 +4,6 @@ import java.util.Random;
 
 /**
  * This is Dice Random number Generator
- * 
  * @author Meet_Patel
  * @version 1.0.0
  */
