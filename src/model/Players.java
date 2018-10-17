@@ -103,8 +103,8 @@ public class Players implements PlayerInterface {
         StringBuilder sb = new StringBuilder();
         sb.append(this.getName());
         sb.append(delimiter);
-        //sb.append(this.getColor().getName());
-        //sb.append(delimiter);
+        sb.append(this.getColor().getName());
+        sb.append(delimiter);
         sb.append("Territories:");
         sb.append(this.getTerritories().size());
         sb.append(delimiter);

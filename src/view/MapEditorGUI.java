@@ -177,7 +177,7 @@ public class MapEditorGUI implements ViewInterface{
 
 		countriesChoiceBox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
-			public void changed(ObservableValue observable, String oldValue, String newValue) {
+			public void changed(ObservableValue observable,String oldValue, String newValue) {
 				if(newValue != null && !newValue.equals("Countries")){
 					country = newValue;
 					editadjacentContries.setText(readController.getAdjacentTerritories(continent, country).toString().replaceAll(" ", ""));

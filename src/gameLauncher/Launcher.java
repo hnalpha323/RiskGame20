@@ -7,6 +7,7 @@ import controller.WriteController;
 import model.DataReader;
 import model.DataWriter;
 import view.GUIManager;
+import javafx.*;
 
 /** 
  * Class that contains Main function which will launch the Game
