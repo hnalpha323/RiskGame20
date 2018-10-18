@@ -2,8 +2,6 @@ package model;
 
 import model.Interfaces.ContinentInterface;
 import model.Interfaces.MapInterface;
-import model.Interfaces.TerritoryInterface;
-import utility.Results;
 
 import java.util.ArrayList;
 

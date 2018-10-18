@@ -6,27 +6,24 @@ import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
 import utility.Gradient;
 import utility.DiceRNG;
-//import utility.MessageEnum;
-//import utility.exception.InvalidNumOfPlayersException;
-//import utility.Results;
 import java.util.ArrayList;
 import controller.LoggerController;
-
+import exceptions.PlayerException;
 /**
  * This Class does the following.
+ * 2 Variable to keep record of minimum and max players allowed
  * A startup phase for setting up the map and players
  * Adding and Allocating Initial Armies to Players
  * Allocating random countries to players
  * 
  * @author Meet_Patel
- * @author Muhammad_Hamza_Noor
- * @author WaleedAhmad
+ * @version 1.0.0
  */
 
 public class GameDriver {
 	
-	//private static int MINIMUM_PLAYERS = 2;
-    //private static int MAXIMUM_PLAYERS = 6;
+	private static int MINIMUM_PLAYERS = 2;
+    private static int MAXIMUM_PLAYERS = 6;
 
     private int numberOfPlayers = 0;
     private int turn = -1;
@@ -53,21 +50,20 @@ public class GameDriver {
     }
 
     /**
-     * Function that calls necessary methods to start the game
+     * Start the game
+     * @throws InvalidNumOfPlayersException 
      */
-    public void start() //throws InvalidNumberofException
+    public void start() throws PlayerException
     {
         this.initGame();
         this.isGameOn = true;
         this.play();
     }
 
-    /**
-     * Initialization method that calls necessary other methods needed for the Startup Phase
-     */
-    public void initGame() //throws InvalidNumOfPlayersException
+
+    public void initGame() throws PlayerException
     {
-        //Addin Initial Armies to Players
+        //Adding Initial Armies to Players
         LoggerController.log("Adding Players...");
         addPlayers();
 
@@ -85,9 +81,7 @@ public class GameDriver {
 
     }
 
-    /**
-    * Method that calls Reinforcement and Fortification phases
-    */
+
     public void play()
     {
         this.resetTurn();
@@ -110,7 +104,9 @@ public class GameDriver {
 
     public void attack(PlayerInterface p)
     {
+        //todo: Implement attach phase.
         LoggerController.log(String.format("Starting Attack Phase...", p.getName()));
+        //LoggerController.log(LogMessageEnum.WARNING, "Skip attack phase");
         LoggerController.log(String.format("Attack Phase Done", p.getName()));
     }
 
@@ -228,11 +224,11 @@ public class GameDriver {
     /**
      * Method to populate players in the game
      */
-    public void addPlayers() //throws InvalidNumOfPlayersException 
+    public void addPlayers() throws PlayerException 
     {
 
-        //if (this.numberOfPlayers > MAXIMUM_PLAYERS || this.numberOfPlayers < MINIMUM_PLAYERS)
-        //    throw new InvalidNumOfPlayersException();
+        if (this.numberOfPlayers > MAXIMUM_PLAYERS || this.numberOfPlayers < MINIMUM_PLAYERS)
+            throw new PlayerException();
 
 
     	Gradient Gradientcolor = new Gradient();
