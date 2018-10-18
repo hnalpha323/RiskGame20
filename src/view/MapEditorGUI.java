@@ -30,11 +30,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 /**
- * Map editor view elements
- * @author WaleedAhmad
- * @author Muhammad_Hamza_Noor
- * @author Meet_Patel
+ * @author rISK tEAM 20
  * @version 1.0.0
+ * Responsible for generating Map editor view
  */
 public class MapEditorGUI implements ViewInterface{		
 
@@ -80,7 +78,6 @@ public class MapEditorGUI implements ViewInterface{
 		ChoiceBox<String> countriesChoiceBox = new ChoiceBox<String>();
 		
 		Button addContent = new Button("Add Continent");	
-<<<<<<< HEAD
 		addContent.setStyle(" -fx-background-color: \r\n" + 
 				"        #000000,\r\n" + 
 				"        linear-gradient(#ffd65b, #e68400),\r\n" + 
@@ -90,25 +87,12 @@ public class MapEditorGUI implements ViewInterface{
 				"    -fx-background-radius: 3,2,2,2;\r\n" + 
 				"    -fx-padding: 12 30 12 30;\r\n" + 
 				"    -fx-text-fill: 654b00;\r\n" + 
-=======
-		addContent.setText("");
-		addContent.setStyle(" -fx-background-color: \r\n" + 
-				"        #000000,\r\n" + 
-				"        linear-gradient(#7ebcea, #2f4b8f),\r\n" + 
-				"        linear-gradient(#426ab7, #263e75),\r\n" + 
-				"        linear-gradient(#395cab, #223768);\r\n" + 
-				"    -fx-background-insets: 0,1,2,3;\r\n" + 
-				"    -fx-background-radius: 3,2,2,2;\r\n" + 
-				"    -fx-padding: 12 30 12 30;\r\n" + 
-				"    -fx-text-fill: white;\r\n" + 
->>>>>>> 81f5882ede99e9e6a425aa038f22e3c898bed853
 				"    -fx-font-size: 12px;\r\n");
         
 		
 		Button addCountry = new Button("Add Country");	     
 		addCountry.setStyle(" -fx-background-color: \r\n" + 
 				"        #000000,\r\n" + 
-<<<<<<< HEAD
 				"        linear-gradient(#ffd65b, #e68400),\r\n" + 
 				"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
 				"        linear-gradient(#ffea6a, #efaa22);\r\n" + 
@@ -116,21 +100,11 @@ public class MapEditorGUI implements ViewInterface{
 				"    -fx-background-radius: 3,2,2,2;\r\n" + 
 				"    -fx-padding: 12 30 12 30;\r\n" + 
 				"    -fx-text-fill: 654b00;\r\n" + 
-=======
-				"        linear-gradient(#7ebcea, #2f4b8f),\r\n" + 
-				"        linear-gradient(#426ab7, #263e75),\r\n" + 
-				"        linear-gradient(#395cab, #223768);\r\n" + 
-				"    -fx-background-insets: 0,1,2,3;\r\n" + 
-				"    -fx-background-radius: 3,2,2,2;\r\n" + 
-				"    -fx-padding: 12 30 12 30;\r\n" + 
-				"    -fx-text-fill: white;\r\n" + 
->>>>>>> 81f5882ede99e9e6a425aa038f22e3c898bed853
 				"    -fx-font-size: 12px;\r\n");
 				
 		Button deleteContent = new Button("Delete Continent");	     
 		deleteContent.setStyle(" -fx-background-color: \r\n" + 
 				"        #000000,\r\n" + 
-<<<<<<< HEAD
 				"        linear-gradient(#ffd65b, #e68400),\r\n" + 
 				"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
 				"        linear-gradient(#ffea6a, #efaa22);\r\n" + 
@@ -138,21 +112,11 @@ public class MapEditorGUI implements ViewInterface{
 				"    -fx-background-radius: 3,2,2,2;\r\n" + 
 				"    -fx-padding: 12 30 12 30;\r\n" + 
 				"    -fx-text-fill: 654b00;\r\n" + 
-=======
-				"        linear-gradient(#7ebcea, #2f4b8f),\r\n" + 
-				"        linear-gradient(#426ab7, #263e75),\r\n" + 
-				"        linear-gradient(#395cab, #223768);\r\n" + 
-				"    -fx-background-insets: 0,1,2,3;\r\n" + 
-				"    -fx-background-radius: 3,2,2,2;\r\n" + 
-				"    -fx-padding: 12 30 12 30;\r\n" + 
-				"    -fx-text-fill: white;\r\n" + 
->>>>>>> 81f5882ede99e9e6a425aa038f22e3c898bed853
 				"    -fx-font-size: 12px;\r\n");
 				
 		Button deleteCountry = new Button("Delete Country");
 		deleteCountry.setStyle(" -fx-background-color: \r\n" + 
 				"        #000000,\r\n" + 
-<<<<<<< HEAD
 				"        linear-gradient(#ffd65b, #e68400),\r\n" + 
 				"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
 				"        linear-gradient(#ffea6a, #efaa22);\r\n" + 
@@ -160,15 +124,6 @@ public class MapEditorGUI implements ViewInterface{
 				"    -fx-background-radius: 3,2,2,2;\r\n" + 
 				"    -fx-padding: 12 30 12 30;\r\n" + 
 				"    -fx-text-fill: 654b00;\r\n" + 
-=======
-				"        linear-gradient(#7ebcea, #2f4b8f),\r\n" + 
-				"        linear-gradient(#426ab7, #263e75),\r\n" + 
-				"        linear-gradient(#395cab, #223768);\r\n" + 
-				"    -fx-background-insets: 0,1,2,3;\r\n" + 
-				"    -fx-background-radius: 3,2,2,2;\r\n" + 
-				"    -fx-padding: 12 30 12 30;\r\n" + 
-				"    -fx-text-fill: white;\r\n" + 
->>>>>>> 81f5882ede99e9e6a425aa038f22e3c898bed853
 				"    -fx-font-size: 12px;\r\n");
 	
 		Button saveChanges = new Button("Save Changes");
@@ -288,16 +243,10 @@ public class MapEditorGUI implements ViewInterface{
 		gridPane.add(editadjacentContries, 0, 1,3,1);
 		//Adding to row 3 to UI grid
 		gridPane.add(addContent, 0,2);
-<<<<<<< HEAD
 		gridPane.add(addCountry, 2,2);
 		gridPane.add(deleteContent, 0,3);
 		
 		gridPane.add(deleteCountry, 2,3);
-=======
-		gridPane.add(addCountry, 1,2);
-		gridPane.add(deleteContent, 0,3);
-		gridPane.add(deleteCountry, 1,3);
->>>>>>> 81f5882ede99e9e6a425aa038f22e3c898bed853
 		//Adding to row 4 to UI grid
 		gridPane.add(new Label("Number of Players"), 1, 4);
 		gridPane.add(numberOfPlayerInput, 2,4);
