@@ -30,9 +30,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 /**
- * @author rISK tEAM 20
+ * Map editor view elements
+ * @author WaleedAhmad
+ * @author Muhammad_Hamza_Noor
+ * @author Meet_Patel
  * @version 1.0.0
- * Responsible for generating Map editor view
  */
 public class MapEditorGUI implements ViewInterface{		
 

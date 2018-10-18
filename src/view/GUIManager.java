@@ -12,9 +12,11 @@ import javafx.stage.Stage;
 
  
 /**
- * @author Risk_Team_20
+ * To connect Multiple views
+ * @author WaleedAhmad
+ * @author Muhammad_Hamza_Noor
+ * @author Meet_Patel
  * @version 1.0.0
- * Link between multiple views
  */
 public class GUIManager extends Application {
 	
