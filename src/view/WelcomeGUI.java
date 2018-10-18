@@ -3,20 +3,28 @@
  */
 package view;
 
+import java.awt.SystemColor;
 import java.io.File;
-
 import controller.RWMapFileController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorInput;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 
 
 /**
@@ -51,19 +59,81 @@ public class WelcomeGUI implements ViewInterface{
 	 * @see Scene
 	 */
 	public Scene getView(){
-		    Button chooseMapButton = new Button();
-	        chooseMapButton.setMinWidth(200);
-	        chooseMapButton.setText("Load Map");
+		
+			Button chooseMapButton = new Button();	
+			chooseMapButton.setText("Load Map");
+	        chooseMapButton.setMinWidth(140);
+   	        chooseMapButton.setMinHeight(50);
+   	        chooseMapButton.setStyle(" -fx-background-color: \r\n" + 
+   	        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
+   	        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
+   	        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
+   	        		"        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\r\n" + 
+   	        		"        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\r\n" + 
+   	        		"    -fx-background-radius: 30;\r\n" + 
+   	        		"    -fx-background-insets: 0,1,2,3,0;\r\n" + 
+   	        		"    -fx-text-fill: #654b00;\r\n" + 
+   	        		"    -fx-font-weight: bold;\r\n" + 
+   	        		"    -fx-font-size: 14px;\r\n" + 
+   	        		"    -fx-padding: 10 20 10 20;");
+   	      
+		
+	    
 	        Button saveMapButton = new Button();
-	        saveMapButton.setMinWidth(200);
+	        saveMapButton.setMinWidth(140);
+	        saveMapButton.setMinHeight(50);
 	        saveMapButton.setText("Save Map");
-	        Button createMapButton = new Button();
-	        createMapButton.setMinWidth(200);
-	        createMapButton.setText("Create A Map");
-	        Button gobackButton = new Button();
-	        gobackButton.setMinWidth(200);
-	        gobackButton.setText("Previous Map");
+	        saveMapButton.setStyle(" -fx-background-color: \r\n" + 
+	        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
+	        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
+	        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
+	        		"        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\r\n" + 
+	        		"        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\r\n" + 
+	        		"    -fx-background-radius: 30;\r\n" + 
+	        		"    -fx-background-insets: 0,1,2,3,0;\r\n" + 
+	        		"    -fx-text-fill: #654b00;\r\n" + 
+	        		"    -fx-font-weight: bold;\r\n" + 
+	        		"    -fx-font-size: 14px;\r\n" + 
+	        		"    -fx-padding: 10 20 10 20;");
 	        
+	        
+	        Button createMapButton = new Button();
+	        createMapButton.setMinWidth(140);
+	        createMapButton.setMinHeight(50);
+	        createMapButton.getGraphic();
+	        createMapButton.setText("Create Map");
+	        createMapButton.setStyle(" -fx-background-color: \r\n" + 
+	        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
+	        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
+	        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
+	        		"        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\r\n" + 
+	        		"        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\r\n" + 
+	        		"    -fx-background-radius: 30;\r\n" + 
+	        		"    -fx-background-insets: 0,1,2,3,0;\r\n" + 
+	        		"    -fx-text-fill: #654b00;\r\n" + 
+	        		"    -fx-font-weight: bold;\r\n" + 
+	        		"    -fx-font-size: 14px;\r\n" + 
+	        		"    -fx-padding: 10 20 10 20;");
+	        
+	        
+	        
+	        Button gobackButton = new Button();
+	        gobackButton.setMinWidth(140);
+	        gobackButton.setMinHeight(50);
+	        gobackButton.setText("Previous Map");
+	        gobackButton.setStyle("  -fx-background-color: \r\n" + 
+	        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
+	        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
+	        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
+	        		"        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\r\n" + 
+	        		"        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\r\n" + 
+	        		"    -fx-background-radius: 30;\r\n" + 
+	        		"    -fx-background-insets: 0,1,2,3,0;\r\n" + 
+	        		"    -fx-text-fill: #654b00;\r\n" + 
+	        		"    -fx-font-weight: bold;\r\n" + 
+	        		"    -fx-font-size: 14px;\r\n" + 
+	        		"    -fx-padding: 10 20 10 20;");
+	     
 	        gobackButton.setVisible(false);
 	        
 	        Alert alert = new Alert(AlertType.ERROR);
