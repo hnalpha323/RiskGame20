@@ -104,9 +104,8 @@ public class GameDriver {
 
     public void attack(PlayerInterface p)
     {
-        //todo: Implement attach phase.
+
         LoggerController.log(String.format("Starting Attack Phase...", p.getName()));
-        //LoggerController.log(LogMessageEnum.WARNING, "Skip attack phase");
         LoggerController.log(String.format("Attack Phase Done", p.getName()));
     }
 

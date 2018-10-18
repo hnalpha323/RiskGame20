@@ -14,13 +14,13 @@ public class Message {
         switch (tag)
         {
             case INFORMATION:
-                logTag = "[:)] ";
+                logTag = "--> ";
                 break;
             case WARNING:
-                logTag = "[:|] ";
+                logTag = "--> ";
                 break;
             case ERROR:
-                logTag = "[:(] ";
+                logTag = "--> ";
                 break;
         }
         System.out.println("");
