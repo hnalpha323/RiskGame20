@@ -34,7 +34,7 @@ public class GUIManager extends Application {
      */
     @Override
     public void start(final Stage window) {    
-    	window.setTitle("Game");
+    	window.setTitle("Risk Game");
     	mapEditorView = new MapEditorGUI(readController,writeController);
 		welcomeView = new WelcomeGUI(window, rwMapFileController, mapEditorView); 
 		
