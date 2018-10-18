@@ -92,7 +92,7 @@ public class GameDriver {
     {
         this.resetTurn();
         int i = 1;
-        LoggerController.log("PLAYING...");
+        LoggerController.log("Starting Game...");
         while(this.isGameOn)
         {
             LoggerController.log(String.format("Turn Number %s", i));
