@@ -169,7 +169,7 @@ public class GameDriver {
 
 
     /**
-     * Method to Move players from one territory to another
+     * Method to Move armies from one territory to another
      * @param Player that wants to move armies
      */
     public void placeArmies(PlayerInterface p)
