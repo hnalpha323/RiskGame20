@@ -8,9 +8,10 @@ import utility.Gradient;
 import utility.DiceRNG;
 import java.util.ArrayList;
 import controller.LoggerController;
-
+import exceptions.PlayerException;
 /**
  * This Class does the following.
+ * 2 Variable to keep record of minimum and max players allowed
  * A startup phase for setting up the map and players
  * Adding and Allocating Initial Armies to Players
  * Allocating random countries to players
@@ -21,8 +22,8 @@ import controller.LoggerController;
 
 public class GameDriver {
 	
-	//private static int MINIMUM_PLAYERS = 2;
-    //private static int MAXIMUM_PLAYERS = 6;
+	private static int MINIMUM_PLAYERS = 2;
+    private static int MAXIMUM_PLAYERS = 6;
 
     private int numberOfPlayers = 0;
     private int turn = -1;
@@ -50,9 +51,9 @@ public class GameDriver {
 
     /**
      * Start the game
-     * @throws InvalidNumOfPlayersException be careful
+     * @throws InvalidNumOfPlayersException 
      */
-    public void start() //throws InvalidNumberofException
+    public void start() throws PlayerException
     {
         this.initGame();
         this.isGameOn = true;
@@ -60,9 +61,9 @@ public class GameDriver {
     }
 
 
-    public void initGame() //throws InvalidNumOfPlayersException
+    public void initGame() throws PlayerException
     {
-        //Addin Initial Armies to Players
+        //Adding Initial Armies to Players
         LoggerController.log("Adding Players...");
         addPlayers();
 
@@ -85,7 +86,7 @@ public class GameDriver {
     {
         this.resetTurn();
         int i = 1;
-        LoggerController.log("PLAYING...");
+        LoggerController.log("Starting Game...");
         while(this.isGameOn)
         {
             LoggerController.log(String.format("Turn Number %s", i));
@@ -168,7 +169,7 @@ public class GameDriver {
 
 
     /**
-     * Method to Move players from one territory to another
+     * Method to Move armies from one territory to another
      * @param Player that wants to move armies
      */
     public void placeArmies(PlayerInterface p)
@@ -223,11 +224,11 @@ public class GameDriver {
     /**
      * Method to populate players in the game
      */
-    public void addPlayers() //throws InvalidNumOfPlayersException 
+    public void addPlayers() throws PlayerException 
     {
 
-        //if (this.numberOfPlayers > MAXIMUM_PLAYERS || this.numberOfPlayers < MINIMUM_PLAYERS)
-        //    throw new InvalidNumOfPlayersException();
+        if (this.numberOfPlayers > MAXIMUM_PLAYERS || this.numberOfPlayers < MINIMUM_PLAYERS)
+            throw new PlayerException();
 
 
     	Gradient Gradientcolor = new Gradient();

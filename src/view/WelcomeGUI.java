@@ -28,9 +28,10 @@ import javafx.scene.control.Button;
 
 
 /**
- * All the UI related to view of the Welcome,
- * This is starting UI, which will later calls other Views to respond
- * @author Risk Team 20
+ * This is a UI driver that calls all the necessary view when a action is performed
+ * @author WaleedAhmad
+ * @author Muhammad_Hamza_Noor
+ * @author Meet_Patel
  */
 
 public class WelcomeGUI implements ViewInterface{
@@ -41,12 +42,7 @@ public class WelcomeGUI implements ViewInterface{
 	static MapEditorGUI MapEditorGUI = null;
 	Stage window = null;
 	
-	/**
-	 * Constructor which injects Controllers and View
-	 * @param new_window is the main window on the UI check {@link javafx.stage.Stage}}
-	 * @param new_maprwController is the map file read and write controller, check {@link RWMapFileController} 
-	 * @param new_MapEditorGUI is the map editor view, welcome view is responsible to start Map Editor View
-	*/
+
 	public WelcomeGUI(Stage new_window,RWMapFileController new_maprwController, MapEditorGUI new_MapEditorGUI) {
 		window  = new_window;
 		maprwController = new_maprwController; 
@@ -54,10 +50,6 @@ public class WelcomeGUI implements ViewInterface{
 	}
 	
 	
-	/**
-	 * @return Welcome view Scene, a container which has UI elements and event listeners 
-	 * @see Scene
-	 */
 	public Scene getView(){
 		
 			Button chooseMapButton = new Button();	
@@ -209,12 +201,7 @@ public class WelcomeGUI implements ViewInterface{
 	}
 	
 	
-	 /**
-	 * Loads new Scene(UI Container) into the window
-	 * @param scene will be showed in window
-	 * @see java.fx.Scene 
-	 */
-	public  void loadAnotherView(Scene scene){
+  void loadAnotherView(Scene scene){
 	    	window.setScene(scene);	
 	  } 
 	
