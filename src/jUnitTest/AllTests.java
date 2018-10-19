@@ -13,7 +13,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestCase4.class,
 	TestCase5.class,
 	TestCase6.class,
-	TestCase7.class})
+	TestCase7.class,
+	TestCase8.class })
 public class AllTests {
 
 }
