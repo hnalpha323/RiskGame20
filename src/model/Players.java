@@ -44,9 +44,9 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @param name  player name
      * @param Gradient player Gradient
      */
-    public Players(String name, Gradient Gradient, StrategyInterface strategy){
+    public Players(String name, Gradient color, StrategyInterface strategy){
         this.name = name;
-        this.color = Gradient;
+        this.color = color;
         this.territories = new ArrayList<>();
         this.strategy = strategy;
     }
@@ -119,13 +119,13 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      *
      * @param Gradient new Gradient
      */
-    public void setGradient(Gradient Gradient){ this.color = Gradient; }
+    public void setGradient(Gradient color){ this.color = color; }
 
     /**
      *
      * @return player's Gradient
      */
-    public Gradient getGradient() { return this.color; }
+    public Gradient getcolor() { return this.color; }
 
     /**
      *
@@ -306,7 +306,7 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
         }
         else
         {
-            LoggerController.log(MessageEnum.ERROT, String.format(
+            LoggerController.log(MessageEnum.ERROR, String.format(
                     "%s wanted to move %s armies from %s to %s, but there is no adjacencies.", this.getName()
                     , number, from.getName(), to.getName() ));
         }
