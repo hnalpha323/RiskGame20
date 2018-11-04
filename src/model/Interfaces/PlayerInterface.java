@@ -4,7 +4,9 @@ import utility.Results;
 
 import java.util.ArrayList;
 
+import model.AttackPlan;
 import model.Card;
+import model.GameDriver;
 import model.Interfaces.StrategyInterface;
 
 /**
@@ -38,9 +40,20 @@ public interface PlayerInterface {
 
     Results moveArmies(TerritoryInterface from, TerritoryInterface to, int number);
     
+    AttackPlan getTerritoryToAttack();
+
+    void setGameDriver(GameDriver gm);
+    GameDriver getGameDriver();
+
+    void reinforcement();
+    void attack(int attempts);
+    void attack();
+    void fortification();
+
+    int compareTo(PlayerInterface o);
     
-    StratergyInterface getStrategy();
-    void setStrategy(StratergyInterface strategy);
+    StrategyInterface getStrategy();
+    void setStrategy(StrategyInterface strategy);
     void setStatus(boolean status);
     boolean getStatus();
     
