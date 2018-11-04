@@ -22,21 +22,16 @@ public class DominationView implements Observer{
 	Label dominationLabel = null;
 	
 	/** 
-	 * @return a {@link Scene} object which contains UI elements
+	 * return a {@link Scene} object which contains UI elements
 	 */
 	public Label getView() {
 		
 		dominationLabel = new Label("Domination View");		
         
 		//set text color of label
-		dominationLabel.setFont(new Font("Cambria", 16));
+		dominationLabel.setFont(new Font("Cambria", 13));
 		dominationLabel.setTextFill(Color.web("#E91E63"));
-		dominationLabel.setPadding(new Insets(10));		
-		
-		//set border
-		dominationLabel.setStyle("-fx-padding: 5;" + "-fx-border-style: solid inside;"
-	            + "-fx-border-width: 2;" + "-fx-border-insets: 5;"
-	            + "-fx-border-radius: 5;" + "-fx-border-color: blue;");
+		dominationLabel.setPadding(new Insets(10));
 		
 		return dominationLabel;
 	}
@@ -52,17 +47,11 @@ public class DominationView implements Observer{
 		
 		if(object instanceof String){			
 			String updatedText = (String)object;
+			//checks if update belongs to this view
 			if(updatedText.split(":")[0].equals("DominationView")){
 				dominationLabel.setText(updatedText.split(":")[1]);
 			}
 		}
-	}
-
-	/**
-	 * @return {@link String} contains the UI state in {@link #dominationLabel}
-	 */
-	public String getText() {		
-		return dominationLabel.getText();
 	}
 
 }
