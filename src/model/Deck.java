@@ -2,7 +2,6 @@ package model;
 
 import utility.DiceRNG;
 import model.Interfaces.PlayerInterface;
-
 import java.util.ArrayList;
 public class Deck {
 	  private ArrayList<Card> cards;
@@ -71,7 +70,7 @@ public class Deck {
 	    }
 	    
 	    /**
-	     * grants a card to a plyer
+	     * grants a card to a player
 	     * @param p receiver
 	     * @return given card
 	     */
@@ -80,6 +79,15 @@ public class Deck {
 	        Card result = this.pickCard();
 	        p.addCard(result);
 	        return result;
+	    }
+	    
+	    /**
+	     * return card into the deck
+	     * @param c card to be returned
+	     */
+	    public void returnCard(Card c)
+	    {
+	        this.cards.add(c);
 	    }
 
 
