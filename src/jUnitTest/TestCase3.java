@@ -15,7 +15,7 @@ import org.junit.Assert;
 public class TestCase3 {
 
     @Test
-    public void test() throws PlayerException
+    public void AssignedArmies() throws PlayerException
     {
         MapInterface m = new Map();
         GameDriver gm = new GameDriver(3);

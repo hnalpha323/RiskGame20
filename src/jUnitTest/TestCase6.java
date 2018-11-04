@@ -19,7 +19,7 @@ import exceptions.PlayerException;
 public class TestCase6 {
 
     @Test()
-    public void test() throws PlayerException
+    public void SufficientArmies() throws PlayerException
     {
         MapInterface m = new Map();
         m.clearData();

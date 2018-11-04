@@ -15,7 +15,7 @@ import exceptions.PlayerException;
 public class TestCase5 {
 
     @Test()
-    public void test() throws PlayerException
+    public void MinimumArmiesReinforcement() throws PlayerException
     {
         MapInterface m = new Map();
         m.clearData();
