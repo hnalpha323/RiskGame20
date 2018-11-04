@@ -13,7 +13,8 @@ public class DataReader {
 	 * @param Continent Name
 	 * @return All territories which are in a continent
 	 */
-	public HashMap<String, Territories> getContries(String continent) {
+	public HashMap<String, Territories> getContries(String continent) 
+	{
 		return MapDatabase.continents.get(continent);
 	}
 
@@ -23,7 +24,8 @@ public class DataReader {
 	 * @return Adjacent Territories
 	 */
 	
-	public ArrayList<String> getAdjacentTerritories(String continent, String country) {
+	public ArrayList<String> getAdjacentTerritories(String continent, String country) 
+	{
 		HashMap<String, Territories> territories = getContries(continent);
 		for(String teritory_name:territories.keySet()){
 			   if(teritory_name.equals(country))
@@ -38,7 +40,8 @@ public class DataReader {
 	* @return Boolean to see if the Neighboring territories exists or not
 	*/
 	
-	public boolean hasContinent(String continentName){
+	public boolean hasContinent(String continentName)
+	{
 		return MapDatabase.continentValues.containsKey(continentName);		
 	}
 
@@ -46,7 +49,8 @@ public class DataReader {
 	* @param Continent Name
 	*/
 	
-	public ArrayList<String> getTerritoriesNames(String continent) {
+	public ArrayList<String> getTerritoriesNames(String continent) 
+	{
 		return new ArrayList<String>(MapDatabase.continents.get(continent).keySet());
 	}
 
@@ -54,7 +58,12 @@ public class DataReader {
 	* @param Continent Name
 	* @return Continent Values
 	*/
-	public int getContinentValue(String continentName) {
+	public int getContinentValue(String continentName) 
+	{
 		return MapDatabase.continentValues.get(continentName);
+	}
+	
+	public java.util.Set<String> getContinents() {			
+		return MapDatabase.continentValues.keySet();
 	}
 }
