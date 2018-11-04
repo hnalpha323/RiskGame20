@@ -14,7 +14,7 @@ import exceptions.PlayerException;
 public class TestCase4 {
 
     @Test()
-    public void test() throws PlayerException
+    public void InitialArmiesUse() throws PlayerException
     {
         MapInterface m = new Map();
         m.clearData();

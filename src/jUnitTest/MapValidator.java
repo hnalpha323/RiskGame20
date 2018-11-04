@@ -6,10 +6,8 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import controller.RWMapFileController;
@@ -17,13 +15,12 @@ import controller.ReadController;
 import controller.WriteController;
 import model.DataReader;
 import model.DataWriter;
-import model.LoadMap;
 import model.MapDatabase;
-import model.Territories;
 import model.Interfaces.TerritoryInterface;
 
 /**
  * @author Muhammad_Hamza_Noor
+ * @version 1.0.0
  *
  */
 public class MapValidator {
@@ -77,19 +74,6 @@ public class MapValidator {
 		}
 	}
 	
-	/** @Ignore
-	@Test
-	public void test() {
-		LoadMap loadMap = new LoadMap(new File("C:\\\\Users\\\\hnalp\\\\OneDrive\\\\Documents\\\\GitHub\\\\RiskGame20\\\\bin\\\\Earth Alternate.map"));
-        loadMap.load();
-		HashMap<String, Territories> terrotories= MapDatabase.continents.get("Tower Left Top");
-		for(Territories t: terrotories.values()){
-			System.out.println("\n Name "+t.getTerritoryName());
-			ArrayList<String> adjacents= t.getAdjacentTerritories();
-			for(String s:adjacents){
-				System.out.print(s);
-			}
-		}
-	} */
+
 
 }
