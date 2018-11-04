@@ -6,7 +6,7 @@ import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
 import utility.Gradient;
 import utility.DiceRNG;
-import java.util.ArrayList;
+import java.util.ArrayList;   
 import controller.LoggerController;
 import exceptions.PlayerException;
 /**
@@ -73,7 +73,7 @@ public class GameDriver {
 
         //Randomly allocating the countries to Players
         LoggerController.log("Allocating Territories...");
-        allocateTerritories();
+          allocateTerritories();
 
         //Place armies to all the Players
         LoggerController.log("Placing armies to all players into territories...");
