@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 import utility.DiceRNG;
+import model.Interfaces.PlayerInterface;
+import util.Helpers;
 public class Deck {
 	  private ArrayList<Card> cards;
 
@@ -58,6 +60,14 @@ public class Deck {
 	        this.cards.add(new Card("T40",1));
 	        this.cards.add(new Card("T41",10));
 	        this.cards.add(new Card("T42",5));
+	    }
+	    /**
+	     * pick a card from a deck of cards
+	     * @return card
+	     */
+	    private Card pickCard(){
+	        int cardIndex = DiceRNG.getRandomInt(this.cards.size()-1, 0);
+	        return this.cards.get(cardIndex);
 	    }
 
 }
