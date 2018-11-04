@@ -5,7 +5,7 @@ import utility.Results;
 import java.util.ArrayList;
 
 import model.Card;
-import model.contract.IStrategy;
+import model.Interfaces.StrategyInterface;
 
 /**
  * @author Meet_Patel
