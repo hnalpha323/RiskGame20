@@ -4,6 +4,8 @@ import utility.Results;
 
 import java.util.ArrayList;
 
+import model.Card;
+
 /**
  * @author Meet_Patel
  * @version 1.0.0
@@ -34,4 +36,12 @@ public interface PlayerInterface {
     TerritoryInterface getRandomTerritory();
 
     Results moveArmies(TerritoryInterface from, TerritoryInterface to, int number);
+    
+    
+    
+    void addCard(Card crd);
+    ArrayList<Card> getCardSet();
+    int getTrades();
+    void increaseTrades();
+    int getCardsSize();
 }
