@@ -5,6 +5,7 @@ import utility.Results;
 import java.util.ArrayList;
 
 import model.Card;
+import model.contract.IStrategy;
 
 /**
  * @author Meet_Patel
@@ -37,6 +38,11 @@ public interface PlayerInterface {
 
     Results moveArmies(TerritoryInterface from, TerritoryInterface to, int number);
     
+    
+    StratergyInterface getStrategy();
+    void setStrategy(StratergyInterface strategy);
+    void setStatus(boolean status);
+    boolean getStatus();
     
     
     void addCard(Card crd);
