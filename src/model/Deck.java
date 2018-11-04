@@ -1,9 +1,9 @@
 package model;
 
-import java.util.ArrayList;
 import utility.DiceRNG;
 import model.Interfaces.PlayerInterface;
-import util.Helpers;
+
+import java.util.ArrayList;
 public class Deck {
 	  private ArrayList<Card> cards;
 
@@ -69,5 +69,18 @@ public class Deck {
 	        int cardIndex = DiceRNG.getRandomInt(this.cards.size()-1, 0);
 	        return this.cards.get(cardIndex);
 	    }
+	    
+	    /**
+	     * grants a card to a plyer
+	     * @param p receiver
+	     * @return given card
+	     */
+	    public Card grantCard(PlayerInterface p)
+	    {
+	        Card result = this.pickCard();
+	        p.addCard(result);
+	        return result;
+	    }
+
 
 }
