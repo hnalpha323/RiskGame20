@@ -1,15 +1,17 @@
 package controller;
 
 import java.util.ArrayList;
-
+import model.MapDatabase;
 import model.DataReader;
+import java.util.Set;
 
 /**
  * Reads the data of map file
  * @author Muhammad_Hamza_Noor
  * @author Meet_Patel
  * @author WaleedAhmad
- * @version 1.0.0
+ * @author Shah Mohammad Mostakim
+ * @version 2.0.0
  */
 public class ReadController{
 
@@ -59,6 +61,14 @@ public class ReadController{
 			return dataReader.getContinentValue(continentName);
 		else
 			return 0;
+	}
+	
+	/**
+	 * @return Continent Names 
+	 */
+	public Set<String> getAllContinentNames()
+	{
+		return dataReader.getContinents();
 	}
 	
 	
