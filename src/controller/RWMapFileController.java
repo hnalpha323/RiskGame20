@@ -10,6 +10,8 @@ import model.MapWriter;
 /**
  * This class is used to Load and Save the maps
  * @author Muhammad_Hamza_Noor
+ * @author Shah Mohammad Mostakim
+ * @version 2.0.0
  */
 public class RWMapFileController{
 
@@ -18,7 +20,8 @@ public class RWMapFileController{
 	 */
 	public boolean loadMap(File file) {
 		LoadMap loadMap = new LoadMap(file);
-        return loadMap.load();		
+		boolean isValid = loadMap.load();
+		return isValid;			
 	}
 
 	/**

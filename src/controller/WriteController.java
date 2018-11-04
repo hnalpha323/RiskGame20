@@ -2,7 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import model.MapDatabase;
 import model.DataWriter;
 
 /**
@@ -11,7 +11,8 @@ import model.DataWriter;
  * @author Muhammad_Hamza_Noor
  * @author WaleedAhmad
  * @author Meet_Patel
- * @version 1.0.0
+ * @author Shah Mohammad Mostakim
+ * @version 2.0.0
  */
 public class WriteController
 {
@@ -45,8 +46,15 @@ public class WriteController
 	public void addData(String editedadjacentCountries,String continent,String country,String continentValue,boolean isdeleteContinent,boolean isdeleteCountry){
 		
 		editedadjacentCountries = editedadjacentCountries.replace("[", "").replace("]", "");
-		ArrayList<String> new_adjacentContries = new ArrayList<>(Arrays.asList(editedadjacentCountries.split(",")));
+		ArrayList<String> new_adjacentContries = null;
         
+		
+		if(editedadjacentCountries.length() > 2){
+			new_adjacentContries = new ArrayList<>(Arrays.asList(editedadjacentCountries.split(",")));
+		}else{
+			new_adjacentContries = new ArrayList<String>();
+		}
+		
 		if(isdeleteContinent)
 		{
 			dataWriter.deleteContinent(continent);
