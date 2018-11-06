@@ -4,8 +4,7 @@
 package model;
 
 import java.util.ArrayList;
-
-//import model.contract.PlayerInterface;
+import model.Interfaces.PlayerInterface;
 
 /**
  * @author WaleedAhmad

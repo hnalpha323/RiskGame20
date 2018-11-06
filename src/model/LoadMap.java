@@ -75,7 +75,7 @@ public class LoadMap {
 			}
 		}
 		
-		return MapDatabase.isValidAdjacency();
+		return MapDatabase.isValidAdjacency() && MapDatabase.isAnyDiconnectivity();
 	}
 	
 }
