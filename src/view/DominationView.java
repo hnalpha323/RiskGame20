@@ -10,9 +10,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
- * This class gives the view of percentage of map occupied by players
+ * Percentage of map occupied by players
  * <p> implements Observer to provides a mechanism for receiving push-based notifications. 
- * @author SA
+ * @author Waleed Ahmad
  */
 public class DominationView implements Observer{
 
