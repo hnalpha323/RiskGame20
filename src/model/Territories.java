@@ -2,6 +2,8 @@ package model;
 
 import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
+import model.contract.ITerritory;
+import util.ActionResponse;
 import utility.Results;
 import utility.MessageEnum;
 
@@ -182,6 +184,18 @@ public class Territories implements TerritoryInterface {
 
 		return res;
 	}
+    
+    
+    @Override
+	public Results killArmies(int count) {
+		Results res = new Results();
+
+		this.setNumberOfArmies(this.getArmies() - count);
+		res.setOk(true);
+		LoggerController.log(String.format("%s armies get killed in %s", count, this.getName()));
+
+		return res;
+	}
 
     /**
      * @return boolean if the territory has Adjacent territory or not
@@ -209,5 +223,20 @@ public class Territories implements TerritoryInterface {
 		}
 		return adjacentTerritoriesObjects;		
 	}
+	
+	@Override
+	public ArrayList<TerritoryInterface> getAdjacentNeighbours() {
+		ArrayList<TerritoryInterface> result = new ArrayList<>();
+
+		for(TerritoryInterface t: this.getAdjacentTerritoryObjects())
+		{
+			if (t.getOwner() == this.getOwner())
+				result.add(t);
+		}
+
+		return result;
+	}
+	
+	
    
 }
