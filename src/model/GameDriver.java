@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import controller.LoggerController;
 import exceptions.PlayerException;
 /**
- * This Class does the following.
- * 2 Variable to keep record of minimum and max players allowed
- * A startup phase for setting up the map and players
- * Adding and Allocating Initial Armies to Players
- * Allocating random countries to players
+ * Functionalities of this class are as follows:
+ * two Variables are generated in order to keep the record of minimum and maximum players allowed
+ * It contains a startup phase for army setup and players
+ * Allocation of Armies
+ * Adding Armies
+ * Allocation of countries
  * 
  * @author Meet_Patel
  * @version 1.0.0

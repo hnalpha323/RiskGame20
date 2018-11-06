@@ -1,11 +1,8 @@
-/**
- * 
- */
+
 package model;
 
 import java.util.ArrayList;
 
-//import model.contract.PlayerInterface;
 
 /**
  * @author WaleedAhmad
@@ -22,7 +19,7 @@ public class Model{
 	
 	public void sendNotification(String type,Object object){
 		if(type.equals("GamePlay")){
-			ArrayList<PlayerInterface> players = (ArrayList)object;			
+			ArrayList<PlayerInterface> players = (ArrayList) object;			
 			notifier.notifyListners(type,"PhaseChange:Set Up");			
 			for(PlayerInterface player: players){
 		           notifier.notifyListners(type,player);

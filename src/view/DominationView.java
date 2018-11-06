@@ -2,7 +2,6 @@ package view;
 
 import java.util.Observable;
 import java.util.Observer;
-
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -10,9 +9,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
- * Percentage of map occupied by players
- * <p> implements Observer to provides a mechanism for receiving push-based notifications. 
- * @author Waleed Ahmad
+ * Providing the Percentage of map occupied by players
+ * <p> It is implementing observer in order to provide a way for receiving pushed-based notfications
+ * 
+ * @author WaleedAhmad
  */
 public class DominationView implements Observer{
 
@@ -22,7 +22,7 @@ public class DominationView implements Observer{
 	Label dominationLabel = null;
 	
 	/** 
-	 * return a {@link Scene} object which contains UI elements
+	 * returns a {@link Scene} object which contains UserInterface elements
 	 */
 	public Label getView() {
 		
@@ -37,7 +37,7 @@ public class DominationView implements Observer{
 	}
 
 	/** 
-	 * This method is called whenever the model calls {@link Observable#notifyObservers()} 
+	 * This method is called whenever the model calls {@link Observable #notifyObservers()} 
 	 * We have to update the view only if pushed object is String instances 
 	 * and belongs to DominationView
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
