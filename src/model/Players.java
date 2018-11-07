@@ -307,7 +307,7 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
         else
         {
             LoggerController.log(MessageEnum.ERROR, String.format(
-                    "%s wanted to move %s armies from %s to %s, but there is no adjacencies.", this.getName()
+                    "Player %s wants to move %s armies from %s to %s, but there is no adjacencies.", this.getName()
                     , number, from.getName(), to.getName() ));
         }
 
@@ -359,7 +359,7 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      */
     public void reinforcement()
     {
-        LoggerController.log(String.format("============%s REINFORCEMENT STARTS===========", this.getName()));
+        LoggerController.log(String.format("---------%s Starting Reinforcement---------", this.getName()));
         this.gm.setPhase("REINFORCEMENT PHASE");
         sendNotification("PhaseChange", "PhaseChange:"+this.getName()+" Reinforcement");
         //Step 1: Reinforcement
@@ -369,7 +369,7 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
         //Step 2: Place armies
         this.gm.placeArmies(this);
         
-        LoggerController.log(String.format("============%s REINFORCEMENT DONE===========", this.getName()));
+        LoggerController.log(String.format("---------%s Reinforcement Finished---------", this.getName()));
     }
 
 
@@ -387,7 +387,7 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      */
     public void attack(int attempts)
     {
-        LoggerController.log(String.format("============%s ATTACK STARTS===========", this.getName()));
+        LoggerController.log(String.format("---------%s Starting Attack Phase---------", this.getName()));
         LoggerController.log(String.format("Strategy is %s", this.strategy.getName()));
         this.gm.setPhase("ATTACK PHASE");
 

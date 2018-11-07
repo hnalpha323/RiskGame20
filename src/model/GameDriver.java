@@ -118,34 +118,34 @@ public class GameDriver extends Model {
     public void initGame() throws PlayerException
     {
         //Step 1: Add players and give each them armies according to the rules
-        LoggerController.log("====1. Adding Players====");
+        LoggerController.log("---------Adding Players---------");
         addPlayers();
 
         //Step 2: Allocate initial armies according to the rules
-        LoggerController.log("====2. Allocating Initial Armies====");
+        LoggerController.log("---------Allocating Initial Armies---------");
         allocateInitialArmies();
 
         //Step 3: Randomly allocate the countries in the map
-        LoggerController.log("====3. Allocating Territories====");
+        LoggerController.log("---------Allocating Territories---------");
         allocateTerritories();
 
         //Step 4: Place armies into territories in turn
-        LoggerController.log("====4. Placing armies one by one into territories====");
+        LoggerController.log("---------Placing armies one by one into territories---------");
         placeInitialArmies();
 
     }
 
     /**
-     * this is the method that handles the game play
+     * this is the method that handles the Gameplay
      */
     public void play()
     {
         this.resetTurn();
         int i = 1;
-        LoggerController.log("====5. PLAYING====");
+        LoggerController.log("---------Starting The Game---------");
         while(this.isGameOn)
         {
-            LoggerController.log(String.format("====Turn %s====", i));
+            LoggerController.log(String.format("---------Turn %s---------", i));
             PlayerInterface p = nextPlayer();
             
             p.reinforcement();
@@ -157,7 +157,7 @@ public class GameDriver extends Model {
             PlayerInterface winner = getWinner();
             if (winner == null)
             {
-                LoggerController.log("No winner, so next turn will start.");
+                LoggerController.log("Next turn");
             }
 
             i++;
@@ -277,7 +277,7 @@ public class GameDriver extends Model {
                     break;
             }
 
-            LoggerController.log(String.format("%s received %s armies via card exchange(exchange no %s)", p.getName(),
+            LoggerController.log(String.format("Player %s received %s Armies via card exchange(exchange no %s)", p.getName(),
                     exchangeValue, p.getTrades()));
         }
         return exchangeValue;
@@ -503,7 +503,7 @@ public class GameDriver extends Model {
         sendNotification("DominationView", "DominationView: "+sb.toString());
         
         if(verbos)
-            sb.append("=====================");
+            sb.append("---------------------");
 
         return sb.toString();
 
