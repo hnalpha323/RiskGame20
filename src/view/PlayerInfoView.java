@@ -34,7 +34,7 @@ public class PlayerInfoView{
 		setFontColor(actorName, "#0076a3");
 		HBox profilepicContainer = new HBox(); 
 
-		Image profileImage = new Image(getClass().getResourceAsStream("C:\\Users\\getwa\\Documents\\GitHub\\RiskGame20\\bin\\user.png"));
+
 
 		Image profileImage = new Image(getClass().getResourceAsStream("/user.png"));
 
