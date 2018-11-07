@@ -3,15 +3,15 @@ package jUnitTest;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import model.strategy.Normal;
+import model.strategy.Defensive;
 
 /**
- * Test class for Normal Strategy
+ * Test class for Defensive Strategy
  * @author Shah_Mohammad_Mostakim
  * @version 2.0.0
  */
 
-public class TestNormalStrategy {
+public class TestDefensiveStrategy {
 
 	/**
 	 * Tests number of attack attempts 
@@ -19,17 +19,17 @@ public class TestNormalStrategy {
 	@Test
 	public void testAttackAttempts() {
 		//fail("Not yet implemented");
-		Normal nor = new Normal();
-		int attemptsFound = nor.getAttackAttempts();
-		int attemptsExpected = 1;
+		Defensive def = new Defensive();
+		int attemptsFound = def.getAttackAttempts();
+		int attemptsExpected = 0;
 		assertEquals(attemptsFound, attemptsExpected);
 	}
 	
 	@Test
 	public void testGetName() {
-		Normal nor = new Normal();
-		String nameFound = nor.getName();
-		String nameExpected = "Normal";
+		Defensive def = new Defensive();
+		String nameFound = def.getName();
+		String nameExpected = "Defensive";
 		assertEquals(nameFound, nameExpected);
 	}
 
