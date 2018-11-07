@@ -49,6 +49,10 @@ public class WelcomeGUI implements ViewInterface{
 		MapEditorGUI = new_MapEditorGUI;
 	}
 	
+	/**		
+	50		 * @return Welcome GUI Scene, It is a container which has User Interface elements and event listeners in it 		
+	51		 * @see Scene		
+	52		 */
 	
 	public Scene getView(){
 		
