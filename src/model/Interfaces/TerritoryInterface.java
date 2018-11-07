@@ -4,8 +4,7 @@ import utility.Results;
 
 import java.util.ArrayList;
 
-import model.contract.ITerritory;
-import util.ActionResponse;
+import model.Interfaces.TerritoryInterface;
 
 /**
  * @author Meet_Patel

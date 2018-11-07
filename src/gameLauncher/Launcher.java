@@ -6,10 +6,7 @@ import controller.ReadController;
 import controller.WriteController;
 import model.DataReader;
 import model.DataWriter;
-import model.Model;
-import model.Notifier;
-import view.DominationView;
-import view.PhaseView;
+
 import view.GUIManager;
 
 /** 
