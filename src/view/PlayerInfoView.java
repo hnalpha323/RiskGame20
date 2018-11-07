@@ -3,10 +3,11 @@
  */
 package view;
 
+import java.util.Observable;
+import java.util.Observer;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -15,46 +16,34 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
- * Gives a player statistic view 
- * Every player in the game has his Statistics View
+ * Gives a player statistic view
  * @author SA
  */
 public class PlayerInfoView{
 
 	
-	/** Holds all statistics in a vertical box */
 	VBox playerBox = null;
-	
-	/** Holds the player name */
 	Label actorName = null;
-	/** Holds the status of the player */
-	TextArea status = null;
-	/** Holds the list if countries own by the player */
+	Label currentContry = null;
 	Label countriesWon = null;
-
 	
 	/**
-	 * Constructor to initialize the basic UI elements
+	 * 
 	 */
 	public PlayerInfoView() {
-		//initialize the parent container 
 		this.playerBox = new VBox();
 		playerBox.setPadding(new Insets(5));
 		this.actorName = new Label();
 		setFontColor(actorName, "#0076a3");
-		
-		//Horizontal box to hold player name
-		HBox profilepicContainer = new HBox(); 		
+		HBox profilepicContainer = new HBox(); 
+		Image profileImage = new Image(getClass().getResourceAsStream("C:\\Users\\hnalp\\OneDrive\\Documents\\GitHub\\RiskGame20\\bin/user.png"));
+		profilepicContainer.getChildren().add(new ImageView(profileImage));
 		profilepicContainer.getChildren().add(actorName);
-
-		this.status = new TextArea();
-		this.status.setMinHeight(140);
+		this.currentContry = new Label();
 		this.countriesWon = new Label();
 		setFontColor(countriesWon, "#F44336");
-
-		// add child elements to parent container 
 		this.playerBox.getChildren().add(profilepicContainer);
-		this.playerBox.getChildren().add(status);
+		this.playerBox.getChildren().add(currentContry);
 		this.playerBox.getChildren().add(countriesWon);
 	}
 	
@@ -65,7 +54,7 @@ public class PlayerInfoView{
 	 * @param color is a type of String example: "red" or "#333"
 	 */
 	public void setFontColor(Label label,String color){
-		label.setFont(new Font("Cambria", 14));
+		label.setFont(new Font("Cambria", 18));
 		label.setTextFill(Color.web(color));
 		label.setPadding(new Insets(10));
 	}
@@ -94,53 +83,29 @@ public class PlayerInfoView{
 	public void setActorName(String actorName) {
 		this.actorName.setText(actorName);
 	}
-	
 	/**
-	 * @return the {@link #status} on current player
+	 * @return the currentContry
 	 */
-	public TextArea getCurrentStatus() {
-		return status;
+	public Label getCurrentContry() {
+		return currentContry;
 	}
-	
-	
 	/**
-	 * @return {@link String} the text on {@link #countriesWon} of current player
+	 * @param currentContry the currentContry to set
 	 */
-	public String getContriesWon() {
-		return this.countriesWon.getText();
+	public void setCurrentContry(Label currentContry) {
+		this.currentContry = currentContry;
 	}
-	
 	/**
-	 * @param status the status of present player
+	 * @return the countriesWon
 	 */
-	public void setCurrentStatus(String status) {
-		this.status.setText(this.status.getText()+" \n "+status);
+	public Label getCountriesWon() {
+		return countriesWon;
 	}
-	
 	/**
 	 * @param countriesWon the countriesWon to set
 	 */
-	public void setCountriesWon(String countriesWon) {
-		this.countriesWon.setText(countriesWon);
-	}
-
-
-
-	/**
-	 * clears the status of the player
-	 */
-	public void clearStatus() {
-		this.status.setText("");	
-	}
-
-
-
-	/**
-	 * @return {@link #countriesWon} Label which contains details of 
-	 * countries own by player
-	 */
-	public Label getContriesWonLabel() {
-		return this.countriesWon;		
+	public void setCountriesWon(Label countriesWon) {
+		this.countriesWon = countriesWon;
 	}
 
 

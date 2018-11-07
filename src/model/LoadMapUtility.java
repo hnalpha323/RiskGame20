@@ -1,4 +1,3 @@
-
 package model;
 
 import java.util.ArrayList;
@@ -40,6 +39,11 @@ public final class LoadMapUtility {
 		for(int i=4;i<tmpArray.length;i++){
 			adjacentTerritories.add(tmpArray[i].toLowerCase().trim());
 		}
+		
+		if(adjacentTerritories.size() == 0){
+			return false;
+		}
+		
 		MapDatabase.continents.get(tmpArray[3].toLowerCase()).put(tmpArray[0].toLowerCase(),
 				new Territories(tmpArray[3].trim().toLowerCase(), 
 						tmpArray[0].toLowerCase(),

@@ -62,8 +62,21 @@ public class DataReader {
 	{
 		return MapDatabase.continentValues.get(continentName);
 	}
+<<<<<<< HEAD
 	
 	public java.util.Set<String> getContinents() {			
 		return MapDatabase.continentValues.keySet();
 	}
 }
+=======
+		
+		/**
+		 * @return
+		 */
+		public java.util.Set<String> getContinents() {			
+			return MapDatabase.continentValues.keySet();
+		}
+
+	}
+
+>>>>>>> 3a4893a9762da70a9aa89fb64de52c30e2de06cc

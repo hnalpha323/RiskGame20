@@ -34,6 +34,12 @@ public class RWMapFileController{
 
 
 	/**
+	 * To clear an already loaded map
+	 */
+	public void clearData() {
+		MapDatabase.clear();		
+	}	
+	/**
 	 * Validation of Map to check if the neighboring territories are valid or not
 	 * @return true if map satisfies above case
 	 */
@@ -42,11 +48,5 @@ public class RWMapFileController{
 	}
 
 
-	/**
-	 * To clear an already loaded map
-	 */
-	public void clearData() {
-		MapDatabase.clear();		
-	}	
 
 }

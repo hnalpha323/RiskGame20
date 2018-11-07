@@ -13,15 +13,21 @@ import model.Interfaces.StrategyInterface;
  * @author Meet_Patel
  * @version 1.0.0
  */
-public interface PlayerInterface {
+public interface PlayerInterface extends Comparable <PlayerInterface> {
 
 	Results ownTerritory(TerritoryInterface territory);
+    Results lostTerritory(TerritoryInterface territory);
+
     ArrayList<TerritoryInterface> getTerritories();
 
 
     String getName();
     void setName(String newName);
 
+    double getDomination();
+    void setDomination(double value);
+
+    
     void setUnusedArmies(int armies);
     int getUnusedArmies();
 

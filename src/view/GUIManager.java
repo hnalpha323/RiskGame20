@@ -23,6 +23,8 @@ public class GUIManager extends Application {
 	
     static WelcomeGUI welcomeView  = null;
     static MapEditorGUI mapEditorView = null;
+    public static PhaseView phaseView = null;
+
     
     static RWMapFileController rwMapFileController;
 	static ReadController readController;
@@ -64,7 +66,25 @@ public class GUIManager extends Application {
 		readController = new_readController;
 		writeController = new_writeController;
 		gameController = new_gameController; 
+	}	
+
+	/**		
+	75		 * Sets required View		
+	76		 * @param view which implements {@link IView}		
+	77		 * @param typeOfView defines type of view to be set		
+	78		 */		
+	public static void setView(IView view, String typeOfView) {		
+					
+	switch(typeOfView){		
+	case "phaseview":		
+		phaseView= (PhaseView)view;		
+						break;		
+					default:		
+					break;	
+	
 	}
-    
-       
+	}
 }
+					
+       
+
