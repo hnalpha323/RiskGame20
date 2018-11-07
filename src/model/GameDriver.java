@@ -529,7 +529,6 @@ public class GameDriver extends Model {
         return winner;
 
     }
-
     /**
      * get a random playing strategy
      * @return strategy to play the game
