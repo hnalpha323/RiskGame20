@@ -65,6 +65,21 @@ public class GUIManager extends Application {
 		writeController = new_writeController;
 		gameController = new_gameController; 
 	}
-    
+	/**		
+	75		 * Sets required View		
+	76		 * @param view which implements {@link IView}		
+	77		 * @param typeOfView defines type of view to be set		
+	78		 */		
+	79		public static void setView(IView view, String typeOfView) {		
+	80					
+	81			switch(typeOfView){		
+	82				case "phaseview":		
+	83					phaseView = (PhaseView)view;		
+	84					break;		
+	85				default:		
+	86					break;		
+	87			}		
+	88					
+	89		}
        
 }
