@@ -3,9 +3,6 @@
  */
 package view;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -36,7 +33,7 @@ public class PlayerInfoView{
 		this.actorName = new Label();
 		setFontColor(actorName, "#0076a3");
 		HBox profilepicContainer = new HBox(); 
-		Image profileImage = new Image(getClass().getResourceAsStream("C:\\Users\\hnalp\\OneDrive\\Documents\\GitHub\\RiskGame20\\bin/user.png"));
+		Image profileImage = new Image(getClass().getResourceAsStream("/user.png"));
 		profilepicContainer.getChildren().add(new ImageView(profileImage));
 		profilepicContainer.getChildren().add(actorName);
 		this.currentContry = new Label();
