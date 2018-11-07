@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import model.Interfaces.ContinentInterface;
 import model.Interfaces.PlayerInterface;
@@ -8,14 +9,15 @@ import model.Interfaces.TerritoryInterface;
 
 /**
  * @author Meet_Patel
- * @version 1.0.0
+ * @author Muhammad_Hamza_Noor
+ * @version 2.0.0
  */
 
 public class Continents implements ContinentInterface{
 
 	private String Name;
 	private ArrayList<TerritoryInterface> territories;
-	private int tempValue = 0;
+	private int Value = 0;
 	
 	/**
      * Constructor to set Continent Names
@@ -46,7 +48,7 @@ public class Continents implements ContinentInterface{
      */
     @Override
     public int getContinentValue() {
-        return this.tempValue;
+        return this.Value;
     }
     
     /**
@@ -54,7 +56,7 @@ public class Continents implements ContinentInterface{
      */
     @Override
     public void setContinentValue(int value) {
-        this.tempValue = value;
+        this.Value = value;
     }
     
     @Override
