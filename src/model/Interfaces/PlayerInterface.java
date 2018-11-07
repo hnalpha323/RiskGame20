@@ -24,6 +24,10 @@ public interface PlayerInterface extends Comparable <PlayerInterface> {
     String getName();
     void setName(String newName);
 
+    double getDomination();
+    void setDomination(double value);
+
+    
     void setUnusedArmies(int armies);
     int getUnusedArmies();
 
