@@ -23,6 +23,8 @@ public class GUIManager extends Application {
 	
     static WelcomeGUI welcomeView  = null;
     static MapEditorGUI mapEditorView = null;
+    public static PhaseView phaseView = null;
+
     
     static RWMapFileController rwMapFileController;
 	static ReadController readController;
@@ -75,7 +77,7 @@ public class GUIManager extends Application {
 					
 	switch(typeOfView){		
 	case "phaseview":		
-	PhaseView = (PhaseView)view;		
+		phaseView= (PhaseView)view;		
 						break;		
 					default:		
 					break;	
