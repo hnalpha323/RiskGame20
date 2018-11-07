@@ -25,7 +25,7 @@ import model.Players;
  * @author SA
  *
  */
-public class PhaseView implements IView,Observer{
+public class PhaseView implements ViewInterface,Observer{
 
 	HashMap<String,TextArea> playersViews= new HashMap<String,TextArea>();
 	HashMap<String,PlayerInfoView> playersStatistics= new HashMap<String,PlayerInfoView>();

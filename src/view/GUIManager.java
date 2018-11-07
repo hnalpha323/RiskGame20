@@ -73,7 +73,7 @@ public class GUIManager extends Application {
 	76		 * @param view which implements {@link IView}		
 	77		 * @param typeOfView defines type of view to be set		
 	78		 */		
-	public static void setView(IView view, String typeOfView) {		
+	public static void setView(ViewInterface view, String typeOfView) {		
 					
 	switch(typeOfView){		
 	case "phaseview":		
