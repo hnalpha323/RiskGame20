@@ -33,11 +33,7 @@ public class PlayerInfoView{
 		this.actorName = new Label();
 		setFontColor(actorName, "#0076a3");
 		HBox profilepicContainer = new HBox(); 
-<<<<<<< HEAD
-		Image profileImage = new Image(getClass().getResourceAsStream("C:\\Users\\getwa\\Documents\\GitHub\\RiskGame20\\bin\\user.png"));
-=======
 		Image profileImage = new Image(getClass().getResourceAsStream("/user.png"));
->>>>>>> d07ed86c4f728103d5afd855fdd5410ee80e0a6f
 		profilepicContainer.getChildren().add(new ImageView(profileImage));
 		profilepicContainer.getChildren().add(actorName);
 		this.currentContry = new Label();
