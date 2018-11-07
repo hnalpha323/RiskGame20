@@ -60,7 +60,7 @@ public class GUIManager extends Application {
 	 * @param new_readController
 	 * @param new_writeController
 	 */
-	public static void addRWControllers(RWMapFileController new_rwMapFileController, ReadController new_readController,
+	public static void addControllers(RWMapFileController new_rwMapFileController, ReadController new_readController,
 			WriteController new_writeController,GameController new_gameController) {		
 		rwMapFileController = new_rwMapFileController;
 		readController = new_readController;
