@@ -16,7 +16,9 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestCase7.class,
 	TestCase8.class,
 	TestCardExchange.class,
-	TestContinents.class})
+	TestContinents.class,
+	TestCards.class
+	})
 public class AllTests {
 
 }
