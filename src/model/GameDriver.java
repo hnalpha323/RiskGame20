@@ -497,7 +497,7 @@ public class GameDriver extends Model {
 
         if(verbos) {
         	for(PlayerInterface p:tmp)
-        		sb.append(String.format("%s(%s) controls %s of the map.\n", p.getName(), p.getStrategy().getName(), p.getDomination()));
+        		sb.append(String.format("%s controls %s of the map.\n", p.getName(), p.getDomination()));
         }
 
         sendNotification("DominationView", "DominationView: "+sb.toString());
