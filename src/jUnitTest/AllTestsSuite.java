@@ -11,6 +11,7 @@ import model.MapValidatorTest;
 import model.PlayersExceptionTest;
 import model.PlayersexceptionOf7PlayersTest;
 import model.TerrorteriesArmyTest;
+import model.strategy.TestAggressiveStrategy;
 
 @RunWith(Suite.class)
 @SuiteClasses({ 
@@ -22,7 +23,10 @@ import model.TerrorteriesArmyTest;
 	TerrorteriesArmyTest.class,
 	ArmiesCalculationTest.class,
 	TestCardExchange.class,
-	TestContinents.class})
+	TestContinents.class,
+	TestAggressiveStrategy.class,
+	
+	})
 public class AllTestsSuite {
 
 }
