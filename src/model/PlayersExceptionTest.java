@@ -1,9 +1,7 @@
-package jUnitTest;
+package model;
 
 
 import org.junit.Test;
-
-import model.GameDriver;
 
 import exceptions.PlayerException;
 
@@ -11,7 +9,7 @@ import exceptions.PlayerException;
  * @author Muhammad_Hamza_Noor
  * Tests number of players with minPlayers - 1
  */
-public class TestCase1 {
+public class PlayersExceptionTest {
 
     /**
      * creates a game with 1 player

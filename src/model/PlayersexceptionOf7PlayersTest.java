@@ -1,6 +1,5 @@
-package jUnitTest;
+package model;
 
-import model.GameDriver;
 import org.junit.Test;
 import exceptions.PlayerException;
 
@@ -8,7 +7,7 @@ import exceptions.PlayerException;
  * @author Muhammad_Hamza_Noor
  * Tests number of players with MaxPlayers + 1
  */
-public class TestCase2 {
+public class PlayersexceptionOf7PlayersTest {
 
     /**
      * Creates a game with 7 players

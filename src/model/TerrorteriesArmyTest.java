@@ -1,8 +1,6 @@
-package jUnitTest;
+package model;
 
 
-import model.GameDriver;
-import model.Map;
 import model.Interfaces.MapInterface;
 import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
@@ -16,7 +14,7 @@ import exceptions.PlayerException;
  * @author Muhammad_Hamza_Noor
  * Tests moving all armies form a territory
  */
-public class TestCase6 {
+public class TerrorteriesArmyTest {
 
     @Test()
     public void SufficientArmies() throws PlayerException
