@@ -9,6 +9,7 @@ import model.GameDriverTest;
 import model.MapInterfaceTest;
 import model.MapValidatorTest;
 import model.PlayersExceptionTest;
+import model.PlayersTest;
 import model.PlayersexceptionOf7PlayersTest;
 import model.TerrorteriesArmyTest;
 import model.strategy.TestAggressiveStrategy;
@@ -28,7 +29,8 @@ import model.strategy.TestNormalStrategy;
 	TestContinents.class,
 	TestAggressiveStrategy.class,
 	TestNormalStrategy.class,
-	TestDefensiveStrategy.class
+	TestDefensiveStrategy.class,
+	PlayersTest.class 
 	})
 public class AllTestsSuite {
 
