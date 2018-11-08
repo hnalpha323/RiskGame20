@@ -223,7 +223,7 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
     public String getState()
     {
     	StringBuilder sb = new StringBuilder();
-        sb.append("\n====================");
+        sb.append("\n--------------------");
         sb.append("\n");
         sb.append(this.getName());
         sb.append("\n");
@@ -250,7 +250,7 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
         }
         sb.append("\n");
 
-        sb.append("====================");
+        sb.append("--------------------");
         return sb.toString();
     }
 
@@ -517,7 +517,7 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
         }
 
 
-        LoggerController.log(String.format("============%s ATTACK DONE===========", this.getName()));
+        LoggerController.log(String.format("--------------------%s Attack Phase Done--------------------", this.getName()));
     }
 
 
@@ -527,7 +527,7 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      */
     public void fortification()
     {
-        LoggerController.log(String.format("============%s FORTIFICATION STARTS===========", this.getName()));
+        LoggerController.log(String.format("--------------------%s Fortification Phase Starts--------------------", this.getName()));
         this.gm.setPhase("FORTIFICATION PHASE");
         sendNotification("PhaseChange", "PhaseChange:"+this.getName()+" Fortification");
         
@@ -544,7 +544,7 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
         this.moveArmies(from, to, number);
 
 
-        LoggerController.log(String.format("============%s FORTIFICATION DONE===========", this.getName()));
+        LoggerController.log(String.format("--------------------%s Fortification Phase Finnished--------------------", this.getName()));
         sendNotification("GameChange", this.getName()+": Done his fortification");
     }
 

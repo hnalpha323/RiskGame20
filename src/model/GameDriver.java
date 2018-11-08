@@ -478,7 +478,7 @@ public class GameDriver extends Model {
     {
         StringBuilder sb = new StringBuilder();
         if(verbos)
-            sb.append(String.format("===DOMINATION VIEW AT TURN %s===\n", trn));
+            sb.append(String.format("-------------Domination View of Turn %s-------------\n", trn));
 
         int total_territories = 0;
         for(PlayerInterface p:this.playerlist)
@@ -497,7 +497,7 @@ public class GameDriver extends Model {
 
         if(verbos) {
         	for(PlayerInterface p:tmp)
-        		sb.append(String.format("%s(%s) controls %s of the map.\n", p.getName(), p.getStrategy().getName(), p.getDomination()));
+        		sb.append(String.format("%s controls %s of the map.\n", p.getName(), p.getDomination()));
         }
 
         sendNotification("DominationView", "DominationView: "+sb.toString());
