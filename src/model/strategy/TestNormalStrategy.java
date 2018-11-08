@@ -3,15 +3,16 @@ package model.strategy;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import model.strategy.Aggressive;
+import model.strategy.Normal;
 
 /**
- * Testing functionalities of Aggressive Strategy
+ * Testing functionalities of Normal Strategy
  * @author Shah_Mohammad_Mostakim
  * @version 2.0.0
  *
  */
-public class TestAggressiveStrategy {
+
+public class TestNormalStrategy {
 
 	/**
 	 * Testing attack attemps
@@ -21,9 +22,9 @@ public class TestAggressiveStrategy {
 	 */
 	@Test
 	public void testAttackAttempts() {
-		Aggressive agg = new Aggressive();
-		int foundAttackAttempts = agg.getAttackAttempts();
-		int expectedAttackAttempts = 6;
+		Normal nor = new Normal();
+		int foundAttackAttempts = nor.getAttackAttempts();
+		int expectedAttackAttempts = 1;
 		assertEquals(foundAttackAttempts, expectedAttackAttempts);
 	}
 	
@@ -35,9 +36,9 @@ public class TestAggressiveStrategy {
 	 */
 	@Test
 	public void testName() {
-		Aggressive agg = new Aggressive();
-		String foundName = agg.getName();
-		String expectedName = "Aggressive";
+		Normal nor = new Normal();
+		String foundName = nor.getName();
+		String expectedName = "Normal";
 		assertEquals(foundName, expectedName);
 	}
 

@@ -12,6 +12,8 @@ import model.PlayersExceptionTest;
 import model.PlayersexceptionOf7PlayersTest;
 import model.TerrorteriesArmyTest;
 import model.strategy.TestAggressiveStrategy;
+import model.strategy.TestDefensiveStrategy;
+import model.strategy.TestNormalStrategy;
 
 @RunWith(Suite.class)
 @SuiteClasses({ 
@@ -25,7 +27,8 @@ import model.strategy.TestAggressiveStrategy;
 	TestCardExchange.class,
 	TestContinents.class,
 	TestAggressiveStrategy.class,
-	
+	TestNormalStrategy.class,
+	TestDefensiveStrategy.class
 	})
 public class AllTestsSuite {
 
