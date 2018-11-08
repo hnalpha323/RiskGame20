@@ -30,7 +30,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 /**
- * @author rISK tEAM 20
+ * @author Risk Team
  * @version 1.0.0
  * Responsible for generating Map editor view
  */
