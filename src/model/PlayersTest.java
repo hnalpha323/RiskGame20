@@ -6,10 +6,11 @@ import org.junit.Test;
 import model.Players;
 import utility.Gradient;
 import model.strategy.*;
+import model.Card;
 
 /**
  * Test class for Players
- * @author MS
+ * @author Shah_Mohammad_Mostakim
  * @version 2.0.0
  */
 
@@ -32,7 +33,7 @@ public class PlayersTest {
 	}
 	
 	/**
-	 * Test player domination 
+	 * Test player domination of map 
 	 */
 	@Test
 	public void testDomination() {
@@ -49,7 +50,7 @@ public class PlayersTest {
 	}
 	
 	/**
-	 * Test armies used by player
+	 * Test number of armies used by player
 	 */
 	@Test
 	public void testUsedArmies() {
@@ -63,6 +64,25 @@ public class PlayersTest {
 		int usedArmyExpected = 10;
 		
 		assertEquals(usedArmyFound, usedArmyExpected);
+	}
+	
+	/**
+	 * Test number of cards owned by player
+	 */
+	@Test
+	public void testPlayerCardNumber() {
+		String name = "Rogers";
+		Gradient g = new Gradient();
+		Aggressive agg = new Aggressive();
+		Players p = new Players(name, g, agg);
+		
+		Card card = new Card("China", 5);
+		
+		p.addCard(card);
+		int foundCardSize = p.getCardsSize();
+		int expectedCardSize = 1;
+		
+		assertEquals(foundCardSize, expectedCardSize);
 	}
 
 }
