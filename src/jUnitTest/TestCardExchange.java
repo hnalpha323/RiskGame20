@@ -36,7 +36,7 @@ public class TestCardExchange {
 	
 	/**
      * First trade
-     * @throws InvalidNumOfPlayersException
+     * @throws PlayerException
      */
 	@Test()
     public void test2() throws PlayerException {
@@ -58,7 +58,7 @@ public class TestCardExchange {
 	
 	/**
      * 2nd trade
-     * @throws InvalidNumOfPlayersException
+     * @throws PlayerException
      */
     @Test()
     public void test3() throws PlayerException {
@@ -88,7 +88,7 @@ public class TestCardExchange {
 
     /**
      * 3rd trade
-     * @throws InvalidNumOfPlayersException
+     * @throws PlayerException
      */
     @Test()
     public void test4() throws PlayerException {
@@ -125,7 +125,7 @@ public class TestCardExchange {
 
     /**
      * 4th trade
-     * @throws InvalidNumOfPlayersException
+     * @throws PlayerException
      */
     @Test()
     public void test5() throws PlayerException {
