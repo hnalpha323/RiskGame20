@@ -63,7 +63,6 @@ public class MapEditorGUI implements ViewInterface{
 	/**
 	 * Returns container having Map Editor UI elements
 	 * @return {@link Scene} instance
-	 * @see view.IView#getView()
 	 */
 	public Scene getView(){
 		ObservableList<String> continents = FXCollections.observableArrayList();		 
