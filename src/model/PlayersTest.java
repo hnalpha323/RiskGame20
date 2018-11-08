@@ -3,10 +3,12 @@ package model;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.Before;
 import model.Players;
 import utility.Gradient;
 import model.strategy.*;
 import model.Card;
+import model.Interfaces.StrategyInterface;
 
 /**
  * Test class for Players
@@ -15,6 +17,16 @@ import model.Card;
  */
 
 public class PlayersTest {
+	
+	private Players p;
+	
+	/**
+	 * initialize player object before running each test case
+	 */
+	@Before
+	public void setUp() {
+		this.p = new Players("Jamil", new Gradient(), new Aggressive());
+	}
 
 	/**
 	 * Test player name
@@ -83,6 +95,19 @@ public class PlayersTest {
 		int expectedCardSize = 1;
 		
 		assertEquals(foundCardSize, expectedCardSize);
+	}
+	
+	/**
+	 * Testing strategy type used by player
+	 * object used here was initialized by setup() method
+	 */
+	@Test
+	public void testPlayerStrategy() {
+		StrategyInterface strategy = this.p.getStrategy();
+		String foundStrategy = strategy.getName();
+		String expectedStrategy = "Aggressive";
+		
+		assertEquals(foundStrategy, expectedStrategy);
 	}
 
 }
