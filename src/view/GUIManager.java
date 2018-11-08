@@ -39,13 +39,15 @@ public class GUIManager extends Application {
     @Override
     public void start(final Stage window) {    
     	window.setTitle("Risk Game");
+    	
     	mapEditorView = new MapEditorGUI(readController,writeController);
 		welcomeView = new WelcomeGUI(window, rwMapFileController, mapEditorView); 
-		
         mapEditorView.getStartGameButton().setOnAction(new EventHandler<ActionEvent>() {            
         	@Override
             public void handle(ActionEvent event){
         		 int numberOfPlayers = mapEditorView.getNumberOfPlayers();
+        		 phaseView.setNumberOfPlayers(numberOfPlayers);
+         		window.setScene(phaseView.getView());
             	gameController.startGame(numberOfPlayers);
             }
     	});   
