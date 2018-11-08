@@ -14,7 +14,7 @@ import javafx.scene.text.Font;
 
 /**
  * Gives a player statistic view
- * @author SA
+ * @author Waleed
  */
 public class PlayerInfoView{
 

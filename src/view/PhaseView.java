@@ -22,7 +22,7 @@ import javafx.scene.paint.Color;
 import model.Players;
 
 /**
- * @author SA
+ * @author Waleed
  *
  */
 public class PhaseView implements ViewInterface,Observer{
