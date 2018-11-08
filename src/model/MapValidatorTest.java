@@ -1,4 +1,4 @@
-package jUnitTest;
+package model;
 
 
 
@@ -13,9 +13,6 @@ import org.junit.Test;
 import controller.RWMapFileController;
 import controller.ReadController;
 import controller.WriteController;
-import model.DataReader;
-import model.DataWriter;
-import model.MapDatabase;
 import model.Interfaces.TerritoryInterface;
 
 /**
@@ -23,7 +20,7 @@ import model.Interfaces.TerritoryInterface;
  * @version 1.0.0
  *
  */
-public class MapValidator {
+public class MapValidatorTest {
 
 	static WriteController writeController;
 	static ReadController readController;

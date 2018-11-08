@@ -1,7 +1,5 @@
-package jUnitTest;
+package model;
 
-import model.GameDriver;
-import model.Map;
 import model.Interfaces.MapInterface;
 import model.Interfaces.PlayerInterface;
 import org.junit.Assert;
@@ -12,7 +10,7 @@ import exceptions.PlayerException;
  * @author Muhammad_Hamza_Noor
  * Tests minimum reinforcement armies
  */
-public class TestCase5 {
+public class GameDriverTest {
 
     @Test()
     public void MinimumArmiesReinforcement() throws PlayerException

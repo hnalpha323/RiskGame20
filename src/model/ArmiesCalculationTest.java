@@ -1,4 +1,4 @@
-package jUnitTest;
+package model;
 
 import static org.junit.Assert.*;
 
@@ -6,8 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import exceptions.PlayerException;
-import model.GameDriver;
-import model.Map;
 import model.Interfaces.MapInterface;
 
 /**
@@ -15,7 +13,7 @@ import model.Interfaces.MapInterface;
  * Tests number of initial armies
  */
 
-public class TestCase8 {
+public class ArmiesCalculationTest {
 	
 	public void test() throws PlayerException
     {

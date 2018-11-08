@@ -1,7 +1,5 @@
-package jUnitTest;
+package model;
 
-import model.GameDriver;
-import model.Map;
 import model.Interfaces.MapInterface;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,7 +9,7 @@ import exceptions.PlayerException;
  * @author Muhammad_Hamza_Noor
  * Players have used all their initial armies before playing
  */
-public class TestCase4 {
+public class MapInterfaceTest {
 
     @Test()
     public void InitialArmiesUse() throws PlayerException

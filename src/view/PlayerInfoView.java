@@ -33,7 +33,7 @@ public class PlayerInfoView{
 		this.actorName = new Label();
 		setFontColor(actorName, "#0076a3");
 		HBox profilepicContainer = new HBox(); 
-		Image profileImage = new Image(getClass().getResourceAsStream("/user.png"));
+		Image profileImage = new Image(getClass().getResourceAsStream("user.png"));
 		profilepicContainer.getChildren().add(new ImageView(profileImage));
 		profilepicContainer.getChildren().add(actorName);
 		this.currentContry = new Label();
