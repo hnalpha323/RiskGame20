@@ -109,5 +109,31 @@ public class PlayersTest {
 		
 		assertEquals(foundStrategy, expectedStrategy);
 	}
+	
+	/**
+	 * Testing status of player
+	 * object used here was initialized by setup() method
+	 */
+	@Test
+	public void testPlayerStatus() {
+
+		boolean foundStatus = this.p.getStatus();
+		boolean expectedStatus = true;
+		
+		assertEquals(foundStatus, expectedStatus);
+	}
+	
+	/**
+	 * Testing trades of player 
+	 * object used here was initialized by setup() method  
+	 */
+	@Test 
+	public void testPlayerTrades() {
+		
+		int foundStatus = this.p.getTrades();
+		int expectedStatus = 1;
+		
+		assertEquals(foundStatus, expectedStatus);
+	}
 
 }
