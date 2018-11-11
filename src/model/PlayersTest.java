@@ -9,6 +9,7 @@ import utility.Gradient;
 import model.strategy.*;
 import model.Card;
 import model.Interfaces.StrategyInterface;
+import model.AttackPlan;
 
 /**
  * Test class for Players
@@ -134,6 +135,34 @@ public class PlayersTest {
 		int expectedStatus = 1;
 		
 		assertEquals(foundStatus, expectedStatus);
+	}
+	
+	/**
+	 * Testing territory to attack for player 
+	 * object used here was initiated by setup() method
+	 */
+	@Test
+	public void testTerritoryToAttack() {
+		//AttackPlan AP = this.p.getTerritoryToAttack();
+		//assertNotNull(AP);
+		
+		// will work on later
+	}
+	
+	/**
+	 * Testing game driver 
+	 * @author Shah_Mohammad_Mostakim
+	 * player object used here was initiated by setup() method
+	 * GameDriver object is initiated inside test method
+	 */
+	@Test 
+	public void testGameDriver() {
+		int numberOfPlayers = 3;
+		GameDriver gm = new GameDriver(numberOfPlayers);
+		this.p.setGameDriver(gm);
+		
+		GameDriver GDFound = this.p.getGameDriver();
+		assertSame(GDFound, gm);
 	}
 
 }
