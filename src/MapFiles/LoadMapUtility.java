@@ -1,7 +1,10 @@
-package model;
+package MapFiles;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import model.MapDatabase;
+import model.Territories;
 
 /**
  * @author WaleedAhmad
