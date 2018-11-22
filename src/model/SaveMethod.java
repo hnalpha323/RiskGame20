@@ -69,7 +69,7 @@ public class SaveMethod {
 	        GameDriver gm = (GameDriver) ois.readObject();
 	        fis = new FileInputStream("tempdata1.tiger");
 			ois = new ObjectInputStream(fis);
-	        MapDatabase.continents = (HashMap<String, HashMap<String, Territory>>)ois.readObject();
+	        MapDatabase.continents = (HashMap<String, HashMap<String, Territories>>)ois.readObject();
 	        fis = new FileInputStream("tempdata2.tiger");
 			ois = new ObjectInputStream(fis);
 	        MapDatabase.continentValues = (HashMap<String, Integer>)ois.readObject();
