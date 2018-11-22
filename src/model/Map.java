@@ -11,7 +11,8 @@ import java.util.ArrayList;
  * @version 1.0.0
  * 
  */
-public class Map implements MapInterface,Serializable {
+public class Map implements MapInterface,Serializable 
+{
 
 	/**
 	 * serialVersionUID is used during deserialization to verify that the sender and receiver 
@@ -35,17 +36,21 @@ public class Map implements MapInterface,Serializable {
      * @return List of all the continents in the map
      */
     @Override
-    public ArrayList<ContinentInterface> getContinents() {
+    public ArrayList<ContinentInterface> getContinents() 
+    {
         return this.continents;
     }
 
 
-    private void loadData(){
+    private void loadData()
+    {
     	this.continents = new ArrayList<>();
     	setTotalnumberOfTerritories(0);
-    	for(String continent: MapDatabase.continents.keySet()){
+    	for(String continent: MapDatabase.continents.keySet())
+    	{
     		ContinentInterface c = new Continents(continent);
-    		for(Territories Territories: MapDatabase.continents.get(continent).values()){    			
+    		for(Territories Territories: MapDatabase.continents.get(continent).values())
+    		{    			
     			c.addTerritory(Territories);
     		}
     		this.continents.add(c);	
@@ -93,7 +98,8 @@ public class Map implements MapInterface,Serializable {
      * @param Map Name
      */
     @Override
-    public void setName(String name) {
+    public void setName(String name) 
+    {
         this.name = name;
     }
 
@@ -102,18 +108,21 @@ public class Map implements MapInterface,Serializable {
      * @return Map Name
      */
     @Override
-    public String getName() {
+    public String getName() 
+    {
         return this.name;
     }
 
 	/**
 	 * @return Total Number Of Territories
 	 */
-	public int getTotalnumberOfTerritories() {
+	public int getTotalnumberOfTerritories() 
+	{
 		return totalnumberOfTerritories;
 	}
 
-	public void setTotalnumberOfTerritories(int totalnumberOfTerritories) {
+	public void setTotalnumberOfTerritories(int totalnumberOfTerritories) 
+	{
 		this.totalnumberOfTerritories = totalnumberOfTerritories;
 	}
 }
