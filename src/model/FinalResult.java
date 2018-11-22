@@ -18,7 +18,7 @@ public class FinalResult {
      * @param Map name
      * @param Name of Wining player
      */
-    public GameResult(String mapName, String winner)
+    public FinalResult(String mapName, String winner)
     {
         this.map = mapName;
         this.winner = winner;
