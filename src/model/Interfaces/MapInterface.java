@@ -12,5 +12,7 @@ public interface MapInterface {
     ArrayList<ContinentInterface> getContinents();
     void clearData();
     void fakeData();
+    void setName(String name);
+    String getName();
 
 }
