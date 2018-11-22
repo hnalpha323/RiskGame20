@@ -3,6 +3,7 @@ package model;
 import model.Interfaces.ContinentInterface;
 import model.Interfaces.MapInterface;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -10,10 +11,20 @@ import java.util.ArrayList;
  * @version 1.0.0
  * 
  */
-public class Map implements MapInterface {
+public class Map implements MapInterface,Serializable 
+{
 
-
+	/**
+	 * serialVersionUID is used during deserialization to verify that the sender and receiver 
+	 * of a serialized object have loaded classes for that object that are compatible with respect to 
+	 * serialization. If the receiver has loaded a class for the object that has a different {@link #serialVersionUID}
+	 */
+	private static final long serialVersionUID = 5631589509991237355L;
     private ArrayList<ContinentInterface> continents = new ArrayList<>();
+    
+    private String name = "Map";
+    
+    private int totalnumberOfTerritories = 0;
 
     public Map()
     {
@@ -25,16 +36,21 @@ public class Map implements MapInterface {
      * @return List of all the continents in the map
      */
     @Override
-    public ArrayList<ContinentInterface> getContinents() {
+    public ArrayList<ContinentInterface> getContinents() 
+    {
         return this.continents;
     }
 
 
-    private void loadData(){
+    private void loadData()
+    {
     	this.continents = new ArrayList<>();
-    	for(String continent: MapDatabase.continents.keySet()){
+    	setTotalnumberOfTerritories(0);
+    	for(String continent: MapDatabase.continents.keySet())
+    	{
     		ContinentInterface c = new Continents(continent);
-    		for(Territories Territories: MapDatabase.continents.get(continent).values()){    			
+    		for(Territories Territories: MapDatabase.continents.get(continent).values())
+    		{    			
     			c.addTerritory(Territories);
     		}
     		this.continents.add(c);	
@@ -76,4 +92,37 @@ public class Map implements MapInterface {
         c3.addTerritory(new Territories("Argentina", c3.getName()));
 
     }
+    
+    /**
+     * Sets name of the map
+     * @param Map Name
+     */
+    @Override
+    public void setName(String name) 
+    {
+        this.name = name;
+    }
+
+    /**
+     * Gets name of the map
+     * @return Map Name
+     */
+    @Override
+    public String getName() 
+    {
+        return this.name;
+    }
+
+	/**
+	 * @return Total Number Of Territories
+	 */
+	public int getTotalnumberOfTerritories() 
+	{
+		return totalnumberOfTerritories;
+	}
+
+	public void setTotalnumberOfTerritories(int totalnumberOfTerritories) 
+	{
+		this.totalnumberOfTerritories = totalnumberOfTerritories;
+	}
 }
