@@ -2,9 +2,9 @@ package controller;
 
 import java.io.File;
 
-import model.LoadMap;
+import MapFiles.LoadMap;
+import MapFiles.MapWriter;
 import model.MapDatabase;
-import model.MapWriter;
 
 
 /**

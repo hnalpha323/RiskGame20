@@ -1,10 +1,13 @@
-package model;
+package MapFiles;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+
+import model.MapDatabase;
+import model.Territories;
 
 /**
  * Class to Save a created or edited map

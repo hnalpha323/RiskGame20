@@ -1,9 +1,11 @@
-package model;
+package MapFiles;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import model.MapDatabase;
 
 public class LoadMap {
     
