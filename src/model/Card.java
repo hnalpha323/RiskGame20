@@ -1,36 +1,39 @@
 package model;
 
-/**
- * represents the card entity in the game
- */
-public class Card{
+import java.io.Serializable;
 
-    private String territoryName;
+/**
+ * Card Manager
+ */
+public class Card implements Serializable{
+
+	private static final long serialVersionUID = 1012842278301009514L;
+	
+	private String cardName;
+	
+	
+	
     private int armyValue = 0;
 
     /**
      * constructor
-     * @param n name of territory
-     * @param v value of territory
+     * @param new_cardName name of territory
+     * @param new_armyValue value of territory
      */
-    public Card(String n, int v)
+    public Card(String new_cardName, int new_armyValue)
     {
-        this.armyValue = v;
-        this.territoryName = n;
+        this.armyValue = new_armyValue;
+        this.cardName = new_cardName;
     }
 
-    /**
-     * return name of territory
-     * @return name
-     */
-    public String getCardTerritoryName()
-    { return this.territoryName; }
-
-    /**
-     * return value of card
-     * @return card value
-     */
-    public int getCardValue() { return this.armyValue; }
-
+    public String getCardName() 
+    { 
+    	return this.cardName; 
+    }
+    
+    public int getCardValue() 
+    { 
+    	return this.armyValue; 
+    }
 
 }
