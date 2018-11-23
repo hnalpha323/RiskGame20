@@ -9,7 +9,7 @@ import model.SaveMethod;
 import exceptions.*;
 
 /**
- * @author Team15
+ * @author Team
  * Controls the whole Game Play through GameDriver
  * @see GameDriver 
  */

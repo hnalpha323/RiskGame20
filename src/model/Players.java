@@ -8,23 +8,25 @@ import model.Interfaces.PlayerInterface;
 import model.Interfaces.StrategyInterface;
 import model.Interfaces.TerritoryInterface;
 import utility.DiceRNG;
-
+import view.Logger;
 import utility.Results;
 import view.Message;
 import utility.Gradient;
 import utility.MessageEnum;
 //import utility.exception.NoSufficientArmiesExption;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
  * This is Players class
  *
- * @author WaleedAhmad
+ * @author Team
  * @version 1.0.0
  */
-public class Players extends Model implements PlayerInterface, Comparable<PlayerInterface> {
+public class Players extends Observable implements PlayerInterface, Comparable<PlayerInterface>, Serializable 
+{
 
 
     private String name;
@@ -44,7 +46,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @param name  player name
      * @param Gradient player Gradient
      */
-    public Players(String name, Gradient color, StrategyInterface strategy){
+    public Players(String name, Gradient color, StrategyInterface strategy)
+    {
         this.name = name;
         this.color = color;
         this.territories = new ArrayList<>();
@@ -56,7 +59,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return player name
      */
     @Override
-    public String getName(){
+    public String getName()
+    {
         return this.name;
     }
 
@@ -65,7 +69,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @param newName new name for the  player
      */
     @Override
-    public void setName(String newName){
+    public void setName(String newName)
+    {
         this.name = newName;
     }
 
@@ -74,7 +79,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return percentage
      */
     @Override
-    public double getDomination() {
+    public double getDomination() 
+    {
         return this.domination;
     }
 
@@ -83,7 +89,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @param value
      */
     @Override
-    public void setDomination(double value) {
+    public void setDomination(double value) 
+    {
         this.domination = value;
     }
 
@@ -93,39 +100,57 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @param armies number of new armies
      */
     @Override
-    public void setUnusedArmies(int armies) { this.unusedArmies = armies; }
+    public void setUnusedArmies(int armies) 
+    { 
+    	this.unusedArmies = armies; 
+    }
 
     /**
      * set number of unused arimes for player
      */
     @Override
-    public int getUnusedArmies(){ return this.unusedArmies; }
+    public int getUnusedArmies()
+    { 
+    	return this.unusedArmies; 
+    }
 
     /**
      *
      * @param armies number or unused armies to be set
      */
     @Override
-    public void setUsedArmies(int armies) { this.usedArmies = armies; }
+    public void setUsedArmies(int armies) 
+    { 
+    	this.usedArmies = armies; 
+    }
 
     /**
      * sets number of new armies
      * @return new armies
      */
     @Override
-    public int getUsedArmies(){ return this.usedArmies; }
+    public int getUsedArmies()
+    { 
+    	return this.usedArmies; 
+    }
 
     /**
      *
      * @param Gradient new Gradient
      */
-    public void setGradient(Gradient color){ this.color = color; }
+    public void setGradient(Gradient color)
+    { 
+    	this.color = color; 
+    }
 
     /**
      *
      * @return player's Gradient
      */
-    public Gradient getcolor() { return this.color; }
+    public Gradient getcolor() 
+    { 
+    	return this.color; 
+    }
 
     /**
      *
@@ -133,9 +158,11 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return if the operation was successful or not
      */
     @Override
-    public Results ownTerritory(TerritoryInterface territory) {
-    	if(territory.getOwner() != null){
-    	sendNotification("GameChange", territory.getOwner().getName()+ ": lost "+ territory.getName()+" because of "+this.getName());
+    public Results ownTerritory(TerritoryInterface territory) 
+    {
+    	if(territory.getOwner() != null)
+    	{
+    		sendNotification("GameChange", territory.getOwner().getName()+ ": lost "+ territory.getName()+" because of "+this.getName());
     	}
     	territory.setOwner(this);
         this.placeArmy(1, territory);
@@ -151,7 +178,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return if the operation was successful
      */
     @Override
-    public Results lostTerritory(TerritoryInterface territory) {
+    public Results lostTerritory(TerritoryInterface territory) 
+    {
     	this.territories.remove(territory);
         return new Results(true, String.format("%s lost %s", this.getName(),territory.getName()) );
     }
@@ -161,7 +189,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return strategies of player territories
      */
     @Override
-    public ArrayList<TerritoryInterface> getTerritories() {
+    public ArrayList<TerritoryInterface> getTerritories() 
+    {
         return this.territories;
     }
 
@@ -171,7 +200,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return fancy toString
      */
     @Override
-    public String toString(){
+    public String toString()
+    {
         String delimiter = ", ";
         StringBuilder sb = new StringBuilder();
         sb.append(this.getName());
@@ -196,7 +226,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return if the action is done or not
      */
     @Override
-    public Results placeArmy(int count, TerritoryInterface territory) {
+    public Results placeArmy(int count, TerritoryInterface territory) 
+    {
 
         if(this.unusedArmies - count < 0)
             return new Results("No sufficient armies.");
@@ -206,7 +237,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
         this.setUsedArmies(this.usedArmies + count);
         territory.placeArmies(count);
         
-        if(!this.gm.getPhase().equals("Startup")){
+        if(!this.gm.getPhase().equals("Startup"))
+        {
         	sendNotification("GameChange", this.getName()+ ": placed " + Integer.toString(count)+" armies into " + territory.getName());
         }
         LoggerController.log(this.getName() + " placed " + Integer.toString(count)+" armies into " + territory.getName());
@@ -275,7 +307,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return randomly selected territory
      */
     @Override
-    public TerritoryInterface getRandomTerritory() {
+    public TerritoryInterface getRandomTerritory() 
+    {
         int max = this.getTerritories().size()-1;
         return this.getTerritories().get(utility.DiceRNG.getRandomInt(max,0));
     }
@@ -289,7 +322,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return if the operation is done or not
      */
     @Override
-    public Results moveArmies(TerritoryInterface from, TerritoryInterface to, int number) {
+    public Results moveArmies(TerritoryInterface from, TerritoryInterface to, int number) 
+    {
         Results result = new Results();
 
         if(from.hasAdjacencyWith(to))
@@ -319,7 +353,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return territory to attack from and attack to
      */
     @Override
-    public AttackPlan getTerritoryToAttack() {
+    public AttackPlan getTerritoryToAttack() 
+    {
         AttackPlan result = null;
         TerritoryInterface t = this.getRandomTerritory();
         for(TerritoryInterface a: t.getAdjacentTerritoryObjects())
@@ -338,7 +373,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @param gm game manager
      */
     @Override
-    public void setGameDriver(GameDriver gm) {
+    public void setGameDriver(GameDriver gm) 
+    {
         this.gm = gm;
     }
 
@@ -348,7 +384,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return used game manager
      */
     @Override
-    public GameDriver getGameDriver() {
+    public GameDriver getGameDriver() 
+    {
         return this.gm;
     }
 
@@ -555,7 +592,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return if they are equal or not
      */
     @Override
-    public int compareTo(PlayerInterface o) {
+    public int compareTo(PlayerInterface o) 
+    {
         return (int)(this.getDomination() - o.getDomination());
     }
 
@@ -564,7 +602,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return the strategy
      */
     @Override
-    public StrategyInterface getStrategy() {
+    public StrategyInterface getStrategy() 
+    {
         return this.strategy;
     }
 
@@ -573,7 +612,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @param strategy new strategy
      */
     @Override
-    public void setStrategy(StrategyInterface strategy) {
+    public void setStrategy(StrategyInterface strategy) 
+    {
         this.strategy = strategy;
     }
 
@@ -583,7 +623,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @param status new status
      */
     @Override
-    public void setStatus(boolean status) {
+    public void setStatus(boolean status) 
+    {
         this.status = status;
     }
 
@@ -592,17 +633,20 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
      * @return status
      */
     @Override
-    public boolean getStatus() {
+    public boolean getStatus() 
+    {
         return this.status;
     }
 
     @Override
-    public void addCard(Card crd) {
+    public void addCard(Card crd) 
+    {
         this.cards.add(crd);
     }
 
     @Override
-    public ArrayList<Card> getCardSet() {
+    public ArrayList<Card> getCardSet() 
+    {
         ArrayList<Card> result  = null;
 
         if(this.cards.size()>=3)
@@ -624,7 +668,8 @@ public class Players extends Model implements PlayerInterface, Comparable<Player
     }
 
     @Override
-    public int getCardsSize() {
+    public int getCardsSize() 
+    {
         return this.cards.size();
     }
 
