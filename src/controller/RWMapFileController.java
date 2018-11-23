@@ -8,7 +8,8 @@ import MapFiles.LoadMap;
 import MapFiles.MapWriter;
 
 /**
- * @author SA
+ * @author Muhammad_Hamza_Noor
+ * @author Meet Patel
  * <p>
  * To Load and Save a .map file into {@link MapDataBase}
  * A view should call this class methods to load, save and clear a .map file
