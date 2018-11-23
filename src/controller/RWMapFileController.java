@@ -2,30 +2,39 @@ package controller;
 
 import java.io.File;
 
+import model.MapDatabase;
+import model.ValidMap;
 import MapFiles.LoadMap;
 import MapFiles.MapWriter;
-import model.MapDatabase;
-
 
 /**
- * This class is used to Load and Save the maps
- * @author Muhammad_Hamza_Noor
- * @author Shah Mohammad Mostakim
- * @version 2.0.0
+ * @author SA
+ * <p>
+ * To Load and Save a .map file into {@link MapDataBase}
+ * A view should call this class methods to load, save and clear a .map file
+ * </p> 
  */
 public class RWMapFileController{
 
 	/**
-	 * @param File object of map to load 
+	 * @param file which has path to .map file
+	 * @return true is .map file is valid else false
+	 * <p>
+	 * If a map is disconnected it return false for more see
+	 * <a href="http://www.windowsgames.co.uk/conquest_create.html">here</a>
+	 * </p>
 	 */
 	public boolean loadMap(File file) {
 		LoadMap loadMap = new LoadMap(file);
-		boolean isValid = loadMap.load();
-		return isValid;			
+        boolean isValid = loadMap.load();
+		return isValid;		
 	}
 
+	
+
 	/**
-	 * @param File object of map to Write
+	 * This method writes the edited map to the location passed
+	 * @param file instance of {@link File} points to save destination
 	 */
 	public void writeMap(File file) {
         MapWriter writeMap = new MapWriter(file);
@@ -34,19 +43,21 @@ public class RWMapFileController{
 
 
 	/**
-	 * To clear an already loaded map
+	 * Clears the previously loaded data from Map
 	 */
 	public void clearData() {
 		MapDatabase.clear();		
-	}	
+	}
+
+	
+	
 	/**
-	 * Validation of Map to check if the neighboring territories are valid or not
+	 * Checks the case whether adjacent territories are valid 
 	 * @return true if map satisfies above case
 	 */
 	public boolean validateMap() {
-		return MapDatabase.isValidAdjacency();		
+		return ValidMap.isValidAdjacency();		
 	}
-
 
 
 }
