@@ -2,74 +2,79 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import model.MapDatabase;
+
 import model.DataWriter;
 
 /**
- * Controller that handles Saving the maps
- * 
  * @author Muhammad_Hamza_Noor
- * @author WaleedAhmad
- * @author Meet_Patel
- * @author Shah Mohammad Mostakim
- * @version 2.0.0
+ * @author Meet Patel
+ * Controls Write operations on {@link MapDataBase}
+ * In order to do 
+ * <ul>
+ * <li>Add a country</li>
+ * <li>Delete a country</li>
+ * <li>Delete a continent</li>
+ * <li>Add a continent</li>
+ * <li>Add adjacent territories</li>
+ * </ul>
+ * call the methods in this class 
  */
-public class WriteController
-{
+public class WriteController{
 
-	DataWriter dataWriter;
-	
+	/**
+	 * Model wrapper that do's different write operations on Map
+	 */
+	DataWriter dataWriter;	
 	
 	/**
-	 * @param DataWriter Object 
+	 * Constructor to initializes {@link #dataWriter}  
+	 * @param new_dataWriter instance of {@link model.DataWriter}
 	 */
-	public WriteController(DataWriter new_dataWriter)
-	{
+	public WriteController(DataWriter new_dataWriter){
 		dataWriter = new_dataWriter;
 	}
 	
 	/**
-	 * To create new continent in a map
-	 * @param Continent Name
+	 * Writes new continent to map
+	 * @param continentName is the name of the continent u want to create
 	 */
-	public void writenewContinent(String continentName)
-	{
+	public void writenewContinent(String continentName){
 		dataWriter.createContinent(continentName);
 	}
 
 	/**
-	 * @param Neighboring territories given by user
-	 * @param Continent Name
-	 * @param Country Name
-	 * @param Continent Value
+	 * This method adds and deletes a territory based on following parameters
+	 * @param editedadjacentCountries are comma separated adjacent territories given by user
+	 * @param continent should be the Continent Name
+	 * @param country should be the Country Name
+	 * @param continentValue is the continent Value
+	 * @param isdeleteContinent is true if a continent is deleted by user
+	 * @param isdeleteCountry is true if a country is deleted by user 
 	 */
 	public void addData(String editedadjacentCountries,String continent,String country,String continentValue,boolean isdeleteContinent,boolean isdeleteCountry){
 		
+		//As adjacent countries are given as comma separated convert them to ArrayList
 		editedadjacentCountries = editedadjacentCountries.replace("[", "").replace("]", "");
-		ArrayList<String> new_adjacentContries = null;
-        
 		
+		//Split them by comma and store it in an ArrayList
+		ArrayList<String> new_adjacentContries = null;		
 		if(editedadjacentCountries.length() > 2){
 			new_adjacentContries = new ArrayList<>(Arrays.asList(editedadjacentCountries.split(",")));
 		}else{
 			new_adjacentContries = new ArrayList<String>();
-		}
-		
-		if(isdeleteContinent)
-		{
+		}		 
+        
+		//if isdeleteContinent is true delete the continent
+		if(isdeleteContinent){
 			dataWriter.deleteContinent(continent);
-		}
-        else if(isdeleteCountry)
-		{
+		}else if(isdeleteCountry){
 			dataWriter.deleteCountry(continent,country);
 		}
-		else
-		{
+		else{
 			dataWriter.overWriteData(continent,country,continentValue,new_adjacentContries);
 		} 
 		
 	}
-	
 	
 	
 }

@@ -1,34 +1,40 @@
+/**
+ * 
+ */
 package controller;
+
 import model.ManageTournament;
 
 /**
- * Tournament Controller
- * @author  Meet Patel
- * @version 3.0.0
+ * <p> This class controls the Tournament 
+ * through {@link #ManageTournament} </p>
+ * @author Muhammad_Hamza_Noor
  */
-public class TournamentController 
-{
-	/**
-	 * Manages the tournament like adding Maps and Players
-	 */
-	ManageTournament tournamentManager = null; 
+public class TournamentController {
+
 	
 	/**
-	 * @param new_tournamentManager is the ManageTournament such that
+	 * {@link #ManageTournament} manages the tournament like adding maps and players
+	 */
+	ManageTournament ManageTournament = null; 
+	
+	/**
+	 * Constructor to initialize the {@link #ManageTournament}
+	 * @param new_ManageTournament is the {@link ManageTournament} such that
 	 * this controller manages the tournament through it
 	 */
-	public TournamentController(ManageTournament new_tournamentManager){
-		tournamentManager = new_tournamentManager;
+	public TournamentController(ManageTournament new_ManageTournament){
+		ManageTournament = new_ManageTournament;
 	}
 	
 	/**
-	 * @param Number of Players in the Tournament
-	 * @param Comma Separated String of Strategies of Players
-	 * @param Tells Number of turns
-	 * @param Number of games to play in Tournament
+	 * @param numberOfPlayers are the number of players in the tournament
+	 * @param playerStrategies is comma separated string of strategies of players
+	 * @param turns tells number of turns
+	 * @param noOfGames tells number of games to play in tournament
 	 */
 	public void start(int numberOfPlayers, String playerStrategies,String turns, String noOfGames){
-		tournamentManager.start(numberOfPlayers, playerStrategies,
+		ManageTournament.start(numberOfPlayers, playerStrategies,
 				Integer.parseInt(turns), Integer.parseInt(noOfGames));
 	}
 	
@@ -36,6 +42,7 @@ public class TournamentController
 	 * Adds a map to the Tournament
 	 */
 	public void addAMap(){
-		tournamentManager.createMap();
+		ManageTournament.createMap();
 	}
+	
 }
