@@ -10,19 +10,26 @@ public class Results {
 	private String message;
 	private boolean okay = false;
 
+	/**
+	 * Constructor with no parameter
+	 */
     public Results(){
     }
 
     /**
-     * @param Initial value
+     * Constructor with parameter
+     * sets message of the object
+     * @param message desired message to be delivered
      */
+
     public Results(String message){
         this.message = message;
     }
 
     /**
-     * @param Okay or not
-     * @param Initial value of message property
+     * Constructor with parameter 
+     * @param ok initial value of ok property
+     * @param message initial value of message property
      */
     public Results(boolean okay, String message){
         this.okay = okay;
