@@ -17,7 +17,7 @@ public class DataWriter {
 	public void createContinent(String continentName) 
 	{
 		MapDatabase.continents.put(continentName, new HashMap<String,Territories>());
-		MapDataBase.continentValues.put(continentName, 0);
+		MapDatabase.continentValues.put(continentName, 0);
 	}
 
 	/**

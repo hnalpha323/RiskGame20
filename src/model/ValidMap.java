@@ -10,7 +10,8 @@ import java.util.Set;
 
 /**
  * This class has methods to check the valid of a map loaded into the memory
- * @author SA
+ * @author Muhammad_Hamza_Noor
+ * @version 3.0.0
  */
 public class ValidMap {
 

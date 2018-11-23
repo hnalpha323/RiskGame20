@@ -14,11 +14,6 @@ import java.util.ArrayList;
 public class Map implements MapInterface,Serializable 
 {
 
-	/**
-	 * serialVersionUID is used during deserialization to verify that the sender and receiver 
-	 * of a serialized object have loaded classes for that object that are compatible with respect to 
-	 * serialization. If the receiver has loaded a class for the object that has a different {@link #serialVersionUID}
-	 */
 	private static final long serialVersionUID = 5631589509991237355L;
     private ArrayList<ContinentInterface> continents = new ArrayList<>();
     

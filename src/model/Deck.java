@@ -2,8 +2,10 @@ package model;
 
 import utility.DiceRNG;
 import model.Interfaces.PlayerInterface;
+import java.io.Serializable;
 import java.util.ArrayList;
-public class Deck {
+public class Deck implements Serializable
+{
 	  private ArrayList<Card> cards;
 
 	    /**
@@ -64,7 +66,8 @@ public class Deck {
 	     * pick a card from a deck of cards
 	     * @return card
 	     */
-	    private Card pickCard(){
+	    private Card pickCard()
+	    {
 	        int cardIndex = DiceRNG.getRandomInt(this.cards.size()-1, 0);
 	        return this.cards.get(cardIndex);
 	    }
@@ -89,6 +92,4 @@ public class Deck {
 	    {
 	        this.cards.add(c);
 	    }
-
-
 }

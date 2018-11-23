@@ -1,33 +1,26 @@
-		/**
- * 
- */
 package model;
 
 import java.util.HashMap;
 
 /**
- * This class holds the all data related to the Map
- * Whenever a .map file is read it is stored in this class memebers
+ * Stores Map Related Data
+ * @author Meet Patel
+ * @version 3.0.0
  */
 public final class MapDatabase {
 	
 	/**
-	 * {@link #continents} contains all contents 
-	 * <tt>The fist key is Continent name</tt>
-	 * <tt>The second key is Country name</tt>
+	 * The fist key is Continent name
+	 * The second key is Country name
 	 */
 	public static HashMap<String, HashMap<String,Territories>> continents = new HashMap<String, HashMap<String,Territories>>();
-	
 	/**
-	 * {@link #continentValues} contains the values associated to continents
+	 * Contains continents values
 	 */
 	public static HashMap<String, Integer> continentValues = new HashMap<String, Integer>();		
 
-
-
-
 	/**
-	 * resets the DataBase
+	 * resets the Database
 	 */
 	public static void clear() {
 		continents.clear();
