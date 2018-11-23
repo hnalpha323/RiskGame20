@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Observable;
+import java.io.Serializable;
 
 import model.Interfaces.ContinentInterface;
 import model.Interfaces.PlayerInterface;
@@ -10,11 +10,13 @@ import model.Interfaces.TerritoryInterface;
 /**
  * @author Meet_Patel
  * @author Muhammad_Hamza_Noor
- * @version 2.0.0
+ * @version 3.0.0
  */
 
-public class Continents implements ContinentInterface{
+public class Continents implements ContinentInterface,Serializable
+{
 
+	private static final long serialVersionUID = 4893561606187077709L;
 	private String Name;
 	private ArrayList<TerritoryInterface> territories;
 	private int Value = 0;
@@ -23,7 +25,8 @@ public class Continents implements ContinentInterface{
      * Constructor to set Continent Names
      * @param continent name
      */
-    public Continents(String name){
+    public Continents(String name)
+    {
         this.Name = name;
         this.territories = new ArrayList<>();
     }
@@ -31,7 +34,8 @@ public class Continents implements ContinentInterface{
     /**
      * @param continent name
      */
-    public void setName(String name){ 
+    public void setName(String name)
+    { 
     	this.Name=name; 
    	}
 	
@@ -39,7 +43,8 @@ public class Continents implements ContinentInterface{
      * To return the continent name
      * @return continent name
      */
-    public String getName() {
+    public String getName() 
+    {
     	return this.Name;
     }
     
@@ -47,7 +52,8 @@ public class Continents implements ContinentInterface{
      * @return To return the continent Value as per the conquest map rules
      */
     @Override
-    public int getContinentValue() {
+    public int getContinentValue() 
+    {
         return this.Value;
     }
     
@@ -55,12 +61,14 @@ public class Continents implements ContinentInterface{
      * @param To set the continent Value as per the conquest map rules
      */
     @Override
-    public void setContinentValue(int value) {
+    public void setContinentValue(int value) 
+    {
         this.Value = value;
     }
     
     @Override
-    public boolean controlByPlayer(PlayerInterface p) {
+    public boolean controlByPlayer(PlayerInterface p) 
+    {
         boolean result = true;
         for(TerritoryInterface t:this.getTerritories())
         {
@@ -74,12 +82,14 @@ public class Continents implements ContinentInterface{
     }
 
     @Override
-    public ArrayList<TerritoryInterface> getTerritories() {
+    public ArrayList<TerritoryInterface> getTerritories() 
+    {
          return this.territories;
     }
 
     @Override
-    public void addTerritory(TerritoryInterface t) {
+    public void addTerritory(TerritoryInterface t) 
+    {
         this.territories.add(t);
     }
 
