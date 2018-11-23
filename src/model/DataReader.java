@@ -2,12 +2,14 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * @author WaleedAhmad
  * @version 1.0.0
  */
-public class DataReader {
+public class DataReader 
+{
 
 	/**
 	 * @param Continent Name
@@ -27,10 +29,11 @@ public class DataReader {
 	public ArrayList<String> getAdjacentTerritories(String continent, String country) 
 	{
 		HashMap<String, Territories> territories = getContries(continent);
-		for(String teritory_name:territories.keySet()){
+		for(String teritory_name:territories.keySet())
+		{
 			   if(teritory_name.equals(country))
 				   return territories.get(country).getAdjacentTerritories();
-	     }
+	    }
 		return new ArrayList<String>();
         
 	}
@@ -65,12 +68,6 @@ public class DataReader {
 	
 	public java.util.Set<String> getContinents() {			
 		return MapDatabase.continentValues.keySet();
-	
-
-		
-		/**
-		 * @return
-		 */
 	
 	}
 
