@@ -7,9 +7,6 @@ import controller.LoggerController;
 import model.Interfaces.PlayerInterface;
 import model.Interfaces.StrategyInterface;
 import model.Interfaces.TerritoryInterface;
-import model.contract.ITerritory;
-import util.ActionResponse;
-import util.LogMessageEnum;
 import utility.DiceRNG;
 import view.Logger;
 import utility.Results;
@@ -317,7 +314,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
     }
 
     /**
-     * @return Select random territory
+     * @return Selects random territory
      */
     @Override
     public TerritoryInterface getRandomTerritory() 
@@ -331,7 +328,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
      * Move armies from one territory to another
      * @param Origin territory
      * @param Destination territory
-     * @param number of armies
+     * @param Number of armies
      * @return if the operation is done or not
      */
     @Override
@@ -606,7 +603,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
     {
         Log.log(String.format("--------------------%s Fortification Phase Starts--------------------", this.getName()));
         this.gd.setPhase("FORTIFICATION PHASE");
-        ssendNotification("Phase Change:"+this.getName()+" Fortification");
+        sendNotification("Phase Change:"+this.getName()+" Fortification");
         
         TerritoryInterface from = this.strategy.getFortificationFromTerritory(this);
         int number = this.strategy.getFortificationArmies(this, from);
@@ -617,7 +614,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
 
 
         LoggerController.log(String.format("--------------------%s Fortification Phase Finnished--------------------", this.getName()));
-        sendNotification("GameChange", this.getName()+": Done his fortification");
+        sendNotification("Done his fortification");
     }
     
     private void sendNotification(String string) 
@@ -665,7 +662,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
     @Override
     public void setStatus(boolean status) 
     {
-        this.status = status;
+    	this.isActive = status;
     }
 
     /**
