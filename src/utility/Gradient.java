@@ -1,13 +1,18 @@
 package utility;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
+ * This class provides some method for using colors.
  * @author Meet_Patel
- * @version 1.0.0
+ * @author Shah Mohammad Mostakim
+ * @version 3.0.0
+ * 
  */
-public class Gradient {
+public class Gradient implements Serializable{
 	
+	private static final long serialVersionUID = -1296864052319635206L;
 	private String code;
     private String name;
 
@@ -51,6 +56,9 @@ public class Gradient {
     	return this.name; 
     }
 
+    /**
+     * Fill the repository of colors
+     */
     private void fillColors(){
         Grd.add(new Gradient("Red", "#E81123"));
         Grd.add(new Gradient("Green", "#107C10"));
