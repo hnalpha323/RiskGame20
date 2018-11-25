@@ -7,6 +7,9 @@ import controller.LoggerController;
 import model.Interfaces.PlayerInterface;
 import model.Interfaces.StrategyInterface;
 import model.Interfaces.TerritoryInterface;
+import model.contract.ITerritory;
+import util.ActionResponse;
+import util.LogMessageEnum;
 import utility.DiceRNG;
 import view.Logger;
 import utility.Results;
@@ -18,6 +21,7 @@ import utility.MessageEnum;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Observable;
 
 /**
  * This is Players class
@@ -28,23 +32,25 @@ import java.util.Collections;
 public class Players extends Observable implements PlayerInterface, Comparable<PlayerInterface>, Serializable 
 {
 
-
+	private static final long serialVersionUID = 1012842278301009514L;
     private String name;
     private Gradient color;
     private int unusedArmies = 0;
     private int usedArmies = 0;
     private ArrayList<TerritoryInterface> territories;
-    private GameDriver gm;
+    private GameDriver gd;
     private double domination = 0.0;
     private ArrayList<Card> cards = new ArrayList<>();
     StrategyInterface strategy;
-    private boolean status = true;
+    private String status;
+	private boolean isActive = true;
     private int trades = 1;
 
     /**
      * Constructor
      * @param name  player name
-     * @param Gradient player Gradient
+     * @param player Color
+     * @param Strategy the Player
      */
     public Players(String name, Gradient color, StrategyInterface strategy)
     {
@@ -55,7 +61,14 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
     }
 
     /**
-     *
+     * Constructor to Initialize player object with his name
+	 */
+	public Players(String playerName) {
+		this.name = playerName;
+		this.territories = new ArrayList<>();
+	}
+	
+    /**
      * @return player name
      */
     @Override
@@ -66,7 +79,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
 
     /**
      *
-     * @param newName new name for the  player
+     * @param New name for the  player
      */
     @Override
     public void setName(String newName)
@@ -75,7 +88,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
     }
 
     /**
-     * get how many percent of the world is controlled by the player
+     * To get how many percent of the world is controlled by a player
      * @return percentage
      */
     @Override
@@ -85,8 +98,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
     }
 
     /**
-     * set how many percent of the world is controlled by the player
-     * @param value
+     * To set how many percent of the world is controlled by a player
      */
     @Override
     public void setDomination(double value) 
@@ -96,8 +108,8 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
 
 
     /**
-     * set number of unused arimes for player
-     * @param armies number of new armies
+     * To set number of unused armies for a player
+     * @param Number of new armies
      */
     @Override
     public void setUnusedArmies(int armies) 
@@ -162,26 +174,28 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
     {
     	if(territory.getOwner() != null)
     	{
-    		sendNotification("GameChange", territory.getOwner().getName()+ ": lost "+ territory.getName()+" because of "+this.getName());
+    		sendNotification(territory.getOwner().getName()+ ": lost "+ territory.getName()+" because of "+this.getName());
     	}
     	territory.setOwner(this);
         this.placeArmy(1, territory);
         this.territories.add(territory);
-        sendNotification("GameChange", this.getName()+ ": own "+ territory.getName());
-        
-        return new Results(true, String.format("%s owns %s", this.getName(),territory.getName()) );
+        this.status = String.format("%s owns %s", this.getName(),territory.getName());
+        sendNotify();
+        return new Results(true, status);
     }
 
     /**
-     * lose the territory
-     * @param territory territory to be removed
-     * @return if the operation was successful
+     * When player loses the territory
+     * @param Territory to be removed
+     * @return Operation was successful or not
      */
     @Override
     public Results lostTerritory(TerritoryInterface territory) 
     {
     	this.territories.remove(territory);
-        return new Results(true, String.format("%s lost %s", this.getName(),territory.getName()) );
+    	this.status = String.format("%s lost %s", this.getName(),territory.getName());
+    	sendNotify();
+        return new Results(true, this.status);
     }
 
     /**
@@ -196,7 +210,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
 
 
     /**
-     * fancy representation of the player status
+     * Representation of the player status
      * @return fancy toString
      */
     @Override
@@ -237,18 +251,18 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
         this.setUsedArmies(this.usedArmies + count);
         territory.placeArmies(count);
         
-        if(!this.gm.getPhase().equals("Startup"))
-        {
-        	sendNotification("GameChange", this.getName()+ ": placed " + Integer.toString(count)+" armies into " + territory.getName());
-        }
-        LoggerController.log(this.getName() + " placed " + Integer.toString(count)+" armies into " + territory.getName());
-        LoggerController.log(this.getName() + " Unused armies = " + Integer.toString(this.getUnusedArmies()) +
-                ", Used armies = " + Integer.toString(this.getUsedArmies()) );
+        this.status = this.getName() + " placed " + Integer.toString(count)+" armies into " + territory.getName();
+        sendNotify();
+        Log.log(this.status);
+        
+        Log.log(this.getName() + " Unused armies = " + Integer.toString(this.getUnusedArmies()) +
+                ", Used armies = " + Integer.toString(this.getUsedArmies()));
+        
         return new Results(true, String.format("%d armies placed in %s", count, territory.getName()));
     }
 
     /**
-     * another fancy representation of player status
+     * Representation of player status
      * @return table
      */
     @Override
@@ -303,8 +317,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
     }
 
     /**
-     *
-     * @return randomly selected territory
+     * @return Select random territory
      */
     @Override
     public TerritoryInterface getRandomTerritory() 
@@ -315,42 +328,48 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
 
 
     /**
-     * move armies from a territory to another
-     * @param from origin territory
-     * @param to destination territory
-     * @param number number of armies
+     * Move armies from one territory to another
+     * @param Origin territory
+     * @param Destination territory
+     * @param number of armies
      * @return if the operation is done or not
      */
     @Override
     public Results moveArmies(TerritoryInterface from, TerritoryInterface to, int number) 
     {
-        Results result = new Results();
+    	Results result = new Results();
 
         if(from.hasAdjacencyWith(to))
         {
-            LoggerController.log(this.getState());
+            Log.log(this.getState());
             Results r = from.removeArmies(number);
             if (r.getOk())
             {
                 to.placeArmies(number);
-                LoggerController.log(String.format("%s moved %s armies from %s to %s.", this.getName(),
-                        number, from.getName(),to.getName()));
-                LoggerController.log(this.getState());
+                this.status = String.format("%s moved %s armies from %s to %s.", this.getName(),
+                        number, from.getName(),to.getName());
+                
+                sendNotify();
+                Log.log(this.status);
+                Log.log(this.getState());
             }
         }
         else
         {
-            LoggerController.log(MessageEnum.ERROR, String.format(
-                    "Player %s wants to move %s armies from %s to %s, but there is no adjacencies.", this.getName()
-                    , number, from.getName(), to.getName() ));
+        	 this.status = String.format(
+                     "%s wanted to move %s armies from %s to %s, but there is no adjacencies.", this.getName()
+                     , number, from.getName(), to.getName() );
+             
+             sendNotify();
+            Log.log(MessageEnum.ERROR, this.status);
         }
 
         return result;
     }
 
     /**
-     * find a territory to attack
-     * @return territory to attack from and attack to
+     * To Find a territory to attack
+     * @return origin territory to attack from and attack to
      */
     @Override
     public AttackPlan getTerritoryToAttack() 
@@ -369,44 +388,41 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
     }
 
     /**
-     * set the game manager for player
-     * @param gm game manager
+     * Sets the game driver for player
      */
     @Override
-    public void setGameDriver(GameDriver gm) 
+    public void setGameDriver(GameDriver gd) 
     {
-        this.gm = gm;
+        this.gd = gd;
     }
 
 
     /**
-     * set the game manager for player
-     * @return used game manager
+     * Gets the game driver for player
      */
     @Override
     public GameDriver getGameDriver() 
     {
-        return this.gm;
+        return this.gd;
     }
 
     /**
-     * Handles reinforcement phase by :
-     * calculating the number of armies each player should get
-     * let the given player decide where to place the given armies
+     * Handles Reinforcement:
+     * Calculates the number of armies each player should get
+     * Allows a given player to decide where to place the given armies
      */
     public void reinforcement()
     {
-        LoggerController.log(String.format("---------%s Starting Reinforcement---------", this.getName()));
-        this.gm.setPhase("REINFORCEMENT PHASE");
-        sendNotification("PhaseChange", "PhaseChange:"+this.getName()+" Reinforcement");
+        Log.log(String.format("---------%s Starting Reinforcement---------", this.getName()));
+        this.gd.setPhase("Reinforcement Phase");
+        int newArmies = this.gd.calculateReinforcementArmies(this);
+        sendNotification("Phase Change:"+this.getName()+" got "+newArmies+" armies");
         //Step 1: Reinforcement
-        int newArmies = this.gm.calculateReinforcementArmies(this);
         this.setUnusedArmies(newArmies);
-
         //Step 2: Place armies
-        this.gm.placeArmies(this);
+        this.gd.placeArmies(this);
         
-        LoggerController.log(String.format("---------%s Reinforcement Finished---------", this.getName()));
+        Log.log(String.format("---------%s Reinforcement Finished---------", this.getName()));
     }
 
 
@@ -415,28 +431,30 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
      */
     public void attack()
     {
-    	sendNotification("PhaseChange", "PhaseChange:"+this.getName()+" Attack");
+    	sendNotification("Phase Change:"+this.getName()+" Attack");    	
         this.attack(strategy.getAttackAttempts());
     }
 
     /**
-     * This will handle attack phase but not implemented yet
+     * This will handle attack phase
      */
     public void attack(int attempts)
     {
-        LoggerController.log(String.format("---------%s Starting Attack Phase---------", this.getName()));
-        LoggerController.log(String.format("Strategy is %s", this.strategy.getName()));
-        this.gm.setPhase("ATTACK PHASE");
+        Log.log(String.format("---------%s Starting Attack Phase---------", this.getName()));
+        Log.log(String.format("Strategy is %s", this.strategy.getName()));
+        this.gd.setPhase("ATTACK PHASE");
 
         for(int a=1; a<= attempts; a++)
         {
             LoggerController.log(String.format("Attack %s ", a));
 
             // Step 1: Design a attack plan
-            AttackPlan ap = this.getTerritoryToAttack();
+            AttackPlan ap = this.strategy.getAttackPlan(this);
             if (ap == null)
             {
-                LoggerController.log(MessageEnum.WARNING,"No territory found to attack.");
+            	this.status = "No territory found to attack.";
+            	sendNotify();
+                Log.log(MessageEnum.WARNING,"No territory found to attack.");
                 break;
             }
 
@@ -444,23 +462,26 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
             TerritoryInterface attackTo = ap.to;
             
             //Notify the attack to View 
-            sendNotification("GameChange", this.getName()+": Attacked from "+attackFrom.getName()+" to "+attackTo.getName()+"("+attackTo.getOwner().getName()+")");
+            sendNotification("Game Change: Attacked from "+attackFrom.getName()+" to "+attackTo.getName()+"("+attackTo.getOwner().getName()+")");
             
             // Step 2: Number of armies(Dices) for the battle
-            int diceAttack = DiceRNG.getRandomInt(3,1);
+            int diceAttack = attackFrom.getOwner().getStrategy().diceToAttack(attackFrom.getOwner());
 
             //Step 3: Checking sufficient armies to attack
             if (attackFrom.getArmies() - diceAttack >= 1)
             {
-                int diceDefend = DiceRNG.getRandomInt(2,1);
+            	int diceDefend = attackTo.getOwner().getStrategy().diceToDefend(attackTo.getOwner());
                 //Step 4: Checking sufficient armies to defend
                 if(diceDefend == 2 && attackTo.getArmies() < 2)
                 {
                     diceDefend = 1;
                 }
 
-                Message.log(String.format("%s attacks %s from %s with %s armies and %s defends with %s armies", this.getName(), attackTo.getName(),
-                        attackFrom.getName(), diceAttack, attackTo.getName(), diceDefend ));
+                this.status = String.format("%s attacks %s from %s with %s armies and %s defends with %s armies", this.getName(), attackTo.getName(),
+                        attackFrom.getName(), diceAttack, attackTo.getName(), diceDefend );
+            	sendNotify();
+                
+                Logger.log(this.status);
 
                 //Step 5: Rolling dices
                 ArrayList<Integer> attackDices = new ArrayList<>();
@@ -471,14 +492,19 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
                 for(int i=0; i<diceDefend; i++)
                     defendDices.add(dice.roll());
 
-                //Step 6: Sorting die rolls
+                //Step 6: Sorting dice rolls
                 Collections.sort(attackDices);
                 Collections.sort(defendDices);
 
-                LoggerController.log(String.format("%s(Attacker) rolled these dices %s",  attackFrom.getOwner().getName(),attackDices.toString()));
-                LoggerController.log(String.format("%s(Defender) rolled these dices %s",  attackTo.getOwner().getName(),defendDices.toString()));
+                this.status = String.format("%s(Attacker) rolled these dices %s",  attackFrom.getOwner().getName(),attackDices.toString());
+            	sendNotify();
+                Log.log(String.format("%s(Attacker) rolled these dices %s",  attackFrom.getOwner().getName(),attackDices.toString()));
+                
+                this.status = String.format("%s(Defender) rolled these dices %s",  attackTo.getOwner().getName(),defendDices.toString());
+            	sendNotify();
+                Log.log(String.format("%s(Defender) rolled these dices %s",  attackTo.getOwner().getName(),defendDices.toString()));
 
-                //Step 7: calculating number of fights
+                //Step 7: Calculating number of fights
                 int fights = 0;
                 if(attackDices.size() > defendDices.size())
                     fights = defendDices.size();
@@ -493,103 +519,118 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
                     if(attackDices.get(0) > defendDices.get(0))
                     {
                         // Attacker wins
-                        LoggerController.log(attackTo.getOwner().getState());
+                        Log.log(attackTo.getOwner().getState());
 
-                        sendNotification("GameChange", attackTo.getOwner().getName()+": Killed one Of Armies of "+attackFrom.getOwner().getName()+" in "+attackTo.getName()+" as I won the dice");
-                        
-                        Message.log(String.format("1 of the armies in %s(Defender) was killed.", attackTo.getName()));
+                        this.status = String.format("One of the armies in %s(Defender) was killed.", attackTo.getName());
+                        sendNotify();
+                        Logger.log(String.format("One of the armies in %s(Defender) was killed.", attackTo.getName()));
                         attackTo.killArmies(1);
-                        LoggerController.log(attackTo.getOwner().getState());
+                        Log.log(attackTo.getOwner().getState());
                         
                         
                         // checking for occupying the territory
                         if(attackTo.getArmies()==0)
                         {
-                            LoggerController.log(String.format("%s occupies %s", attackFrom.getOwner().getName(),
+                        	this.status = String.format("%s occupies %s", attackFrom.getOwner().getName(),
+                                    attackTo.getName());
+                        	sendNotify();
+                            Log.log(String.format("%s occupies %s", attackFrom.getOwner().getName(),
                                     attackTo.getName()));
-                            LoggerController.log(attackFrom.getOwner().getState());
+                            Log.log(attackFrom.getOwner().getState());
                             attackTo.getOwner().lostTerritory(attackTo);
                             attackFrom.getOwner().ownTerritory(attackTo);
                             Card crd = this.getGameDriver().cardDeck.grantCard(this);
-                            LoggerController.log(String.format("%s gets one card %s, %s", this.getName(),
-                                    crd.getCardTerritoryName(), crd.getCardValue()));
-                            LoggerController.log(attackFrom.getOwner().getState());
+                            this.status = String.format("%s gets one card %s, %s", this.getName(),
+                                    crd.getCardName(), crd.getCardValue());
+                        	sendNotify();
+                            Log.log(String.format("%s gets one card %s, %s", this.getName(),
+                                    crd.getCardName(), crd.getCardValue()));
+                            Log.log(attackFrom.getOwner().getState());
                         }
                     }
                     else
                     {
                         // Defender wins
-                        LoggerController.log(attackFrom.getOwner().getState());
-                        sendNotification("GameChange", attackFrom.getOwner().getName()+": Killed one Of Armies of "+attackTo.getOwner().getName()+" in "+attackFrom.getName()+" as I won the dice");
-                        Message.log(String.format("1 of the armies in %s(Attacker) was killed.",attackFrom.getName()));
+                        Log.log(attackFrom.getOwner().getState());
+                        this.status = String.format("1 of the armies in %s(Attacker) was killed.",attackFrom.getName());
+                        sendNotify();
+                        Logger.log(String.format("1 of the armies in %s(Attacker) was killed.",attackFrom.getName()));
                         attackFrom.killArmies(1);
-                        LoggerController.log(attackFrom.getOwner().getState());
+                        Log.log(attackFrom.getOwner().getState());
                     }
 
                     attackDices.remove(0);
                     defendDices.remove(0);
                 }
 
-                //Step 9: after attack if occupied move remaining attack armies to new territory
+                //Step 9: After attack if occupied move remaining attack armies to new territory
                 if(attackTo.getOwner() == attackFrom.getOwner())
                 {
                     //Step 10: calculating moving armies to new territory
-                    int movingArmies = 1;
+                    int movingArmies = attackFrom.getOwner().getStrategy().getMovingArmiesToNewTerritory(this);
                     attackFrom.removeArmies(movingArmies);
                     attackTo.placeArmies(movingArmies);
-                    LoggerController.log(String.format("%s places %s armies to occupied territory(%s)",
+                    this.status = String.format("%s places %s armies to occupied territory(%s)",
+                            attackTo.getOwner().getName(), movingArmies, attackTo.getName());
+                    sendNotify();
+                    Log.log(String.format("%s places %s armies to occupied territory(%s)",
                             attackTo.getOwner().getName(), movingArmies, attackTo.getName()));
-                    Message.log(this.getState());
+                    Logger.log(this.getState());
                 }
 
             }
             else
             {
-            	Message.log(String.format("Attacking %s from %s with %s armies canceled. %s -> %s", attackTo.getName(),
+            	//Attack Canceled
+                this.status = String.format("Attacking %s from %s with %s armies canceled. %s -> %s", attackTo.getName(),
+                        attackFrom.getName(), diceAttack, attackFrom.getArmies() , attackTo.getArmies());
+                sendNotify();
+            	Logger.log(String.format("Attacking %s from %s with %s armies canceled. %s -> %s", attackTo.getName(),
                         attackFrom.getName(), diceAttack, attackFrom.getArmies() , attackTo.getArmies()));
             }
 
-
-            LoggerController.log(String.format("Attack %s finished.", a));
+            this.status = String.format("Attack %s finished.", a);
+            sendNotify();
+            Log.log(String.format("Attack %s finished.", a));
         }
 
 
-        LoggerController.log(String.format("--------------------%s Attack Phase Done--------------------", this.getName()));
+        Log.log(String.format("--------------------%s Attack Phase Done--------------------", this.getName()));
     }
 
 
     /**
-     * does the fortification phase and randomly move armies to another territories
-     * owned by the player
+     * Fortification phase
      */
     public void fortification()
     {
-        LoggerController.log(String.format("--------------------%s Fortification Phase Starts--------------------", this.getName()));
-        this.gm.setPhase("FORTIFICATION PHASE");
-        sendNotification("PhaseChange", "PhaseChange:"+this.getName()+" Fortification");
+        Log.log(String.format("--------------------%s Fortification Phase Starts--------------------", this.getName()));
+        this.gd.setPhase("FORTIFICATION PHASE");
+        ssendNotification("Phase Change:"+this.getName()+" Fortification");
         
-        TerritoryInterface from = this.getRandomTerritory();
-        TerritoryInterface to;
+        TerritoryInterface from = this.strategy.getFortificationFromTerritory(this);
+        int number = this.strategy.getFortificationArmies(this, from);
+        TerritoryInterface to = this.strategy.getFortificationToTerritory(this, from);
 
-        ArrayList<TerritoryInterface> neighbours = from.getAdjacentNeighbours();
-        if(neighbours.size()>0)
-            to = neighbours.get(0);
-        else
-            to = this.getRandomTerritory();
 
-        int number = DiceRNG.getRandomInt(from.getArmies(),1);
         this.moveArmies(from, to, number);
 
 
         LoggerController.log(String.format("--------------------%s Fortification Phase Finnished--------------------", this.getName()));
         sendNotification("GameChange", this.getName()+": Done his fortification");
     }
+    
+    private void sendNotification(String string) 
+    {
+		setChanged();
+		notifyObservers(string);	
+	}
 
 
     /**
-     * implementation of Compareable
-     * @param o player to compare to
-     * @return if they are equal or not
+     * Implementation of Compareable
+     * @param Player to compare to
+     * @return If they are equal or not
      */
     @Override
     public int compareTo(PlayerInterface o) 
@@ -608,8 +649,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
     }
 
     /**
-     * set the strategy to play with
-     * @param strategy new strategy
+     * To set the strategy to play with
      */
     @Override
     public void setStrategy(StrategyInterface strategy) 
@@ -619,7 +659,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
 
 
     /**
-     * set the if player is active or not
+     * To set the if player is active or not
      * @param status new status
      */
     @Override
@@ -629,25 +669,32 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
     }
 
     /**
-     * get the if player is active or not
+     * Get the if player is active or not
      * @return status
      */
     @Override
     public boolean getStatus() 
     {
-        return this.status;
+    	return this.isActive;
     }
-
+    
+    /**
+     * Adds a new card
+     * @param newCard is the card that this player got
+     */
     @Override
-    public void addCard(Card crd) 
+    public void addCard(Card newCard) 
     {
-        this.cards.add(crd);
+        this.cards.add(newCard);
     }
-
+    
+    /**
+     * Returns the cards owned by this player
+     */
     @Override
     public ArrayList<Card> getCardSet() 
     {
-        ArrayList<Card> result  = null;
+    	ArrayList<Card> result  = new ArrayList<Card>();
 
         if(this.cards.size()>=3)
         {
@@ -660,22 +707,96 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
 
         return result;
     }
-
-    @Override
-    public void increaseTrades()
+    
+    /**
+     * Returns The number of cards owned by this player
+     */
+    public ArrayList<Card> getCards() 
     {
-        this.trades++;
+    	return this.cards;
     }
-
+    
+    /**
+     * Returns the number of cards this player has
+     */
     @Override
     public int getCardsSize() 
     {
         return this.cards.size();
     }
 
+    
+    /**
+     * Notify the observers with his player status message
+     */
+    public void sendNotify()
+    {
+    		setChanged();
+    		notifyObservers(this.status); 	
+    }
+    
+    
+    /**
+     * Notify the observers with the message
+     */
+    public void sendNotify(String message)
+    {    	
+    		setChanged();
+    		notifyObservers(message);
+  
+    }
+
+    /**
+     * Finds the Weakest Territory
+     */
+    @Override
+    public TerritoryInterface getWeakestTerritory() {
+        TerritoryInterface result = null;
+
+        result = this.territories.get(0);
+        for(TerritoryInterface t: this.territories)
+        {
+                if(t.getArmies() < result.getArmies() && t.getArmies()>1)
+                result = t;
+        }
+
+        return result;
+    }
+
+    /**
+     * Finds the Strongest Territory
+     */
+    @Override
+    public TerritoryInterface getStrongestTerritory() {
+        TerritoryInterface result = null;
+
+        result = this.territories.get(0);
+        for(TerritoryInterface t: this.territories)
+        {
+            if(t.getArmies() > result.getArmies())
+                result = t;
+        }
+
+        return result;
+    }
+
+
+    /**
+     * Returns how many trades the players has done so far
+     */
     @Override
     public int getTrades()
     {
         return this.trades;
+    }
+
+
+    /**
+     * Reduces the number of trades for card exchange
+     */
+    @Override
+    public void increaseTrades()
+    {
+        this.trades++;
     }
 }
