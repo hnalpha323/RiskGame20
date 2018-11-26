@@ -52,6 +52,10 @@ public class DominationView implements Observer{
 				dominationLabel.setText(updatedText.split(":")[1]);
 			}
 		}
+		public String getText()
+		{		
+			return dominationLabel.getText();
 	}
-
+		}
+	
 }
