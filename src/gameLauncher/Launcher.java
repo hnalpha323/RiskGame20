@@ -1,32 +1,34 @@
 package gameLauncher;
 
+import java.util.ArrayList;
+
 import controller.GameController;
 import controller.RWMapFileController;
 import controller.ReadController;
+import controller.TournamentController;	
 import controller.WriteController;
 import model.DataReader;
 import model.DataWriter;
-import model.Model;
-import model.Notifier;
-import view.GUIManager;
-import view.DominationView;
-import view.PhaseView;
-import java.util.ArrayList;	
-import controller.TournamentController;	
-import model.Players;	
-import model.Log;	
-import model.GameDriver;	
-import model.SaveMethod;	
-import model.ManageTournament;		
-import model.Interfaces.StrategyInterface;		
+
+import model.GameDriver;
+import model.Log;
+import model.Players;
+import model.SaveMethod;
+import model.ManageTournament;
+import model.Interfaces.StrategyInterface;
 import model.strategy.Aggressive;		
 import model.strategy.Benevolent;		
 import model.strategy.Cheater;		
 import model.strategy.Human;		
-import model.strategy.Random;		
+import model.strategy.Random;
 import view.CardView;
+import view.DominationView;
+import view.Message;
+import view.PhaseView;
+import view.GUIManager;
+
 import view.ManualPlayerView;		
-import view.Message;	
+	
 
 
 
@@ -38,36 +40,29 @@ import view.Message;
  * @version 1.0.0
  */
 
-public class Launcher {
-	/**
-	 * {@link #gameDriver} to attach it GameController	
-	 
-	 */
+public class Launcher
+{
 	
-	static GameDriver gameDriver;	
+	static GameDriver gameDriver;
+	
 	/**		
-		 * tells whether a human is playing or not		
-		 */		
-		static boolean isHumanPlaying = false;		
+	* Tells if a human is playing or not		
+	*/		
+	static boolean isHumanPlaying = false;		
+					
+	/**		
+	* Takes care about the UI interface of Human player		
+	*/		
+	static ManualPlayerView manualPlayerView = null;		
 				
-				
-		/**		
-		 * {@link #ManualPlayerView} takes care about the UI interface of Humna player		
-		 */		
-		static ManualPlayerView manualPlayerView = null;		
-				
-		/** 		
-		 * <ul>		
-		 * <li>Step 0: Initialize the controllers</li>		
-		 * <li>Step 1: Create the Views</li>		
-		 * <li>Step 2: Inject controllers into Views through {@link GUIManager} </li>		
-		 * <li>Add Observers to players whenever users gives number of players input</li>		
-		 * </ul>		
-		 * @param args from CMD		
-	 */
+	/** 				
+	* Initialize the controllers		
+	* Create the Views
+	* Inject controllers into Views through GUIManager		
+	* Add Observers to players whenever users gives number of players input				
+	*/
 		
-	
-		public static void main(String[] args) 
+	public static void main(String[] args) 
 	{
 		//Creates Controller to controls read and write the .map file
 		 RWMapFileController rwMapFileController = new RWMapFileController();
@@ -93,7 +88,7 @@ public class Launcher {
 		 DominationView dominationView = new DominationView();
 		 		 
 		 //Instantiate the human player view	
-		 manualPlayerView = new manualPlayerView(gameController);	
+		 manualPlayerView = new ManualPlayerView(gameController);
 				 
 		 //Creates phaseView make it Observer
 		 CardView  cardView= new CardView();	
@@ -102,7 +97,7 @@ public class Launcher {
 		 //Creates Log model and adds view as Observer	
 		 Log log = new Log();		
 		 log.addObserver(new Message());		
-		 Log.setMessage(log);	
+		 Log.setLogger(log);
 		 		 
 		 //Sends all controllers to view manager, such that views can contact
 		 GUIManager.addControllers(rwMapFileController,readController,writeController,gameController,tournamentController);
@@ -115,7 +110,7 @@ public class Launcher {
 			    	gameDriver.addObserver(phaseView);
 					setStrategies(strategies);
 			    	for(int i=1;i<=numberOfPlayers;i++){
-			    		Player p = new Player("Player " + Integer.toString(i));
+			    		Players p = new Players("Player " + Integer.toString(i));
 			    		p.addObserver(dominationView);
 			    		p.addObserver(phaseView);
 			    		p.addObserver(cardView);
@@ -152,7 +147,7 @@ public class Launcher {
 		 GUIManager.addCalls(new Calls(){
 			    public <T> void called(T object){
 			    	gameDriver = (GameDriver) object;
-			    	gameDriver.setGameDriver(gameDriver);
+			    	gameController.setGameDriver(gameDriver);
 			    }
 		 });	    
 		 
