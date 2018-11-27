@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import utility.Results;
 import org.junit.Before;
 import org.junit.Test;
+
+import model.Interfaces.TerritoryInterface;
 /**
  * Testing territory model properties and its functionalities 
  * @author Shah Mohammad Mostakim 
@@ -120,5 +122,48 @@ public class TerritoriesTest {
 		int expectedArmies = 5;
 		
 		assertEquals(foundArmies, expectedArmies);
+	}
+	
+	/**
+	 * test a territory with another territory object
+	 * checks if other territory has an adjancency 
+	 * with the territory being tested
+	 * the other territory's name should be in the 
+	 * adjacent territory  list of the 'territory being tested'
+	 */
+	@Test
+	public void verifyAdjacencyWithAnotherTerritory() {
+		// create two territory objects  
+		// name of second territory should appear in the neighbers list 
+		// of first territory 
+		
+		String continentName = "Asia";
+		String territorryName = "China";
+		String coordinate = "dummy-coordinates";
+		ArrayList<String> adjacentTerritories = new ArrayList<String>();
+		adjacentTerritories.add("Mongolia");
+		adjacentTerritories.add("Tibbet");
+		adjacentTerritories.add("Taiwan");
+		Territories t1 = new Territories(continentName, territorryName, coordinate, adjacentTerritories);
+		t1.setCurrentPlayer("John");
+		t1.setNumberOfArmies(25);
+		
+			
+		// 2nd territory object 
+		String continentName2 = "Asia";
+		String territorryName2 = "Taiwan";
+		String coordinate2 = "dummy-coordinates";
+		ArrayList<String> adjacentTerritories2 = new ArrayList<String>();
+		adjacentTerritories2.add("Mongolia");
+		adjacentTerritories2.add("Tibbet");
+		adjacentTerritories2.add("China");
+		Territories t2 = new Territories(continentName2, territorryName2, coordinate2, adjacentTerritories2);
+		t2.setCurrentPlayer("Doe");
+		t2.setNumberOfArmies(20);
+		
+		//comparing 
+		boolean foundResult = t1.hasAdjacencyWith(t2);
+		boolean expectedResult = true;
+		assertEquals(foundResult, expectedResult);
 	}
 }
