@@ -44,7 +44,7 @@ public class GUIManager extends Application {
     	window.setTitle("Game");
     	
     	mapEditorView = new MapEditorGUI(readController,writeController);
-		welcomeView = new WelcomeView(gameController,window, rwMapFileController, mapEditorView);
+		welcomeView = new WelcomeGUI(gameController,window, rwMapFileController, mapEditorView);
 		
 		//listener to check game start button event in Map Editor view
 		mapEditorView.getStartGameButton().setOnAction(new EventHandler<ActionEvent>() {            
