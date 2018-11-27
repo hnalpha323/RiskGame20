@@ -21,10 +21,8 @@ import javafx.stage.Stage;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 
 
 /**
@@ -36,25 +34,38 @@ import javafx.scene.control.Button;
 
 public class WelcomeGUI implements ViewInterface{
 
+	GameController gameController = null;
 	RWMapFileController maprwController;
-	static Scene welcomeScreen = null;
+	
 	final FileChooser fileChooser = new FileChooser();
+	static Scene welcomeScreen = null;
+	Button startSavedGame = null, tournamentButton = null;
 	static MapEditorGUI MapEditorGUI = null;
 	Stage window = null;
 	
-
-	public WelcomeGUI(Stage new_window,RWMapFileController new_maprwController, MapEditorGUI new_MapEditorGUI) {
+	/**
+	 * Constructor which injects Controllers and View
+	 * @param new_gameController is the controller to play game
+	 * @param new_window is the main window on the UserInterface check {@link javafx.stage.Stage}}
+	 * @param new_maprwController is the map file read and write controller, check {@link RWMapFileController} 
+	 * @param new_mapEditorView is the map editor view, welcome view is responsible to start Map Editor View
+	*/ 
+	
+	public WelcomeGUI(Stage new_window,RWMapFileController new_maprwController, MapEditorGUI new_MapEditorGUI) 
+	{
 		window  = new_window;
+		gameController = new_gameController;
 		maprwController = new_maprwController; 
 		MapEditorGUI = new_MapEditorGUI;
 	}
 	
 	/**		
-	50		 * @return Welcome GUI Scene, It is a container which has User Interface elements and event listeners in it 		
-	51		 * @see Scene		
-	52		 */
-	
-	public Scene getView(){
+	 * @return Welcome GUI Scene, It is a container which has User Interface elements and event listeners in it 		
+	 * @see Scene		
+	 */
+	@Override
+	public Scene getView(boolean isResume)
+	{
 		
 			Button chooseMapButton = new Button();	
 			chooseMapButton.setText("Load Map");
@@ -132,6 +143,15 @@ public class WelcomeGUI implements ViewInterface{
 	     
 	        gobackButton.setVisible(false);
 	        
+	        startSavedGame = new Button();
+	        startSavedGame.setMinWidth(200);
+	        startSavedGame.setText("Play Saved Game");
+	        
+	        // to start a tournament
+	        tournamentButton = new Button();
+	        tournamentButton.setMinWidth(200);
+	        tournamentButton.setText("Begin Tournament");
+	        
 	        Alert alert = new Alert(AlertType.ERROR);
 	        alert.setHeaderText("Invalid Map file detected");
 
@@ -160,11 +180,14 @@ public class WelcomeGUI implements ViewInterface{
 		                if(file != null){
 		                	maprwController.writeMap(file);
 		                }	
-	            	}else{
+	            	}
+	            	else
+	            	{
 	            		 alert.showAndWait();
 	            	}	            	
 	            }
-	        });
+	        }
+	        );
 	        
 	        MapEditorGUI.getCloseButton().setOnAction(new EventHandler<ActionEvent>() {
 	            @Override
@@ -183,18 +206,27 @@ public class WelcomeGUI implements ViewInterface{
 	        });
 	        
 	        
-	        gobackButton.setOnAction(new EventHandler<ActionEvent>() {
+	        gobackButton.setOnAction(new EventHandler<ActionEvent>() 
+	        {
 	            @Override
-	            public void handle(ActionEvent event){
+	            public void handle(ActionEvent event)
+	            {
 	            	loadAnotherView(MapEditorGUI.getView());
 	            }
 	        });
-	        
+	        gobackButton.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override
+	            public void handle(ActionEvent event){
+	            	loadAnotherView(MapEditorGUI.getView(false));
+	            }
+	        });
 	       
 	        
 	        GridPane gridPane = new GridPane();
 	        gridPane.add(chooseMapButton,0,0);
+	        gridPane.add(tournamentButton,0,1);
 	        gridPane.add(saveMapButton,0,1);
+	        gridPane.add(startSavedGame,0,3);
 	        gridPane.add(createMapButton,0,2);
 	        gridPane.add(gobackButton,0,3);
 	        gridPane.setAlignment(Pos.CENTER);
@@ -204,9 +236,23 @@ public class WelcomeGUI implements ViewInterface{
 		    return welcomeScreen;
 	}
 	
-	
-  void loadAnotherView(Scene scene){
-	    	window.setScene(scene);	
-	  } 
-	
+	public  void loadAnotherView(Scene scene){
+    	window.setScene(scene);	
+  } 
+
+/**
+ * @return to the gobackButton
+ */
+public Button getResumeButton() {
+	return startSavedGame;
+}
+
+
+/**
+ * @return the tournamentButton
+ */
+public Button getTournamentButton() {
+	return tournamentButton;
+}
+
 }
