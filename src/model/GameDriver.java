@@ -2,17 +2,15 @@ package model;
 
 
 import model.Interfaces.*;
-import model.strategy.Aggressive;
-import model.strategy.Defensive;
-import model.strategy.Normal;
+import model.strategy.*;
 import utility.Gradient;
 import exceptions.PlayerException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Observable;
 
-
-import controller.LoggerController;
 
 
 /**
@@ -22,25 +20,45 @@ import controller.LoggerController;
  * @author Meet Patel
  * @version 2.0.0
  */
-public class GameDriver extends Model {
+public class GameDriver extends Observable implements Serializable 
+{
 
-    private static int MIN_PLAYERS = 2;
+	private static final long serialVersionUID = -6921437067469919760L;
+	int playerCursor = 0;
+	PlayerInterface temporarayPlayerholder;
+
+    /** Holds the current turn of play */
+    private int turn = -1;
+    private int strategyTurn = -1;
+    
+    /** Holds name of the game */
+    private String name = "Game";
+    
+    /** Holds a string of all player names and there strategies  */
+    private String playersText = "";
+    private String strategyString = "";
+    
+    
+    /** Holds the current Phase name */ 
+    private String currentPhase = "";
+    
+    /** Holds ArrayList of Strategies*/
+    private ArrayList<StrategyInterface> strategies = new ArrayList<>();
+    /** Holds ArrayList of players */
+    private ArrayList<Players> playerlist = new ArrayList<>();
+    
+    /** Holds the map on which the game is going to be played */
+    private Map map;
+    
+    /** Holds a deck of cards so players will get whenever then win on a territory */
+    Deck cardDeck = new Deck();
+    
+    private int totalTurnsinGame = 500;
+	private static int MIN_PLAYERS = 2;
     private static int MAX_PLAYERS = 6;
 
     private int numberOfPlayers = 0;
-    private int turn = -1;
-
-    private int strategyTurn = -1;
-    ArrayList<StrategyInterface> strategies = new ArrayList<>();
-
-    public Deck cardDeck = new Deck();
-
     private boolean isGameOn=false;
-
-    private MapInterface map;
-    private ArrayList<PlayerInterface> playerlist = new ArrayList<>();
-    private String currentPhase = "";
-
 
     /**
      * Sets the map and players field
@@ -51,35 +69,35 @@ public class GameDriver extends Model {
      * @param Strategies
      * @throws PlayersException
      */
-    public void startGame(int players, String strategies) throws PlayerException
+    public void startGame(int players, String strategies) throws PlayerException 
     {
-        this.numberOfPlayers = players;
+        this.numberOfPlayers = players;     
         this.map = new Map();
         start();
     }
-
-    public GameDriver(int players, String strategies, int totalTurns)
+    
+    public GameDriver(int players, String strategies, int totalTurns) 
     {
         this.numberOfPlayers = players;
         this.map = new Map();
-        strategies.add(new Random());
-        strategies.add(new Benevolent());
-        strategies.add(new Aggressive());
+        this.strategyString = strategies;
+        this.setStrategies();
+        this.totalTurnsinGame = totalTurns;
     }
 
-    public GameDriver(Map m,int players, String strategies, int totalTurns)
+    public GameDriver(Map m,int players, String strategies, int totalTurns) 
     {
         this.numberOfPlayers = players;
         this.map = m;
-        strategies.add(new Random());
-        strategies.add(new Benevolent());
-        strategies.add(new Aggressive());
+        this.strategyString = strategies;
+        this.setStrategies();
+        this.totalTurnsinGame = totalTurns;
     }
-
-    public GameDriver()
+    
+    public GameDriver() 
     {
 	}
-
+    
     /**
      * Sets strategies
      * Sample for 3 players with Human, Random and Aggressive strategies is h,r,a
@@ -142,16 +160,16 @@ public class GameDriver extends Model {
         if (play)
             this.play(true);
     }
-
+    
     /**
 	 * Notifies all the player object observers when startUp phase is completed
 	 */
-	private void sendStartupEnd()
+	private void sendStartupEnd() 
 	{
 		for(PlayerInterface p : playerlist)
 		{
 			p.sendNotify(p.getState());
-		}
+		}		
 	}
 
     /**
@@ -181,12 +199,12 @@ public class GameDriver extends Model {
         placeInitialArmies();
 
     }
-
+    
     /**
      * This method moves the player to the next phase whenever it get called
-     * If a player finished his 3 phases(reinforcement,attack,fortification) then selects next player
+     * If a player finished his 3 phases(reinforcement,attack,fortification) then selects next player 
      */
-    public void takeNextTurn()
+    public void takeNextTurn() 
     {
     	if(playerCursor ==0)
     	{
@@ -205,18 +223,18 @@ public class GameDriver extends Model {
     	{
     		temporarayPlayerholder.fortification();
     	}
-
-    	playerCursor++;
+    	
+    	playerCursor++; 
     	if(playerCursor == 4)
     	{
     		playerCursor = 0;
     	}
     	this.domitantionResult();
 	}
-
-
+    
+    
     /**
-     * This method calculates the domination of each player and
+     * This method calculates the domination of each player and 
      * sends it to the Observers
      */
     public void domitantionResult()
@@ -234,10 +252,10 @@ public class GameDriver extends Model {
     		 double control_percent = Math.round(((double) p.getTerritories().size() / totalNoOfTerritories) * 100);
              tmp += "\n"+ p.getName()+"="+control_percent;
          }
-
+    	 
     	 sendNotification("DominationView: "+tmp);
     }
-
+    
 
     /**
      * this is the method that handles the Gameplay
@@ -253,8 +271,8 @@ public class GameDriver extends Model {
         {
             if(verbos)
                 Log.log(String.format("-------Turn %s-------", i));
-
-            //Step1:Selects a player in round robin
+            
+            //Step1:Selects a player in round robin 
             PlayerInterface p = nextPlayer();
             //Step2: Gives him reinforcement
             p.reinforcement();
@@ -264,7 +282,7 @@ public class GameDriver extends Model {
             p.fortification();
             //Step5: Check if player own entire map, if not continue
             winner = getWinner();
-
+            
             if (winner == null)
             {
                 Log.log("No winner, so next turn will start.");
@@ -280,12 +298,12 @@ public class GameDriver extends Model {
             String dominationView = this.dominationResult(true, i);
             Log.log(dominationView);
         }
-
+        
         String winnerName = "Draw";
         if (winner != null)
             winnerName = winner.getStrategy().getName();
         return new FinalResult(map.getName(), winnerName);
-
+ 
     }
 
 
@@ -381,18 +399,18 @@ public class GameDriver extends Model {
      * it uses the number which is given while creating game instance.
      * @throws InvalidNumOfPlayersException be careful
      */
-    public void initPlayers() throws PlayerException
+    public void initPlayers() throws PlayerException 
     {
 
         if (this.numberOfPlayers > MAX_PLAYERS || this.numberOfPlayers < MIN_PLAYERS)
             throw new PlayerException();
-
+  
         //Give a random color to the players
         Gradient colorManager = new Gradient();
         //If player list is empty create players else just add strategies
         if(this.playerlist.size() == 0)
         {
-        	for (int i=1; i<=this.numberOfPlayers; i++)
+        	for (int i=1; i<=this.numberOfPlayers; i++) 
         	{
                 StrategyInterface strategy = strategies.get(i-1);
                 Players p = new Players("Player " + Integer.toString(i), colorManager.getRandomColor(), strategy);
@@ -400,22 +418,22 @@ public class GameDriver extends Model {
                 p.setGameDriver(this);
                 this.playerlist.add(p);
                 Log.log(p.toString() + " was added to the game.");
-        	}
+        	}	
         }
         else
         {
-        	for (int i=0; i<this.playerlist.size(); i++)
+        	for (int i=0; i<this.playerlist.size(); i++) 
         	{
-        		StrategyInterface strategy = strategies.get(i);
+        		StrategyInterface strategy = strategies.get(i); 
         		playerlist.get(i).setStrategy(strategy);
         		playerlist.get(i).setGradient( colorManager.getRandomColor());
                 this.playersText += playerlist.get(i).getStrategy().getName() +", ";
         		playerlist.get(i).setGameDriver(this);
         		Log.log(playerlist.get(i).toString() + " was added to the game.");
         	}
-        }
+        }	
         colorManager = null;
-
+    	
     }
 
     /**
@@ -479,7 +497,7 @@ public class GameDriver extends Model {
         }
     }
 
-
+    
     /**
      * Returns next player based on turns
      */
@@ -506,32 +524,32 @@ public class GameDriver extends Model {
 
         if(!getPhase().equals("Startup"))
         	sendNotification("Game Change: "+result.getName()+" Turn started");
-
-
+        
+              
         return result;
     }
 
     /**
      * Resets the turn
      */
-    private void resetTurn()
-    {
-    	this.turn = -1;
+    private void resetTurn() 
+    { 
+    	this.turn = -1; 
     }
 
 
     /**
      * Returns what phase is the game is in now
      */
-    public String getPhase()
+    public String getPhase() 
     {
-    	return this.currentPhase;
+    	return this.currentPhase; 
     }
 
     /**
      * Sets the phase
      */
-    public void setPhase(String value)
+    public void setPhase(String value) 
     {
         this.currentPhase = value;
     }
@@ -617,14 +635,14 @@ public class GameDriver extends Model {
         Collections.sort(tmp);
         Collections.reverse(tmp);
 
-        if(verbos)
+        if(verbos) 
         {
         	for(PlayerInterface p:tmp)
         		sb.append(String.format("%s(%s) Controls %s of the Map.\n", p.getName(), p.getStrategy().getName(), p.getDomination()));
         }
 
         sendNotification("Domination View: "+sb.toString());
-
+        
         if(verbos)
             sb.append("---------------------");
 
@@ -672,10 +690,10 @@ public class GameDriver extends Model {
 	 * Adds a player to the game
 	 * @param newPlayer is a {@link Player}
 	 */
-	public void addPlayer(Players newPlayer)
+	public void addPlayer(Players newPlayer) 
 	{
 		this.playerlist.add(newPlayer);
-
+		
 	}
 
 
@@ -700,15 +718,15 @@ public class GameDriver extends Model {
         }
         return result;
 }
-
+	
 	/**
 	 * This Method Notifies all Observer about the update
 	 * @param type is the type of notification
 	 */
-	private void sendNotification(String type)
+	private void sendNotification(String type) 
 	{
 		setChanged();
-		notifyObservers(type);
+		notifyObservers(type);				
 	}
 
 
@@ -761,32 +779,32 @@ public class GameDriver extends Model {
      * Sets the Game Name
      * @param Name of the game
      */
-    public void setName(String name)
-    {
-    	this.name = name;
+    public void setName(String name) 
+    { 
+    	this.name = name; 
     }
 
     /**
      * Gets the Game Name
      * @return Name of the game
      */
-    public String getName()
-    {
-    	return this.name;
+    public String getName() 
+    { 
+    	return this.name; 
     }
 
-
-    public String getPlayersText()
-    {
-    	return this.playersText;
+    
+    public String getPlayersText() 
+    { 
+    	return this.playersText; 
     }
 
 
 	/**
 	 * Adds Strategy to the strategies of the players
 	 */
-	public void addStrategies(StrategyInterface strategy)
-	{
+	public void addStrategies(StrategyInterface strategy) 
+	{		
 		this.getStrategies().add(strategy);
 	}
 
@@ -794,16 +812,16 @@ public class GameDriver extends Model {
 	/**
 	 * Sets Answer Given by user for Human player strategy
 	 */
-	public void setAnswerForHuman(String answerByHuman)
+	public void setAnswerForHuman(String answerByHuman) 
 	{
-		Human.sharedTmp = answerByHuman;
+		Human.sharedTmp = answerByHuman;		
 	}
 
 
 	/**
 	 * @return all Player objects in playerlist
 	 */
-	public ArrayList<Players> getPlayers()
+	public ArrayList<Players> getPlayers() 
 	{
 		return playerlist;
 	}
@@ -812,11 +830,11 @@ public class GameDriver extends Model {
 	/**
 	 * @return the strategies in the current game
 	 */
-	public ArrayList<StrategyInterface> getStrategies()
+	public ArrayList<StrategyInterface> getStrategies() 
 	{
 		return strategies;
 	}
 
-
+	
 
 }
