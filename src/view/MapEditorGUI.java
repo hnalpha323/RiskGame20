@@ -39,7 +39,8 @@ import javafx.scene.layout.VBox;
  * @version 3.0.0
  * Responsible for generating Map editor view
  */
-public class MapEditorGUI implements ViewInterface{		
+public class MapEditorGUI implements ViewInterface
+{		
 
 	private static Scene editorScene = null;
 	private static String country,continent = null;
@@ -69,7 +70,8 @@ public class MapEditorGUI implements ViewInterface{
 	 * Returns container having Map Editor UI elements
 	 * @return {@link Scene} instance
 	 */
-	public Scene getView(){
+	public Scene getView(boolean isResume)
+	{
 		ObservableList<String> continents = FXCollections.observableArrayList();		 
 		ObservableList<String> contries = FXCollections.observableArrayList();
 

@@ -52,7 +52,7 @@ public class WelcomeGUI implements ViewInterface{
 	 * @param new_mapEditorView is the map editor view, welcome view is responsible to start Map Editor View
 	*/ 
 	
-	public WelcomeGUI(Stage new_window,RWMapFileController new_maprwController, MapEditorGUI new_MapEditorGUI) 
+	public WelcomeGUI(GameController new_gameController, Stage new_window, RWMapFileController new_maprwController,MapEditorGUI new_MapEditorGUI) 
 	{
 		window  = new_window;
 		gameController = new_gameController;
@@ -206,22 +206,22 @@ public class WelcomeGUI implements ViewInterface{
 	            }
 	        });
 	        
+	        startSavedGame.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override
+	            public void handle(ActionEvent event){
+	            	gameController.resumeGame();
+	            }
+	        });
 	        
 	        gobackButton.setOnAction(new EventHandler<ActionEvent>() 
 	        {
 	            @Override
 	            public void handle(ActionEvent event)
 	            {
-	            	loadAnotherView(MapEditorGUI.getView());
-	            }
-	        });
-	        gobackButton.setOnAction(new EventHandler<ActionEvent>() {
-	            @Override
-	            public void handle(ActionEvent event){
 	            	loadAnotherView(MapEditorGUI.getView(false));
 	            }
 	        });
-	       
+	      
 	        
 	        GridPane gridPane = new GridPane();
 	        gridPane.add(chooseMapButton,0,0);
