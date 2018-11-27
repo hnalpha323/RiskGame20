@@ -4,6 +4,7 @@ package view;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import nullrestrictor.NullHandler;
 import controller.ReadController;
 import controller.WriteController;
 
@@ -18,7 +19,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToolBar;
@@ -28,10 +31,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
 
 /**
- * @author Risk Team
- * @version 1.0.0
+ * @author Risk Team 20
+ * @version 3.0.0
  * Responsible for generating Map editor view
  */
 public class MapEditorGUI implements ViewInterface{		
