@@ -19,13 +19,13 @@ import javafx.scene.layout.HBox;
 /**
  * This class is a Observer for HumanPlayer updates
  * Whenever Human player turn comes the update method will be called
- * @author SA
+ * @author Waleed Ahmad
  */
 public class ManualPlayerView implements Observer{
 
 	
 	/**
-	 * label to ask question to Human Player
+	 * 	 * {@link GameController} is a controller to make state change using Controller MVC architecture
 	 */
 	TextInputDialog dialog = null;
 	
