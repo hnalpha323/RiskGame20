@@ -26,8 +26,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
- * Holds the UI of Tournament ad calls the TournamentController when required
- * @author SA
+ * Holds the UserInterface of Tournament and calls the TournamentController when required
+ * @author Waleed
  */
 public class TournamentView implements ViewInterface{
 
@@ -46,7 +46,7 @@ public class TournamentView implements ViewInterface{
 	/**
 	 * Constructor to initialize the controllers
 	 * @param new_window is the parent window object
-	 * @param new_maprwController to initialize the maprwController so .map file
+	 * @param new_RWmapController to initialize the RWmaprwController so .map file
 	 * can be written into a data structure
 	 * @param new_tournamentController to initialize the tournamentController 
 	 */
