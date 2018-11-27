@@ -1,4 +1,4 @@
-package MapFiles;
+package mapFiles;
 
 import java.util.ArrayList;
 import java.util.HashMap;

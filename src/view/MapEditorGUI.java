@@ -4,6 +4,7 @@ package view;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import common.NotNull;
 import nullrestrictor.NullHandler;
 import controller.ReadController;
 import controller.WriteController;
@@ -49,12 +50,13 @@ public class MapEditorGUI implements ViewInterface
 	private WriteController writeController = null;
 	private Button startGameButton = new Button();
 	private Button closeButton = new Button();
+	ArrayList<ComboBox<String>> playerList = new ArrayList<>();
 	private TextField numberOfPlayerInput = new TextField();
 
 	TextInputDialog dialog = new TextInputDialog();
 	boolean isDeletedContinent= false,isDeletedContry=false;
 
-
+	CheckBox isGameAutomatecheckBox;
 
 	/**Constructor used to inject dependencies
 	 * @param new_readController
@@ -70,6 +72,8 @@ public class MapEditorGUI implements ViewInterface
 	 * Returns container having Map Editor UI elements
 	 * @return {@link Scene} instance
 	 */
+	
+	@NullHandler
 	public Scene getView(boolean isResume)
 	{
 		ObservableList<String> continents = FXCollections.observableArrayList();		 
@@ -308,7 +312,18 @@ public class MapEditorGUI implements ViewInterface
 	public int getNumberOfPlayers() {
 		return Integer.parseInt(numberOfPlayerInput.getText());
 	}
-
+	
+	/**
+	 * @return Players strategies given by user
+	 */
+	
+	public String getPlayersStrategies() {
+		String tmp = "";
+		for(ComboBox<String> selectBox : playerList){
+			tmp += ","+(selectBox.getValue()).toLowerCase().charAt(0);
+		}
+		return tmp.substring(1);
+	}
 
 	/**
 	 * @param question displays the question

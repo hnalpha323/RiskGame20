@@ -477,7 +477,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
                         attackFrom.getName(), diceAttack, attackTo.getName(), diceDefend );
             	sendNotify();
                 
-                Logger.log(this.status);
+                Message.log(this.status);
 
                 //Step 5: Rolling dices
                 ArrayList<Integer> attackDices = new ArrayList<>();

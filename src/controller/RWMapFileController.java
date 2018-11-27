@@ -2,8 +2,8 @@ package controller;
 
 import java.io.File;
 
-import MapFiles.LoadMap;
-import MapFiles.MapWriter;
+import mapFiles.LoadMap;
+import mapFiles.MapWriter;
 import model.MapDatabase;
 import model.ValidMap;
 

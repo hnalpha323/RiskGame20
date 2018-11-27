@@ -688,7 +688,6 @@ public class GameDriver extends Observable implements Serializable
 
 	/**
 	 * Adds a player to the game
-	 * @param newPlayer is a {@link Player}
 	 */
 	public void addPlayer(Players newPlayer) 
 	{
