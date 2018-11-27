@@ -2,17 +2,17 @@ package model;
 
 
 import model.Interfaces.*;
-import model.contract.IPlayer;
-import model.contract.IStrategy;
-import model.strategy.*;
+import model.strategy.Aggressive;
+import model.strategy.Defensive;
+import model.strategy.Normal;
 import utility.Gradient;
 import exceptions.PlayerException;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Observable;
 
+
+import controller.LoggerController;
 
 
 /**
@@ -22,43 +22,25 @@ import java.util.Observable;
  * @author Meet Patel
  * @version 2.0.0
  */
-public class GameDriver extends Observable implements Serializable 
-{
+public class GameDriver extends Model {
 
-	private static final long serialVersionUID = -6921437067469919760L;
-	int playerCursor = 0;
-	PlayerInterface temporarayPlayerholder;
-
-    /** Holds the current turn of play */
-    private int turn = -1;
-    private int strategyTurn = -1;
-    
-    /** Holds name of the game */
-    private String name = "Game";
-    
-    /** Holds a string of all player names and there strategies  */
-    private String playersText = "";
-    private String strategyString = "";
-    /** Holds the current Phase name */ 
-    private String currentPhase = "";
-    
-    /** Holds ArrayList of Strategies of players*/
-    private ArrayList<StrategyInterface> strategies = new ArrayList<>();
-    /** Holds ArrayList of players */
-    private ArrayList<Players> playerlist = new ArrayList<>();
-    
-    /** Holds the map on which the game is going to be played */
-    private Map map;
-    
-    /** Holds a deck of cards so players will get whenever then win on a territory */
-    Deck cardDeck = new Deck();
-    
-    private int totalTurnsinGame = 500;
-	private static int MIN_PLAYERS = 2;
+    private static int MIN_PLAYERS = 2;
     private static int MAX_PLAYERS = 6;
 
     private int numberOfPlayers = 0;
+    private int turn = -1;
+
+    private int strategyTurn = -1;
+    ArrayList<StrategyInterface> strategies = new ArrayList<>();
+
+    public Deck cardDeck = new Deck();
+
     private boolean isGameOn=false;
+
+    private MapInterface map;
+    private ArrayList<PlayerInterface> playerlist = new ArrayList<>();
+    private String currentPhase = "";
+
 
     /**
      * Class constructor.
