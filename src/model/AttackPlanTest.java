@@ -36,9 +36,9 @@ public class AttackPlanTest {
 		adjacentTerritories.add("Taiwan");
 		
 		// initialize adjacent territories of 'to'
-		adjacentTerritories.add("Mongolia");
-		adjacentTerritories.add("Tibbet");
-		adjacentTerritories.add("China");
+		to_adjacentTerritories.add("Mongolia");
+		to_adjacentTerritories.add("Tibbet");
+		to_adjacentTerritories.add("China");
 	}
 			
 	@Test

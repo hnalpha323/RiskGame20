@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Random Strategy
  */
-public class Normal implements StrategyInterface,Serializable {
+public class Random implements StrategyInterface,Serializable {
 
 	/**
 	 * Deserialization uses this number to ensure that a loaded class corresponds 
@@ -36,7 +36,7 @@ public class Normal implements StrategyInterface,Serializable {
      */
     @Override
     public String getName() {
-        return "Normal";
+        return "Random";
     }
 
     /**

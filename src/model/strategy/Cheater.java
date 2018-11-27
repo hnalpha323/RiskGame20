@@ -1,6 +1,5 @@
 package model.strategy;
 
-import java.io.Serializable;
 
 import model.AttackPlan;
 import model.Interfaces.PlayerInterface;
@@ -8,16 +7,20 @@ import model.Interfaces.StrategyInterface;
 import model.Interfaces.TerritoryInterface;
 import utility.DiceRNG;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
+
 /**
- * Defensive strategy
+ * cheater strategy
  */
-public class Defensive implements StrategyInterface,Serializable {
+public class Cheater implements StrategyInterface,Serializable{
     
 	/**
 	 * Deserialization uses this number to ensure that a loaded class corresponds 
-	 * exactly to a serialized object while saving rhe game state 
+	 * exactly to a serialized object while saving the game state 
 	 */
-	private static final long serialVersionUID = -4744936499083518966L;
+	private static final long serialVersionUID = 8524490775170198242L;
 
 	/**
      * how many attacks
@@ -25,16 +28,16 @@ public class Defensive implements StrategyInterface,Serializable {
      */
     @Override
     public int getAttackAttempts() {
-        return 0;
+        return 1;
     }
 
     /**
-     * name of the startegy
+     * name of the strategy
      * @return name
      */
     @Override
     public String getName() {
-        return "Defensive";
+        return "Cheater";
     }
 
     /**
@@ -44,8 +47,7 @@ public class Defensive implements StrategyInterface,Serializable {
      */
     @Override
     public TerritoryInterface getInforcementTerritory(PlayerInterface p) {
-
-        return p.getWeakestTerritory();
+        return p.getStrongestTerritory();
     }
 
     /**
@@ -55,7 +57,11 @@ public class Defensive implements StrategyInterface,Serializable {
      */
     @Override
     public int getReinforcementArmies(PlayerInterface p) {
-        return p.getUnusedArmies();
+        for(TerritoryInterface t : p.getTerritories())
+        {
+            t.placeArmies( t.getArmies() * 2 );
+        }
+        return utility.DiceRNG.getRandomInt(p.getUnusedArmies(),1);
     }
 
     /**
@@ -65,6 +71,23 @@ public class Defensive implements StrategyInterface,Serializable {
      */
     @Override
     public AttackPlan getAttackPlan(PlayerInterface p) {
+
+        ArrayList<TerritoryInterface> newTerritories = new ArrayList<>();
+        for(TerritoryInterface t : p.getTerritories())
+        {
+            for(TerritoryInterface n : t.getAdjacentTerritoryObjects())
+            {
+                if (n.getOwner() != p)
+                {
+                    newTerritories.add(n);
+                }
+            }
+        }
+
+        for(TerritoryInterface t : newTerritories) {
+            t.getOwner().lostTerritory(t);
+            p.ownTerritory(t);
+        }
         return null;
     }
 
@@ -75,7 +98,7 @@ public class Defensive implements StrategyInterface,Serializable {
      */
     @Override
     public int diceToAttack(PlayerInterface p) {
-        return 0;
+        return DiceRNG.getRandomInt(3,1);
     }
 
     /**
@@ -95,7 +118,7 @@ public class Defensive implements StrategyInterface,Serializable {
      */
     @Override
     public int getMovingArmiesToNewTerritory(PlayerInterface p) {
-        return DiceRNG.getRandomInt(2,1);
+        return 1;
     }
 
     /**
@@ -116,6 +139,16 @@ public class Defensive implements StrategyInterface,Serializable {
      */
     @Override
     public TerritoryInterface getFortificationToTerritory(PlayerInterface p, TerritoryInterface from) {
+        for(TerritoryInterface t : p.getTerritories())
+        {
+            for(TerritoryInterface n : t.getAdjacentTerritoryObjects())
+            {
+                if (n.getOwner() != p)
+                {
+                    p.placeArmy(t.getArmies() * 2, t);
+                }
+            }
+        }
         return p.getWeakestTerritory();
     }
 
@@ -127,6 +160,6 @@ public class Defensive implements StrategyInterface,Serializable {
      */
     @Override
     public int getFortificationArmies(PlayerInterface p, TerritoryInterface from) {
-        return DiceRNG.getRandomInt(2,1);
+        return 1;
     }
 }
