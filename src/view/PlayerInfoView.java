@@ -1,10 +1,8 @@
-/**
- * 
- */
 package view;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -21,7 +19,7 @@ public class PlayerInfoView{
 	
 	VBox playerBox = null;
 	Label actorName = null;
-	Label currentContry = null;
+	TextArea currentCountry = null;
 	Label countriesWon = null;
 	
 	/**
@@ -32,15 +30,17 @@ public class PlayerInfoView{
 		playerBox.setPadding(new Insets(5));
 		this.actorName = new Label();
 		setFontColor(actorName, "#0076a3");
+		
 		HBox profilepicContainer = new HBox(); 
-		Image profileImage = new Image(getClass().getResourceAsStream("/user.png"));
-		profilepicContainer.getChildren().add(new ImageView(profileImage));
 		profilepicContainer.getChildren().add(actorName);
-		this.currentContry = new Label();
+		
+		this.currentCountry = new TextArea();
+		this.currentCountry.setMinHeight(140);
 		this.countriesWon = new Label();
 		setFontColor(countriesWon, "#F44336");
+		
 		this.playerBox.getChildren().add(profilepicContainer);
-		this.playerBox.getChildren().add(currentContry);
+		this.playerBox.getChildren().add(currentCountry);
 		this.playerBox.getChildren().add(countriesWon);
 	}
 	
@@ -81,28 +81,51 @@ public class PlayerInfoView{
 		this.actorName.setText(actorName);
 	}
 	/**
-	 * @return the currentContry
+	 * @return the {@link #status} on current player
 	 */
-	public Label getCurrentContry() {
-		return currentContry;
+	public TextArea getCurrentCountry() {
+		return currentCountry;
 	}
+	
+	
 	/**
-	 * @param currentContry the currentContry to set
+	 * @return {@link String} the text on {@link #countriesWon} of current player
 	 */
-	public void setCurrentContry(Label currentContry) {
-		this.currentContry = currentContry;
+	public String getContriesWon() {
+		return this.countriesWon.getText();
 	}
+	
 	/**
-	 * @return the countriesWon
+	 * @param status the status of present player
 	 */
-	public Label getCountriesWon() {
-		return countriesWon;
+	public void setCurrentStatus(String status) {
+		this.currentCountry.setText(this.currentCountry.getText()+" \n "+status);
 	}
+	
 	/**
 	 * @param countriesWon the countriesWon to set
 	 */
-	public void setCountriesWon(Label countriesWon) {
-		this.countriesWon = countriesWon;
+	public void setCountriesWon(String countriesWon) {
+		this.countriesWon.setText(countriesWon);
+	}
+
+
+
+	/**
+	 * clears the status of the player
+	 */
+	public void clearStatus() {
+		this.currentCountry.setText("");	
+	}
+
+
+
+	/**
+	 * @return {@link #countriesWon} Label which contains details of 
+	 * countries own by player
+	 */
+	public Label getContriesWonLabel() {
+		return this.countriesWon;		
 	}
 
 
