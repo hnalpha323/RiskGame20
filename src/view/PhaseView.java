@@ -46,7 +46,7 @@ public class PhaseView implements ViewInterface,Observer
 	GameController gameController = null;
 
 	int numberOfPlayers;
-String previousPlayer = "";
+	String previousPlayer = "";
 	
 	/** button to take next turn input from user */
 	Button nextTurn= null;
