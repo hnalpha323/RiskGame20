@@ -2,10 +2,10 @@ package controller;
 
 import java.io.File;
 
-import model.MapDatabase;
-import model.ValidMap;
 import MapFiles.LoadMap;
 import MapFiles.MapWriter;
+import model.MapDatabase;
+import model.ValidMap;
 
 /**
  * @author Muhammad_Hamza_Noor
