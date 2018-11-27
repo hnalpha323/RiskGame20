@@ -3,14 +3,13 @@ package model;
 
 //import com.sun.javafx.binding.StringFormatter;
 
-import controller.LoggerController;
+//import controller.LoggerController;
 import model.Interfaces.PlayerInterface;
 import model.Interfaces.StrategyInterface;
 import model.Interfaces.TerritoryInterface;
 import utility.DiceRNG;
-import view.Logger;
-import utility.Results;
 import view.Message;
+import utility.Results;
 import utility.Gradient;
 import utility.MessageEnum;
 //import utility.exception.NoSufficientArmiesExption;
@@ -443,7 +442,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
 
         for(int a=1; a<= attempts; a++)
         {
-            LoggerController.log(String.format("Attack %s ", a));
+            Log.log(String.format("Attack %s ", a));
 
             // Step 1: Design a attack plan
             AttackPlan ap = this.strategy.getAttackPlan(this);
@@ -520,7 +519,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
 
                         this.status = String.format("One of the armies in %s(Defender) was killed.", attackTo.getName());
                         sendNotify();
-                        Logger.log(String.format("One of the armies in %s(Defender) was killed.", attackTo.getName()));
+                        Message.log(String.format("One of the armies in %s(Defender) was killed.", attackTo.getName()));
                         attackTo.killArmies(1);
                         Log.log(attackTo.getOwner().getState());
                         
@@ -551,7 +550,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
                         Log.log(attackFrom.getOwner().getState());
                         this.status = String.format("1 of the armies in %s(Attacker) was killed.",attackFrom.getName());
                         sendNotify();
-                        Logger.log(String.format("1 of the armies in %s(Attacker) was killed.",attackFrom.getName()));
+                        Message.log(String.format("1 of the armies in %s(Attacker) was killed.",attackFrom.getName()));
                         attackFrom.killArmies(1);
                         Log.log(attackFrom.getOwner().getState());
                     }
@@ -572,7 +571,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
                     sendNotify();
                     Log.log(String.format("%s places %s armies to occupied territory(%s)",
                             attackTo.getOwner().getName(), movingArmies, attackTo.getName()));
-                    Logger.log(this.getState());
+                    Message.log(this.getState());
                 }
 
             }
@@ -582,7 +581,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
                 this.status = String.format("Attacking %s from %s with %s armies canceled. %s -> %s", attackTo.getName(),
                         attackFrom.getName(), diceAttack, attackFrom.getArmies() , attackTo.getArmies());
                 sendNotify();
-            	Logger.log(String.format("Attacking %s from %s with %s armies canceled. %s -> %s", attackTo.getName(),
+                Message.log(String.format("Attacking %s from %s with %s armies canceled. %s -> %s", attackTo.getName(),
                         attackFrom.getName(), diceAttack, attackFrom.getArmies() , attackTo.getArmies()));
             }
 
@@ -613,7 +612,7 @@ public class Players extends Observable implements PlayerInterface, Comparable<P
         this.moveArmies(from, to, number);
 
 
-        LoggerController.log(String.format("--------------------%s Fortification Phase Finnished--------------------", this.getName()));
+        Log.log(String.format("--------------------%s Fortification Phase Finnished--------------------", this.getName()));
         sendNotification("Done his fortification");
     }
     
