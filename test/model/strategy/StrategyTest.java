@@ -7,8 +7,8 @@ import model.Interfaces.PlayerInterface;
 import model.Interfaces.StrategyInterface;
 import model.Interfaces.TerritoryInterface;
 import model.strategy.Aggressive;
-import model.strategy.Defensive;
-import model.strategy.Normal;
+import model.strategy.Benevolent;
+import model.strategy.Random;
 import org.junit.Test;
 import org.junit.Assert;
 import exceptions.PlayerException;
@@ -25,7 +25,7 @@ public class StrategyTest {
     @Test
     public void Test1()
     {
-        StrategyInterface s = new Defensive();
+        StrategyInterface s = new Benevolent();
         int attacks = s.getAttackAttempts();
         Assert.assertEquals(0, attacks);
     }
@@ -36,7 +36,7 @@ public class StrategyTest {
     @Test
     public void Test2()
     {
-        StrategyInterface s = new Defensive();
+        StrategyInterface s = new Benevolent();
         int attacks = s.diceToAttack(null);
         Assert.assertEquals(0, attacks);
     }
@@ -48,7 +48,7 @@ public class StrategyTest {
     @Test
     public void Test3()
     {
-        StrategyInterface s = new Defensive();
+        StrategyInterface s = new Benevolent();
         int attacks = s.diceToDefend(null);
         Assert.assertNotEquals(0, attacks);
     }
@@ -60,7 +60,7 @@ public class StrategyTest {
     @Test
     public void Test4()
     {
-        StrategyInterface s = new Defensive();
+        StrategyInterface s = new Benevolent();
         int attacks = s.getFortificationArmies(null, null);
         Assert.assertNotEquals(0, attacks);
     }
@@ -81,7 +81,7 @@ public class StrategyTest {
         gm.start(false);
 
         PlayerInterface p = gm.nextPlayer();
-        StrategyInterface s = new Defensive();
+        StrategyInterface s = new Benevolent();
         p.setStrategy(s);
         TerritoryInterface from = s.getFortificationFromTerritory(p);
         Assert.assertNotNull(from);
@@ -103,7 +103,7 @@ public class StrategyTest {
         gm.start(false);
 
         PlayerInterface p = gm.nextPlayer();
-        StrategyInterface s = new Defensive();
+        StrategyInterface s = new Benevolent();
         p.setStrategy(s);
         TerritoryInterface from = s.getFortificationFromTerritory(p);
         TerritoryInterface to = s.getFortificationToTerritory(p, from);
@@ -116,7 +116,7 @@ public class StrategyTest {
     @Test
     public void Test7()
     {
-        StrategyInterface s = new Defensive();
+        StrategyInterface s = new Benevolent();
         AttackPlan attack = s.getAttackPlan(null);
         Assert.assertNull(attack);
     }
@@ -208,7 +208,7 @@ public class StrategyTest {
     @Test
     public void Test13()
     {
-        StrategyInterface s = new Normal();
+        StrategyInterface s = new Random();
         int attacks = s.getAttackAttempts();
         Assert.assertNotEquals(0, attacks);
     }
@@ -219,7 +219,7 @@ public class StrategyTest {
     @Test
     public void Test14()
     {
-        StrategyInterface s = new Normal();
+        StrategyInterface s = new Random();
         int attacks = s.diceToAttack(null);
         Assert.assertNotEquals(0, attacks);
     }
@@ -231,7 +231,7 @@ public class StrategyTest {
     @Test
     public void Test15()
     {
-        StrategyInterface s = new Normal();
+        StrategyInterface s = new Random();
         int attacks = s.diceToDefend(null);
         Assert.assertNotEquals(0, attacks);
     }

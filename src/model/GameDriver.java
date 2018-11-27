@@ -74,8 +74,8 @@ public class GameDriver extends Observable implements Serializable
 
         this.numberOfPlayers = players;
         this.map = new Map();
-        strategies.add(new Normal());
-        strategies.add(new Defensive());
+        strategies.add(new Random());
+        strategies.add(new Benevolent());
         strategies.add(new Aggressive());
     }
 
@@ -89,8 +89,8 @@ public class GameDriver extends Observable implements Serializable
 
         this.numberOfPlayers = players;
         this.map = m;
-        strategies.add(new Normal());
-        strategies.add(new Defensive());
+        strategies.add(new Random());
+        strategies.add(new Benevolent());
         strategies.add(new Aggressive());
     }
 
