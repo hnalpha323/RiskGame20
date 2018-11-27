@@ -3,9 +3,10 @@
  */
 package view;
 
+import controller.GameController;
+import controller.RWMapFileController;
 import java.awt.SystemColor;
 import java.io.File;
-import controller.RWMapFileController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;

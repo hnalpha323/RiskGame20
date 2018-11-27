@@ -7,45 +7,72 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
-
+import controller.GameController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Players;
 
-/**
- * @author Waleed
- *
- */
-public class PhaseView implements ViewInterface,Observer{
 
-	HashMap<String,TextArea> playersViews= new HashMap<String,TextArea>();
+/**
+ * /**
+ * Phase view contains not only the current Phase of the game but also has
+ * <ul>
+ * <li>DominationView</li>
+ * <li>HumanPlayerView</li>
+ * <li>PlayerStatisticsView</li>
+ * <li>CardView</li>
+ * </ul>
+ * @author Waleed
+ */
+
+public class PhaseView implements ViewInterface,Observer
+{
+	Button saveStateOfGame = null;
 	HashMap<String,PlayerInfoView> playersStatistics= new HashMap<String,PlayerInfoView>();
 	DominationView dominationView = null;
+	ManualPlayerView humanPlayerView = null;
+	CardView cardView = null;
 	Label phase;
+	GameController gameController = null;
+
 	int numberOfPlayers;
+String previousPlayer = "";
 	
+	/** button to take next turn input from user */
+	Button nextTurn= null;
+	
+	/** to store reference to parent window */
+	
+	Stage windowStage = null; 	
+	Stage dialog = null;
 	
 	/**
 	 * Constructor that initializes the {@link DominationView} 
 	 */
-	public PhaseView(DominationView new_dominationView) {
+	public PhaseView(DominationView new_dominationView,GameController new_gameController,CardView new_cardView,ManualPlayerView new_humanPlayerView) {
 		this.dominationView = new_dominationView;
+		this.gameController = new_gameController;
+		this.cardView = new_cardView;
+		this.humanPlayerView = new_humanPlayerView;	
 	}
 	
 	/** 
 	 * @return {@link Scene} which contains UI elements 
 	 */
-	@Override
-	public Scene getView() {		
+	
+	public Scene getView(boolean isResume) 
+	{		
+		cardView.inti();
 		BorderPane borderPane = new BorderPane();
 		phase = new Label();
 		phase.setTextFill(Color.GREEN);
