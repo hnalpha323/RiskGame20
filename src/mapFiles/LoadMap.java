@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import model.MapDatabase;
+import model.ValidMap;
 
 public class LoadMap {
     
@@ -77,7 +78,7 @@ public class LoadMap {
 			}
 		}
 		
-		return MapDatabase.isValidAdjacency() && MapDatabase.isAnyDiconnectivity();
+		return ValidMap.isValidAdjacency() && ValidMap.isAnyDiconnectivity();
 	}
 	
 }

@@ -118,7 +118,7 @@ public class Human extends Observable implements StrategyInterface,Serializable 
             sharedTmp += "\n Which territory do you want to attack to?";
             sendNotification(sharedTmp);
             territoryName = sharedTmp;
-            to = player.getGameDriver().getTerritories(territoryName);
+            to = player.getGameDriver().getTerritory(territoryName);
             result = new AttackPlan(from, to);
         }
         else

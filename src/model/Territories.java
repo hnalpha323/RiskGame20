@@ -2,7 +2,6 @@ package model;
 
 import model.Interfaces.PlayerInterface;
 import model.Interfaces.TerritoryInterface;
-import model.contract.IContinent;
 import model.Interfaces.ContinentInterface;
 import utility.Results;
 import utility.MessageEnum;
