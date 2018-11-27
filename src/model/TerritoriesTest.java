@@ -103,4 +103,22 @@ public class TerritoriesTest {
 		
 		assertEquals(foundArmies, expectedArmies);
 	}
+	
+	/**
+	 * Test remaining number of armies 
+	 * after armies killed in an attack
+	 */
+	@Test
+	public void testRemainingArmies() {
+		Territories t = new Territories(continentName, territorryName, coordinate, adjacentTerritories);
+		t.setCurrentPlayer("Sensei");
+		t.setNumberOfArmies(15);
+		
+		t.killArmies(10);
+		// there should be 5 armies left
+		int foundArmies = t.getNumberOfArmies();
+		int expectedArmies = 5;
+		
+		assertEquals(foundArmies, expectedArmies);
+	}
 }
