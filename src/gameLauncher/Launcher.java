@@ -26,8 +26,7 @@ import model.strategy.Human;
 import model.strategy.Random;		
 import view.CardView;
 import view.ManualPlayerView;		
-import view.Message;
-import view.GUIManager;	
+import view.Message;	
 
 
 
