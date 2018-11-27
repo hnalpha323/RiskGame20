@@ -104,7 +104,7 @@ public class Launcher
 		 GUIManager.setView(phaseView,"phaseview");
 		 
 		 //Create Players objects and add observers only when users gives number of player inputs
-		 GUIManager.addCalls(new Calls(){
+		 GUIManager.addCallBack(new Calls(){
 			    public void called(int numberOfPlayers, String strategies){
 			    	gameDriver.addObserver(dominationView);
 			    	gameDriver.addObserver(phaseView);
@@ -121,7 +121,7 @@ public class Launcher
 		 
 		 
 		 //this Calls is called whenever user want to resume the previous game
-		 GUIManager.addCalls(new Calls(){
+		 GUIManager.addCallBack(new Calls(){
 			    public void called(int numberOfPlayers, String strategies){
 			    	ArrayList<Players> playerList = gameDriver.getPlayers();			    	
 			        for(Players p : playerList){
@@ -129,9 +129,9 @@ public class Launcher
 			        	p.addObserver(cardView);
 			    		p.addObserver(phaseView);	
 			        }
-			        GameDriver.addObserver(dominationView);
-					GameDriver.addObserver(phaseView);
-					GameDriver.addObserver(cardView);
+			        gameDriver.addObserver(dominationView);
+					gameDriver.addObserver(phaseView);
+					gameDriver.addObserver(cardView);
 					ArrayList<StrategyInterface> playerStrategies = gameDriver.getStrategies();
 					for(int i = 0;i<playerStrategies.size();i++){
 						if(playerStrategies.get(i).getName().equals("Human")){
@@ -144,7 +144,7 @@ public class Launcher
 		 });
 		
 		//this Calls is called whenever user want to resume the previous game
-		 GUIManager.addCalls(new Calls(){
+		 GUIManager.addCallBack(new Calls(){
 			    public <T> void called(T object){
 			    	gameDriver = (GameDriver) object;
 			    	gameController.setGameDriver(gameDriver);
@@ -180,13 +180,13 @@ public class Launcher
                 	gameDriver.addStrategies(agressive);
                 	break;
                 case "b":
-                	gameDriver.addStrategies(new Defensive());
+                	gameDriver.addStrategies(new Benevolent());
                 	break;
                 case "r":
-                	gameDriver.addStrategies(new Human());
+                	gameDriver.addStrategies(new Random());
                 	break;
                 case "c":
-                	gameDriver.addStrategies(new Normal());
+                	gameDriver.addStrategies(new Cheater());
                 	break;
             }
         }
