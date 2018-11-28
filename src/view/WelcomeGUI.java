@@ -72,7 +72,7 @@ public class WelcomeGUI implements ViewInterface{
 			chooseMapButton.setText("Load Map");
 	        chooseMapButton.setMinWidth(140);
    	        chooseMapButton.setMinHeight(50);
-   	        chooseMapButton.setStyle(" -fx-background-color: \r\n" + 
+   	       chooseMapButton.setStyle(" -fx-background-color: \r\n" + 
    	        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
    	        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
    	        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
@@ -91,7 +91,7 @@ public class WelcomeGUI implements ViewInterface{
 	        saveMapButton.setMinWidth(140);
 	        saveMapButton.setMinHeight(50);
 	        saveMapButton.setText("Save Map");
-	        saveMapButton.setStyle(" -fx-background-color: \r\n" + 
+	       saveMapButton.setStyle(" -fx-background-color: \r\n" + 
 	        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
 	        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
 	        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
@@ -102,7 +102,7 @@ public class WelcomeGUI implements ViewInterface{
 	        		"    -fx-text-fill: #654b00;\r\n" + 
 	        		"    -fx-font-weight: bold;\r\n" + 
 	        		"    -fx-font-size: 14px;\r\n" + 
-	        		"    -fx-padding: 10 20 10 20;");
+	        		"    -fx-padding: 10 20 10 20;"); 
 	        
 	        
 	        Button createMapButton = new Button();
@@ -110,7 +110,7 @@ public class WelcomeGUI implements ViewInterface{
 	        createMapButton.setMinHeight(50);
 	        createMapButton.getGraphic();
 	        createMapButton.setText("Create Map");
-	        createMapButton.setStyle(" -fx-background-color: \r\n" + 
+	       createMapButton.setStyle(" -fx-background-color: \r\n" + 
 	        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
 	        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
 	        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
@@ -121,7 +121,7 @@ public class WelcomeGUI implements ViewInterface{
 	        		"    -fx-text-fill: #654b00;\r\n" + 
 	        		"    -fx-font-weight: bold;\r\n" + 
 	        		"    -fx-font-size: 14px;\r\n" + 
-	        		"    -fx-padding: 10 20 10 20;");
+	        		"    -fx-padding: 10 20 10 20;");   	
 	        
 	        
 	        
@@ -129,7 +129,25 @@ public class WelcomeGUI implements ViewInterface{
 	        gobackButton.setMinWidth(140);
 	        gobackButton.setMinHeight(50);
 	        gobackButton.setText("Previous Map");
-	        gobackButton.setStyle("  -fx-background-color: \r\n" + 
+	       gobackButton.setStyle("  -fx-background-color: \r\n" + 
+	        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
+	        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
+	        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
+	        		"        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\r\n" + 
+	        		"        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\r\n" + 
+	        		"    -fx-background-radius: 30;\r\n" + 
+	        		"    -fx-background-insets: 0,1,2,3,0;\r\n" + 
+	        		"    -fx-text-fill: #654b00;\r\n" + 
+	        		"    -fx-font-weight: bold;\r\n" + 
+	        		"    -fx-font-size: 14px;\r\n" + 
+	        		"    -fx-padding: 10 20 10 20;"); 
+	     
+	        gobackButton.setVisible(false);
+	        
+	        startSavedGame = new Button();
+	        startSavedGame.setMinWidth(200);
+	        startSavedGame.setText("Play Saved Game");
+	        startSavedGame.setStyle("  -fx-background-color: \r\n" + 
 	        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
 	        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
 	        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
@@ -141,17 +159,24 @@ public class WelcomeGUI implements ViewInterface{
 	        		"    -fx-font-weight: bold;\r\n" + 
 	        		"    -fx-font-size: 14px;\r\n" + 
 	        		"    -fx-padding: 10 20 10 20;");
-	     
-	        gobackButton.setVisible(false);
-	        
-	        startSavedGame = new Button();
-	        startSavedGame.setMinWidth(200);
-	        startSavedGame.setText("Play Saved Game");
 	        
 	        // to start a tournament
 	        tournamentButton = new Button();
 	        tournamentButton.setMinWidth(200);
 	        tournamentButton.setText("Begin Tournament");
+	        tournamentButton.setStyle("  -fx-background-color: \r\n" + 
+	        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
+	        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
+	        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
+	        		"        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\r\n" + 
+	        		"        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\r\n" + 
+	        		"    -fx-background-radius: 30;\r\n" + 
+	        		"    -fx-background-insets: 0,1,2,3,0;\r\n" + 
+	        		"    -fx-text-fill: #654b00;\r\n" + 
+	        		"    -fx-font-weight: bold;\r\n" + 
+	        		"    -fx-font-size: 14px;\r\n" + 
+	        		"    -fx-padding: 10 20 10 20;");
+	        
 	        
 	        Alert alert = new Alert(AlertType.ERROR);
 	        alert.setHeaderText("Invalid Map file detected");
@@ -225,9 +250,9 @@ public class WelcomeGUI implements ViewInterface{
 	        
 	        GridPane gridPane = new GridPane();
 	        gridPane.add(chooseMapButton,0,0);
-	        gridPane.add(tournamentButton,0,1);
+	        gridPane.add(tournamentButton,0,3);
 	        gridPane.add(saveMapButton,0,1);
-	        gridPane.add(startSavedGame,0,3);
+	        gridPane.add(startSavedGame,0,4);
 	        gridPane.add(createMapButton,0,2);
 	        gridPane.add(gobackButton,0,3);
 	        gridPane.setAlignment(Pos.CENTER);
