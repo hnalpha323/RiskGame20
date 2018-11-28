@@ -23,9 +23,7 @@ public class Calls
 	*/
 	
 	@Deprecated
-	public void called(int value)
-	{ 	
-	}
+	
 	
 	/**
 	* This callback passes two arguments to callback listener as stated bellow

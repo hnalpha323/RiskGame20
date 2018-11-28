@@ -9,14 +9,14 @@ import model.SaveMethod;
 import exceptions.*;
 
 /**
- * @author Team
+ * @author Muhammad_Hamza_Noor
  * Controls the whole Game Play through GameDriver
  * @see GameDriver 
  */
 public class GameController {	
 
 	/**
-	 * GameManger takes care about phases of game 
+	 * GameDriver takes care about phases of game 
 	 */
 	GameDriver GameDriver = null;
 	
