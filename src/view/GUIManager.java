@@ -65,7 +65,7 @@ public class GUIManager extends Application {
 			
 		window.setScene(welcomeView.getView(false));
         
-		welcomeGUI.getResumeButton().setOnAction(new EventHandler<ActionEvent>() {            
+		welcomeView.getResumeButton().setOnAction(new EventHandler<ActionEvent>() {            
         	@Override
             public void handle(ActionEvent event){        		
         		GameDriver gm = gameController.resumeGame();
