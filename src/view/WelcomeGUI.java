@@ -202,7 +202,7 @@ public class WelcomeGUI implements ViewInterface{
 	            @Override
 	            public void handle(ActionEvent event){
 	            	maprwController.clearData();
-	            	loadAnotherView(MapEditorGUI.getView());
+	            	loadAnotherView(MapEditorGUI.getView(false));
 	            }
 	        });
 	        
