@@ -70,16 +70,54 @@ public class TournamentView implements ViewInterface{
 		Button addMapButton = new Button("Add Map");
 		vboxMapContainer.setPadding(new Insets(8));
 		vboxMapContainer.getChildren().add(addMapButton);
+		addMapButton.setStyle(" -fx-background-color: \r\n" + 
+        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
+        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
+        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
+        		"        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\r\n" + 
+        		"        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\r\n" + 
+        		"    -fx-background-radius: 30;\r\n" + 
+        		"    -fx-background-insets: 0,1,2,3,0;\r\n" + 
+        		"    -fx-text-fill: #654b00;\r\n" + 
+        		"    -fx-font-weight: bold;\r\n" + 
+        		"    -fx-font-size: 14px;\r\n" + 
+        		"    -fx-padding: 10 20 10 20;");   	
+        
 		
 		//Add player UI
 		VBox vboxPlayerContainer = new VBox();
 		Button addPlayerButton = new Button("Add Player");
 		vboxPlayerContainer.setPadding(new Insets(8));
 		vboxPlayerContainer.getChildren().add(addPlayerButton);
+		addPlayerButton.setStyle(" -fx-background-color: \r\n" + 
+        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
+        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
+        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
+        		"        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\r\n" + 
+        		"        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\r\n" + 
+        		"    -fx-background-radius: 30;\r\n" + 
+        		"    -fx-background-insets: 0,1,2,3,0;\r\n" + 
+        		"    -fx-text-fill: #654b00;\r\n" + 
+        		"    -fx-font-weight: bold;\r\n" + 
+        		"    -fx-font-size: 14px;\r\n" + 
+        		"    -fx-padding: 10 20 10 20;");   	
 		
 		//Container to hold start button
 		VBox vboxStartContainer = new VBox();
 		Button startTournamentButton = new Button("Start");
+		startTournamentButton.setStyle(" -fx-background-color: \r\n" + 
+        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
+        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
+        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
+        		"        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\r\n" + 
+        		"        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\r\n" + 
+        		"    -fx-background-radius: 30;\r\n" + 
+        		"    -fx-background-insets: 0,1,2,3,0;\r\n" + 
+        		"    -fx-text-fill: #654b00;\r\n" + 
+        		"    -fx-font-weight: bold;\r\n" + 
+        		"    -fx-font-size: 14px;\r\n" + 
+        		"    -fx-padding: 10 20 10 20;");   
+		
 		//to take number of turns input
 		TextField turnsInput = new TextField();
 		turnsInput.setPromptText("Number of turns");
