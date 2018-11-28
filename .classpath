@@ -8,7 +8,14 @@
 		</accessrules>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/hnalp/OneDrive/Documents/GitHub/RiskGame20/src/asciitable-0.3.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/hnalp/OneDrive/Documents/GitHub/RiskGame20/src/skb-interfaces-0.0.1.jar"/>
+	<classpathentry kind="lib" path="src/ascii/antlr-runtime-3.5.2.jar"/>
+	<classpathentry kind="lib" path="src/ascii/antlr4-4.5.1.jar"/>
+	<classpathentry kind="lib" path="src/ascii/ascii-utf-themes-0.0.1.jar"/>
+	<classpathentry kind="lib" path="src/ascii/asciitable-0.3.2.jar"/>
+	<classpathentry kind="lib" path="src/ascii/char-translation-0.0.2.jar"/>
+	<classpathentry kind="lib" path="src/ascii/commons-lang3-3.4.jar"/>
+	<classpathentry kind="lib" path="src/ascii/skb-interfaces-0.0.1.jar"/>
+	<classpathentry kind="lib" path="src/ascii/slf4j-api-1.7.12.jar"/>
+	<classpathentry kind="lib" path="src/ascii/ST4-4.0.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
