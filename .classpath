@@ -8,7 +8,7 @@
 		</accessrules>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/hnalp/OneDrive/Documents/GitHub/RiskGame20/src/asciitable-0.3.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/hnalp/OneDrive/Documents/GitHub/RiskGame20/src/skb-interfaces-0.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/getwa/Documents/GitHub/RiskGame20/src/asciitable-0.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/getwa/Documents/GitHub/RiskGame20/src/skb-interfaces-0.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

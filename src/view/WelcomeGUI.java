@@ -5,7 +5,6 @@ package view;
 
 import controller.GameController;
 import controller.RWMapFileController;
-import java.awt.SystemColor;
 import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,16 +12,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.effect.ColorInput;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 
 
@@ -72,7 +65,7 @@ public class WelcomeGUI implements ViewInterface{
 			chooseMapButton.setText("Load Map");
 	        chooseMapButton.setMinWidth(140);
    	        chooseMapButton.setMinHeight(50);
-   	       chooseMapButton.setStyle(" -fx-background-color: \r\n" + 
+   	        chooseMapButton.setStyle(" -fx-background-color: \r\n" + 
    	        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
    	        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
    	        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
@@ -110,7 +103,7 @@ public class WelcomeGUI implements ViewInterface{
 	        createMapButton.setMinHeight(50);
 	        createMapButton.getGraphic();
 	        createMapButton.setText("Create Map");
-	       createMapButton.setStyle(" -fx-background-color: \r\n" + 
+	        createMapButton.setStyle(" -fx-background-color: \r\n" + 
 	        		"        linear-gradient(#ffd65b, #e68400),\r\n" + 
 	        		"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
 	        		"        linear-gradient(#ffea6a, #efaa22),\r\n" + 
