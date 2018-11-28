@@ -4,7 +4,6 @@ package view;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import common.NotNull;
 import nullrestrictor.NullHandler;
 import controller.ReadController;
 import controller.WriteController;
@@ -48,13 +47,16 @@ public class MapEditorGUI implements ViewInterface
 
 	private ReadController readController = null;
 	private WriteController writeController = null;
+	
+	boolean isDeletedContinent= false,isDeletedContry=false;
+	ArrayList<ComboBox<String>> playerList = new ArrayList<>();
+	TextInputDialog dialog = new TextInputDialog();
+
 	private Button startGameButton = new Button();
 	private Button closeButton = new Button();
-	ArrayList<ComboBox<String>> playerList = new ArrayList<>();
-	private TextField numberOfPlayerInput = new TextField();
+	//private TextField numberOfPlayerInput = new TextField();
 
-	TextInputDialog dialog = new TextInputDialog();
-	boolean isDeletedContinent= false,isDeletedContry=false;
+	
 
 	CheckBox isGameAutomatecheckBox;
 
@@ -79,11 +81,22 @@ public class MapEditorGUI implements ViewInterface
 		ObservableList<String> continents = FXCollections.observableArrayList();		 
 		ObservableList<String> contries = FXCollections.observableArrayList();
 
-		continents.addAll(model.MapDatabase.continentValues.keySet());
+		continents.addAll(readController.getAllContinentNames());
+
+		ObservableList<String> options = 
+			    FXCollections.observableArrayList(
+			        "Human",
+			        "Aggressive",
+			        "Benevolent",
+			        "Random",
+			        "Cheater"
+			    );
 		GridPane gridPane = new GridPane();
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
 
+		VBox playerStratagiesContiner = new VBox();
+		
 		ChoiceBox<String> continentChoiceBox = new ChoiceBox<String>();
 		ChoiceBox<String> countriesChoiceBox = new ChoiceBox<String>();
 		
@@ -135,18 +148,39 @@ public class MapEditorGUI implements ViewInterface
 				"    -fx-padding: 12 30 12 30;\r\n" + 
 				"    -fx-text-fill: 654b00;\r\n" + 
 				"    -fx-font-size: 12px;\r\n");
+		
+		Button addMorePlayers = new Button("Add Players");
+		addMorePlayers.setStyle(" -fx-background-color: \r\n" + 
+				"        #000000,\r\n" + 
+				"        linear-gradient(#ffd65b, #e68400),\r\n" + 
+				"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
+				"        linear-gradient(#ffea6a, #efaa22);\r\n" + 
+				"    -fx-background-insets: 0,1,2,3;\r\n" + 
+				"    -fx-background-radius: 3,2,2,2;\r\n" + 
+				"    -fx-padding: 12 30 12 30;\r\n" + 
+				"    -fx-text-fill: 654b00;\r\n" + 
+				"    -fx-font-size: 12px;\r\n");
+
 	
 		Button saveChanges = new Button("Save Changes");
+		saveChanges.setStyle(" -fx-background-color: \r\n" + 
+				"        #000000,\r\n" + 
+				"        linear-gradient(#ffd65b, #e68400),\r\n" + 
+				"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
+				"        linear-gradient(#ffea6a, #efaa22);\r\n" + 
+				"    -fx-background-insets: 0,1,2,3;\r\n" + 
+				"    -fx-background-radius: 3,2,2,2;\r\n" + 
+				"    -fx-padding: 12 30 12 30;\r\n" + 
+				"    -fx-text-fill: 654b00;\r\n" + 
+				"    -fx-font-size: 12px;\r\n");
 	
 		TextField editadjacentContries = new TextField ();
 		editadjacentContries.setPrefWidth(800);
 		editadjacentContries.setPromptText("Adjacent Countries");
 		TextField editContinentValue = new TextField ();
 		editContinentValue.setPromptText("Continent Value");
-		numberOfPlayerInput = new TextField ();
-		numberOfPlayerInput.setPromptText("Number Of Players");
-
-		addContent.setOnAction(new EventHandler<ActionEvent>() {			
+	
+			addContent.setOnAction(new EventHandler<ActionEvent>() {			
 			@Override
 			public void handle(ActionEvent event) {
 				String tmp = getUserInput("Enter continent name");
@@ -179,7 +213,22 @@ public class MapEditorGUI implements ViewInterface
 			}
 		});
 
+		addMorePlayers.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				ComboBox<String> comboBox = new ComboBox<String>(options);
+				playerList.add(comboBox);
+				HBox newView = new HBox();
+				Label strategyLabel =  new Label("Select Player "+(playerList.size())+" Strategy");
+				strategyLabel.setPadding(new Insets(0,5,0,0));
+				newView.getChildren().add(strategyLabel);
+				newView.getChildren().add(comboBox);
+				playerStratagiesContiner.getChildren().add(newView);
+				//Set gap between children
+				VBox.setMargin(newView, new Insets(8));
 
+			}
+		});	
 
 		saveChanges.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -255,12 +304,14 @@ public class MapEditorGUI implements ViewInterface
 		gridPane.add(addContent, 0,2);
 		gridPane.add(addCountry, 2,2);
 		gridPane.add(deleteContent, 0,3);
-		
 		gridPane.add(deleteCountry, 2,3);
 		//Adding to row 4 to UI grid
-		gridPane.add(new Label("Number of Players"), 1, 4);
-		gridPane.add(numberOfPlayerInput, 2,4);
-
+		
+		addMorePlayers.setMinWidth(200);
+		gridPane.add(addMorePlayers, 2, 3);
+		
+		gridPane.add(playerStratagiesContiner, 1, 4, 1, 4);
+		
 		ToolBar header = new ToolBar(closeButton);
 		header.setStyle( 
 				"-fx-border-style: solid inside;" + 
@@ -279,7 +330,9 @@ public class MapEditorGUI implements ViewInterface
 		startGameButton.setText("Start Game");
 		footer.setAlignment(Pos.CENTER);
 		footer.setPadding(new Insets(15, 12, 15, 12));
-		footer.getChildren().addAll(startGameButton,saveChanges);
+		isGameAutomatecheckBox = new  CheckBox("Automate");
+		isGameAutomatecheckBox.setText("Automate the game");
+		footer.getChildren().addAll(startGameButton,saveChanges,isGameAutomatecheckBox);
 
 		borderPane.setBottom(footer);
 		borderPane.setCenter(gridPane);
@@ -305,12 +358,11 @@ public class MapEditorGUI implements ViewInterface
 	}
 
 
-
 	/**
 	 * @return the numberOfPlayers given by user
 	 */
 	public int getNumberOfPlayers() {
-		return Integer.parseInt(numberOfPlayerInput.getText());
+		return playerList.size();
 	}
 	
 	/**
@@ -340,4 +392,12 @@ public class MapEditorGUI implements ViewInterface
 	}
 
 
-}
+
+
+	public CheckBox getIsGameAutomatecheckBox() {
+		return isGameAutomatecheckBox;
+	}
+	
+	
+	}
+
