@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model;
 
 import java.io.FileInputStream;
@@ -12,12 +9,10 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 /**
- * <p>
  * This class converts the state of the game into a file
- * and also deals with converting the saved game state file into model state such thet user can
+ * and also deals with converting the saved game state file into model state such that user can
  * resume the game where he stopped previously.
- * </p>
- * <i>To do to this this class uses JAVA Serialization</i>
+ * To do to this this class uses JAVA Serialization
  * @author Waleed
  */
 public class SaveMethod {
