@@ -105,3 +105,4 @@ public class AttackTest {
         Assert.assertTrue(p1 != p2);
 
     }
+}

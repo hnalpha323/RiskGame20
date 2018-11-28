@@ -10,7 +10,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import controller.LoggerController;
 
 	/**
 	 * @author Muhammad_Hamza_Noor
