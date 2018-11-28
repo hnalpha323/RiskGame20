@@ -247,11 +247,11 @@ public class WelcomeGUI implements ViewInterface{
 	        gridPane.add(saveMapButton,0,1);
 	        gridPane.add(startSavedGame,0,4);
 	        gridPane.add(createMapButton,0,2);
-	        gridPane.add(gobackButton,0,3);
+	        gridPane.add(gobackButton,0,5);
 	        gridPane.setAlignment(Pos.CENTER);
-	        gridPane.setHgap(10);
+	        gridPane.setHgap(20);
 	        gridPane.setVgap(10);
-	        welcomeScreen = new Scene(gridPane, 300, 250);
+	        welcomeScreen = new Scene(gridPane, 400, 350);
 		    return welcomeScreen;
 	}
 	

@@ -328,6 +328,17 @@ public class MapEditorGUI implements ViewInterface
 				"-fx-border-color: red;");
 		gridPane.setStyle("-fx-padding:10");
 		startGameButton.setText("Start Game");
+		startGameButton.setStyle(" -fx-background-color: \r\n" + 
+				"        #000000,\r\n" + 
+				"        linear-gradient(#ffd65b, #e68400),\r\n" + 
+				"        linear-gradient(#ffef84, #f2ba44),\r\n" + 
+				"        linear-gradient(#ffea6a, #efaa22);\r\n" + 
+				"    -fx-background-insets: 0,1,2,3;\r\n" + 
+				"    -fx-background-radius: 3,2,2,2;\r\n" + 
+				"    -fx-padding: 12 30 12 30;\r\n" + 
+				"    -fx-text-fill: 654b00;\r\n" + 
+				"    -fx-font-size: 12px;\r\n");
+		
 		footer.setAlignment(Pos.CENTER);
 		footer.setPadding(new Insets(15, 12, 15, 12));
 		isGameAutomatecheckBox = new  CheckBox("Automate");
