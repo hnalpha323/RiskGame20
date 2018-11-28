@@ -163,7 +163,7 @@ public class WelcomeGUI implements ViewInterface{
 	                if(file != null){
 	                  boolean isValid = maprwController.loadMap(file); 
 	                  if(isValid)
-	                	  loadAnotherView(MapEditorGUI.getView());
+	                	  loadAnotherView(MapEditorGUI.getView(false));
 	                  else
 	                	 alert.showAndWait();	                  
 	                }
@@ -244,16 +244,16 @@ public class WelcomeGUI implements ViewInterface{
 /**
  * @return to the gobackButton
  */
-public Button getResumeButton() {
-	return startSavedGame;
-}
-
-
-/**
- * @return the tournamentButton
- */
-public Button getTournamentButton() {
-	return tournamentButton;
-}
-
-}
+	public Button getResumeButton() {
+		return startSavedGame;
+	}
+	
+	
+	/**
+	 * @return the tournamentButton
+	 */
+	public Button getTournamentButton() {
+		return tournamentButton;
+	}
+	
+	}
