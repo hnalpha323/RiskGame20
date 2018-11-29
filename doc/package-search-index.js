@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"controller"},{"l":"gameLauncher"},{"l":"model"},{"l":"model.Interfaces"},{"l":"utility"},{"l":"view"}]
+packageSearchIndex = [{"l":"controller"},{"l":"exceptions"},{"l":"gameLauncher"},{"l":"mapFiles"},{"l":"model"},{"l":"model.Interfaces"},{"l":"model.strategy"},{"l":"nullrestrictor"},{"l":"suite"},{"l":"utility"},{"l":"view"}]

@@ -1,6 +1,11 @@
 controller
+exceptions
 gameLauncher
+mapFiles
 model
 model.Interfaces
+model.strategy
+nullrestrictor
+suite
 utility
 view
