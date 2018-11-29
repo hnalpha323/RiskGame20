@@ -10,15 +10,18 @@ import model.Territories;
  * @author WaleedAhmad
  * @Version 1.0.0
  */
-public final class LoadMapUtility {
+public final class LoadMapUtility 
+{
 
 	
 	/**
 	 * @param Adds Continent Data From Map file
 	 */
-	public static boolean addContinet(String line){
+	public static boolean addContinet(String line)
+	{
 	   String[] tmpArray = line.split("=");
-	   if(tmpArray.length != 2){
+	   if(tmpArray.length != 2)
+	   {
 		   return false;
 	   }
 	   MapDatabase.continents.put(tmpArray[0].toLowerCase(), new HashMap<String,Territories>());
@@ -33,17 +36,21 @@ public final class LoadMapUtility {
 	 * @param Data From Map file
 	 * @return  checks if territories belong to continent and return false if not
 	 */
-	public static boolean addTerritories(String line){			
+	public static boolean addTerritories(String line)
+	{			
 		String[] tmpArray = line.split(",");		
-		if(!MapDatabase.continentValues.containsKey(tmpArray[3].toLowerCase())){
+		if(!MapDatabase.continentValues.containsKey(tmpArray[3].toLowerCase()))
+		{
 			return false;
 		}
 		ArrayList<String> adjacentTerritories = new ArrayList<String>();
-		for(int i=4;i<tmpArray.length;i++){
+		for(int i=4;i<tmpArray.length;i++)
+		{
 			adjacentTerritories.add(tmpArray[i].toLowerCase().trim());
 		}
 		
-		if(adjacentTerritories.size() == 0){
+		if(adjacentTerritories.size() == 0)
+		{
 			return false;
 		}
 		

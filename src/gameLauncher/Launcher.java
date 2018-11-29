@@ -37,7 +37,7 @@ import view.ManualPlayerView;
  * This class initializes controllers,View and connects them.
  * 
  * @author Meet_Patel
- * @version 1.0.0
+ * @version 3.0.0
  */
 
 public class Launcher
@@ -105,11 +105,13 @@ public class Launcher
 		 
 		 //Create Players objects and add observers only when users gives number of player inputs
 		 GUIManager.addCallBack(new Calls(){
-			    public void called(int numberOfPlayers, String strategies){
+			    public void called(int numberOfPlayers, String strategies)
+			    {
 			    	gameDriver.addObserver(dominationView);
 			    	gameDriver.addObserver(phaseView);
 					setStrategies(strategies);
-			    	for(int i=1;i<=numberOfPlayers;i++){
+			    	for(int i=1;i<=numberOfPlayers;i++)
+			    	{
 			    		Players p = new Players("Player " + Integer.toString(i));
 			    		p.addObserver(dominationView);
 			    		p.addObserver(phaseView);
@@ -119,12 +121,14 @@ public class Launcher
 			    }
 		 });
 		 
-		 
 		 //this Calls is called whenever user want to resume the previous game
-		 GUIManager.addCallBack(new Calls(){
-			    public void called(int numberOfPlayers, String strategies){
+		 GUIManager.addCallBack(new Calls()
+		 {
+			    public void called(int numberOfPlayers, String strategies)
+			    {
 			    	ArrayList<Players> playerList = gameDriver.getPlayers();			    	
-			        for(Players p : playerList){
+			        for(Players p : playerList)
+			        {
 			        	p.addObserver(dominationView);
 			        	p.addObserver(cardView);
 			    		p.addObserver(phaseView);	
@@ -134,7 +138,8 @@ public class Launcher
 					gameDriver.addObserver(cardView);
 					ArrayList<StrategyInterface> playerStrategies = gameDriver.getStrategies();
 					for(int i = 0;i<playerStrategies.size();i++){
-						if(playerStrategies.get(i).getName().equals("Human")){
+						if(playerStrategies.get(i).getName().equals("Human"))
+						{
 							Human h = (Human)playerStrategies.get(i);
 							h.addObserver(manualPlayerView);
 							playerStrategies.set(i, h);
@@ -144,8 +149,10 @@ public class Launcher
 		 });
 		
 		//this Calls is called whenever user want to resume the previous game
-		 GUIManager.addCallBack(new Calls(){
-			    public <T> void called(T object){
+		 GUIManager.addCallBack(new Calls()
+		 {
+			    public <T> void called(T object)
+			    {
 			    	gameDriver = (GameDriver) object;
 			    	gameController.setGameDriver(gameDriver);
 			    }
@@ -153,8 +160,6 @@ public class Launcher
 		 
 		 javafx.application.Application.launch(GUIManager.class);
 	}
-	
-	
 	
 	 /**
      * set strategies according to strategies string
@@ -190,11 +195,6 @@ public class Launcher
                 	break;
             }
         }
-
     }
-
-
-
-	
-	}
+}
 
