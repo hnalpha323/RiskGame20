@@ -14,37 +14,44 @@ import model.Territories;
  * @author WaleedAhmad
  * @version 1.0.0
  */
-public class MapWriter {
+public class MapWriter 
+{
 
 	File outputPath;
 	
 	/**
 	 * @param File object that contains path of the map file
 	 */
-	public MapWriter(File file){
+	public MapWriter(File file)
+	{
 		outputPath  = file;
 	}	
 	
 	/**
 	 *  Method that creates the map file from the input according the conquest map rules
 	 */
-	public void write(){		
-		try {
+	public void write()
+	{		
+		try 
+		{
 			FileWriter fw = new FileWriter(outputPath);
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write("[Continents]");
 			bw.newLine();
-			for(String key : MapDatabase.continentValues.keySet()){
+			for(String key : MapDatabase.continentValues.keySet())
+			{
 				bw.write(key+"="+MapDatabase.continentValues.get(key));
 				bw.newLine();
 			}
 			bw.write("[Territories]");
 			bw.newLine();
-			for(String key : MapDatabase.continents.keySet()){
+			for(String key : MapDatabase.continents.keySet())
+			{
                 HashMap<String,Territories> territories = MapDatabase.continents.get(key);
                 for(Territories t:territories.values()){
                 	String tmpStorage = "";
-                	for(String s:t.getAdjacentTerritories()){
+                	for(String s:t.getAdjacentTerritories())
+                	{
                 		tmpStorage +=","+s; 
                 	}
                 	bw.write(t.getTerritoryName()+","+t.getCoordinates()+","+t.getContinentName()+tmpStorage);
@@ -53,7 +60,9 @@ public class MapWriter {
 			}
 			bw.close();
 			fw.close();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
 		}
 	}
