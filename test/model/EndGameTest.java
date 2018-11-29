@@ -13,7 +13,7 @@ public class EndGameTest {
 	 * @throws PlayerException
 	 */
 	@Test
-	public void testNoWinner() throws PlayerException{
+	public void test() throws PlayerException{
 
 		Map m = new Map();
         m.clearData();
@@ -25,31 +25,6 @@ public class EndGameTest {
         PlayerInterface p = gm.getWinner();
         assertTrue(p==null);
 		
-	}
-	
-	/**
-	 * allocate all continents to player so that 
-	 * he becomes winner which means game is end
-	 */
-	@Test
-	public void testWinner() throws PlayerException{
-		Map m = new Map();
-        m.clearData();
-        m.fakeData();
-
-        GameDriver gm = new GameDriver(m, 3,"r,r,r", 500);
-        gm.start(false);
-        
-        PlayerInterface p = gm.nextPlayer();
-
-        for(ContinentInterface c : m.getContinents())
-            for(TerritoryInterface t: c.getTerritories())
-                p.ownTerritory(t);
-        
-        p.setDomination(100);
-        int dom = (int)p.getDomination();
-        assertEquals(100, dom);
-        
 	}
 
 }
