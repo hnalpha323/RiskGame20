@@ -8,23 +8,25 @@ import model.MapDatabase;
 
 /**
  * @author Team15
- * Does read operations on {@link MapDataBase}
+ * Does read operations on MapDataBase
  * For every read operation view should call this controller methods
  */
-public class ReadController{
+public class ReadController
+{
 	
 
 	/**
-	 * Model wrapper that do's different read operations on Map
+	 * Model wrapper that does different read operations on Map
 	 */
 	public DataReader dataReader;
 	
 	
 	/**
-	 * Constructor to initialize {{@link #dataReader} 
-	 * @param new_dataReader instance of {@link model.DataReader}
+	 * Constructor to initialize dataReader
+	 * @param new_dataReader instance of DataReader
 	 */
-	public ReadController(DataReader new_dataReader){
+	public ReadController(DataReader new_dataReader)
+	{
 	    dataReader = new_dataReader;	
 	}
 	
@@ -32,12 +34,16 @@ public class ReadController{
 	 * Return adjacent territories of specified country
 	 * @param continent should be the Continent Name
 	 * @param country should be the Country Name
-	 * @return {@link ArrayList} of adjacent countries names
+	 * @return ArrayList of adjacent countries names
 	 */
-	public ArrayList<String> getAdjacentTerritories(String continent,String country){		
-		if(dataReader.hasContinent(continent)){
+	public ArrayList<String> getAdjacentTerritories(String continent,String country)
+	{		
+		if(dataReader.hasContinent(continent))
+		{
 			return dataReader.getAdjacentTerritories(continent,country);			
-		}else{			
+		}
+		else
+		{			
 			return new ArrayList<String>();
 		}
 	}
@@ -48,10 +54,14 @@ public class ReadController{
 	 * @param continent should be the Continent Name
 	 * @return ArrayList of territories names in a continent
 	 */
-	public ArrayList<String> getTerritoriesNames(String continent) {
-		if(!dataReader.hasContinent(continent)){
+	public ArrayList<String> getTerritoriesNames(String continent) 
+	{
+		if(!dataReader.hasContinent(continent))
+		{
 			return new ArrayList<String>();
-		}else{
+		}
+		else
+		{
 			return dataReader.getTerritoriesNames(continent);
 		}
 	}
@@ -59,10 +69,11 @@ public class ReadController{
 
 	/**
 	 * Returns the continent value associated with passed continent name
-	 * @param continentName should be the Continent Name
+	 * @param Continent Name
 	 * @return the continent value if continent exist else 0
 	 */
-	public int getContinentValue(String continentName) {
+	public int getContinentValue(String continentName) 
+	{
 		if(dataReader.hasContinent(continentName))
 			return dataReader.getContinentValue(continentName);
 		else
@@ -72,7 +83,8 @@ public class ReadController{
 	/**
 	 * @return the set of continent names in the map 
 	 */
-	public Set<String> getAllContinentNames(){
+	public Set<String> getAllContinentNames()
+	{
 		return dataReader.getContinents();
 	}
 

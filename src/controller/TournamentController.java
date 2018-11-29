@@ -6,11 +6,11 @@ package controller;
 import model.ManageTournament;
 
 /**
- * <p> This class controls the Tournament 
- * through {@link #ManageTournament} </p>
+ * This class controls the Tournament through ManageTournament
  * @author Muhammad_Hamza_Noor
  */
-public class TournamentController {
+public class TournamentController 
+{
 
 	
 	/**
@@ -23,7 +23,8 @@ public class TournamentController {
 	 * @param new_ManageTournament is the {@link ManageTournament} such that
 	 * this controller manages the tournament through it
 	 */
-	public TournamentController(ManageTournament new_ManageTournament){
+	public TournamentController(ManageTournament new_ManageTournament)
+	{
 		ManageTournament = new_ManageTournament;
 	}
 	
@@ -33,7 +34,8 @@ public class TournamentController {
 	 * @param turns tells number of turns
 	 * @param noOfGames tells number of games to play in tournament
 	 */
-	public void start(int numberOfPlayers, String playerStrategies,String turns, String noOfGames){
+	public void start(int numberOfPlayers, String playerStrategies,String turns, String noOfGames)
+	{
 		ManageTournament.start(numberOfPlayers, playerStrategies,
 				Integer.parseInt(turns), Integer.parseInt(noOfGames));
 	}
@@ -41,7 +43,8 @@ public class TournamentController {
 	/**
 	 * Adds a map to the Tournament
 	 */
-	public void addAMap(){
+	public void addAMap()
+	{
 		ManageTournament.createMap();
 	}
 	

@@ -19,7 +19,8 @@ import model.DataWriter;
  * </ul>
  * call the methods in this class 
  */
-public class WriteController{
+public class WriteController
+{
 
 	/**
 	 * Model wrapper that do's different write operations on Map
@@ -30,7 +31,8 @@ public class WriteController{
 	 * Constructor to initializes {@link #dataWriter}  
 	 * @param new_dataWriter instance of {@link model.DataWriter}
 	 */
-	public WriteController(DataWriter new_dataWriter){
+	public WriteController(DataWriter new_dataWriter)
+	{
 		dataWriter = new_dataWriter;
 	}
 	
@@ -38,7 +40,8 @@ public class WriteController{
 	 * Writes new continent to map
 	 * @param continentName is the name of the continent u want to create
 	 */
-	public void writenewContinent(String continentName){
+	public void writenewContinent(String continentName)
+	{
 		dataWriter.createContinent(continentName);
 	}
 
@@ -51,26 +54,34 @@ public class WriteController{
 	 * @param isdeleteContinent is true if a continent is deleted by user
 	 * @param isdeleteCountry is true if a country is deleted by user 
 	 */
-	public void addData(String editedadjacentCountries,String continent,String country,String continentValue,boolean isdeleteContinent,boolean isdeleteCountry){
+	public void addData(String editedadjacentCountries,String continent,String country,String continentValue,boolean isdeleteContinent,boolean isdeleteCountry)
+	{
 		
 		//As adjacent countries are given as comma separated convert them to ArrayList
 		editedadjacentCountries = editedadjacentCountries.replace("[", "").replace("]", "");
 		
 		//Split them by comma and store it in an ArrayList
 		ArrayList<String> new_adjacentContries = null;		
-		if(editedadjacentCountries.length() > 2){
+		if(editedadjacentCountries.length() > 2)
+		{
 			new_adjacentContries = new ArrayList<>(Arrays.asList(editedadjacentCountries.split(",")));
-		}else{
+		}
+		else
+		{
 			new_adjacentContries = new ArrayList<String>();
 		}		 
         
 		//if isdeleteContinent is true delete the continent
-		if(isdeleteContinent){
+		if(isdeleteContinent)
+		{
 			dataWriter.deleteContinent(continent);
-		}else if(isdeleteCountry){
+		}
+		else if(isdeleteCountry)
+		{
 			dataWriter.deleteCountry(continent,country);
 		}
-		else{
+		else
+		{
 			dataWriter.overWriteData(continent,country,continentValue,new_adjacentContries);
 		} 
 		
