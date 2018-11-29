@@ -25,8 +25,7 @@ public class ReadControllerTest {
 	DataReader dataReader;
 	
 	/**
-	 * Load map file from it location path
-	 * and use controllers to load it into memory
+	 * Input some data in maps by passing values
 	 */
 	@Before
 	public void setUpBeforeClass()
