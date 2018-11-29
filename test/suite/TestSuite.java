@@ -24,7 +24,6 @@ import org.junit.runners.Suite.SuiteClasses;
 	MaxPlayersTest.class,
 	MinPlayerTest.class,
 	MinReinforceTest.class,
-	NoMapTest.class,
 	SaveMethodTest.class,
 	
 })
