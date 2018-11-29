@@ -17,7 +17,7 @@ public class Random implements StrategyInterface,Serializable {
 
 	/**
 	 * Deserialization uses this number to ensure that a loaded class corresponds 
-	 * exactly to a serialized object while saving rhe game state 
+	 * exactly to a serialized object while saving the game state 
 	 */
 	private static final long serialVersionUID = 8419616957685060753L;
 
@@ -31,7 +31,7 @@ public class Random implements StrategyInterface,Serializable {
     }
 
     /**
-     * name of the startegy
+     * name of the Strategy
      * @return name
      */
     @Override

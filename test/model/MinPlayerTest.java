@@ -34,6 +34,7 @@ public class MinPlayerTest {
         m.fakeData();
 
         GameDriver gm = new GameDriver(m, 3,"r,r,r", 500);
+        gm.start();
     }
 
 }
